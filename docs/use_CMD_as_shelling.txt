@@ -1,0 +1,7 @@
+cd C:\Ranger_team_project
+python app.py
+
+
+mysql login:
+mysql -u root -p
+password 1542

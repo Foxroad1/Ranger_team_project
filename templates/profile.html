@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Profile</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <h1>Welcome, {{ user[1] }}</h1>
+    <p>Title: {{ user[3] }}</p>
+    <p>Worker ID: {{ user[5] }}</p>
+    <h2>Work Logs</h2>
+    <table>
+        <tr>
+            <th>Log In Time</th>
+            <th>Log Out Time</th>
+            <th>Category</th>
+        </tr>
+        {% for log in work_logs %}
+        <tr>
+            <td>{{ log[2] }}</td>
+            <td>{{ log[3] }}</td>
+            <td>{{ log[4] }}</td>
+        </tr>
+        {% endfor %}
+    </table>
+    <a href="{{ url_for('log_work') }}">Log Work Hours</a>
+    <a href="{{ url_for('index') }}">Logout</a>
+</body>
+</html>
