@@ -6,6 +6,9 @@
 </head>
 <body>
     <h1>Admin Dashboard</h1>
+    <form action="{{ url_for('admin_logout') }}" method="post">
+        <button type="submit">Logout</button>
+    </form>
     <h2>Add Employee</h2>
     <form action="{{ url_for('admin') }}" method="post">
         <label for="name">Name:</label>
@@ -47,4 +50,30 @@
             <td>{{ employee[3] }}</td>
             <td>{{ employee[4] }}</td>
             <td>{{ employee[5] }}</td>
-            <td
+            <td>{{ employee[6] }}</td>
+            <td>{{ employee[8] }}</td>
+            <td>{{ employee[9] }}</td>
+        </tr>
+        {% endfor %}
+    </table>
+    <h2>Work Logs</h2>
+    <table border="1">
+        <tr>
+            <th>ID</th>
+            <th>Employee ID</th>
+            <th>Log In Time</th>
+            <th>Log Out Time</th>
+            <th>Category</th>
+        </tr>
+        {% for log in work_logs %}
+        <tr>
+            <td>{{ log[0] }}</td>
+            <td>{{ log[1] }}</td>
+            <td>{{ log[2] }}</td>
+            <td>{{ log[3] }}</td>
+            <td>{{ log[4] }}</td>
+        </tr>
+        {% endfor %}
+    </table>
+</body>
+</html>

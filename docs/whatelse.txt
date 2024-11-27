@@ -1,0 +1,70 @@
+Multi-user Application:
+
+Status: Implemented. The app supports multiple users with unique logins.
+Uses REST API:
+
+Status: Partially Implemented. We need to ensure that the app uses RESTful endpoints for all operations.
+Employees Log Hours into the System Under a Specific Category:
+
+Status: Implemented. The log_work route allows logging hours with a category.
+Summary on the Website:
+
+Status: Implemented. The profile page shows daily, weekly, and monthly summaries.
+Employee ID Numbers and Details:
+
+Status: Implemented. Employee details are entered during registration.
+Automatic Work Hours Logging:
+
+Status: Implemented. Work hours are logged automatically based on login and logout.
+Optional QR Code Sign-In:
+
+Status: Not Implemented. This can be added as an enhancement.
+Manual Hours Entry:
+
+Status: Implemented. Employees can manually confirm the start and end of work.
+Detailed Employee Information on Website:
+
+Status: Implemented. Employee details are displayed on the profile page.
+Summary of Work Hours by Title:
+
+Status: Partially Implemented. We need to ensure summaries can be filtered by title if multiple titles are used.
+Development Requirements
+Team Roles and Meetings:
+
+Status: This is more of a process requirement and should be managed by the team.
+Server Setup and Database Handling:
+
+Status: Implemented. The app connects to a MariaDB database.
+Website for Server as User Interface:
+
+Status: Implemented. The app has a web interface for both admin and employee sides.
+App User Interface (UI):
+
+Status: Implemented. The app has a functional UI for user interactions.
+Registration Methods:
+
+Status: Implemented. The app supports user registration and employee ID creation.
+Communication Logic Between App and Server:
+
+Status: Implemented. The app communicates with the server to log and fetch data.
+Prototype Development:
+
+Status: Implemented. The app supports login, registration, and data management.
+Next Steps
+Ensure REST API Compliance:
+
+Review and refactor the app to ensure all operations are accessible via RESTful endpoints.
+Add QR Code Sign-In:
+
+Implement QR code scanning for logging in to shifts.
+Filter Summaries by Title:
+
+Enhance the summary feature to filter work hours by title if an employee has multiple titles.
+Testing and Validation:
+
+Conduct thorough testing to ensure the app handles multiple users without issues.
+Documentation:
+
+Document the API endpoints, user instructions, and any other relevant information.
+Example Requirements File (requirements.txt)
+Here’s an example of what your requirements.txt file might look like:

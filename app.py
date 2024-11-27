@@ -188,5 +188,23 @@ def admin():
     return render_template('admin.html', employees=employees, work_logs=work_logs)
 
 
+@app.route('/admin_login', methods=['GET', 'POST'])
+def admin_login():
+    if request.method == 'POST':
+        data = request.form
+        admin_username = "admin"  # Replace with your admin username
+        admin_password = "admin_password"  # Replace with your admin password
+        if data['username'] == admin_username and data['password'] == admin_password:
+            session['admin_logged_in'] = True
+            return redirect(url_for('admin'))
+        return 'Invalid username or password'
+    return render_template('admin_login.html')
+
+
+@app.route('/admin_logout')
+def admin_logout():
+    session.pop('admin_logged_in', None)
+    return redirect(url_for('admin_login'))
+
 if __name__ == '__main__':
     app.run(debug=True)
