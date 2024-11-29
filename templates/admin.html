@@ -3,6 +3,75 @@
 <head>
     <meta charset="UTF-8">
     <title>Admin Dashboard</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+        }
+        h1, h2 {
+            color: #333;
+            text-align: center;
+        }
+        form {
+            max-width: 600px;
+            margin: 20px auto;
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        label {
+            display: block;
+            margin: 10px 0 5px;
+        }
+        input, button {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 10px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+        button {
+            background-color: #001e96;
+            color: #fff;
+            border: none;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+        button:hover {
+            background-color: #00b345;
+        }
+        table {
+            width: 90%;
+            margin: 20px auto;
+            border-collapse: collapse;
+        }
+        table, th, td {
+            border: 1px solid #ddd;
+        }
+        th, td {
+            padding: 12px;
+            text-align: left;
+        }
+        th {
+            background-color: #016c70;
+            color: #fff;
+        }
+        td a {
+            display: inline-block;
+            padding: 5px 10px;
+            background-color: #007bff;
+            color: #fff;
+            text-decoration: none;
+            border-radius: 4px;
+            transition: background-color 0.3s ease;
+        }
+        td a:hover {
+            background-color: #4ba803;
+        }
+    </style>
 </head>
 <body>
     <h1>Admin Dashboard</h1>
@@ -11,6 +80,7 @@
     </form>
     <h2>Add Employee</h2>
     <form action="{{ url_for('admin') }}" method="post">
+        <input type="hidden" name="add_employee" value="1">
         <label for="name">Name:</label>
         <input type="text" id="name" name="name" required><br>
         <label for="dob">Date of Birth:</label>
@@ -29,8 +99,26 @@
         <input type="text" id="social_security_number" name="social_security_number" required><br>
         <button type="submit">Add Employee</button>
     </form>
+    <h2>Modify Employee</h2>
+    <form action="{{ url_for('admin') }}" method="post">
+        <input type="hidden" name="modify_employee" value="1">
+        <label for="employee_id">Employee ID:</label>
+        <input type="text" id="employee_id" name="employee_id" required><br>
+        <label for="title">New Title:</label>
+        <input type="text" id="title" name="title" required><br>
+        <label for="work_group">New Work Group:</label>
+        <input type="text" id="work_group" name="work_group" required><br>
+        <button type="submit">Modify Employee</button>
+    </form>
+    <h2>Remove Employee</h2>
+    <form action="{{ url_for('admin') }}" method="post">
+        <input type="hidden" name="remove_employee" value="1">
+        <label for="employee_id">Employee ID:</label>
+        <input type="text" id="employee_id" name="employee_id" required><br>
+        <button type="submit">Remove Employee</button>
+    </form>
     <h2>Employees</h2>
-    <table border="1">
+    <table>
         <tr>
             <th>ID</th>
             <th>Name</th>
@@ -41,6 +129,7 @@
             <th>Username</th>
             <th>Email</th>
             <th>Social Security Number</th>
+            <th>Actions</th>
         </tr>
         {% for employee in employees %}
         <tr>
@@ -53,11 +142,16 @@
             <td>{{ employee[6] }}</td>
             <td>{{ employee[8] }}</td>
             <td>{{ employee[9] }}</td>
+            <td>
+                <a href="{{ url_for('download_employee_work_logs', employee_id=employee[0], period='daily') }}">Daily Logs</a>
+                <a href="{{ url_for('download_employee_work_logs', employee_id=employee[0], period='weekly') }}">Weekly Logs</a>
+                <a href="{{ url_for('download_employee_work_logs', employee_id=employee[0], period='monthly') }}">Monthly Logs</a>
+            </td>
         </tr>
         {% endfor %}
     </table>
     <h2>Work Logs</h2>
-    <table border="1">
+    <table>
         <tr>
             <th>ID</th>
             <th>Employee ID</th>

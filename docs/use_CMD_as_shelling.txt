@@ -1,7 +1,36 @@
 cd C:\Ranger_team_project
 python app.py
+http://127.0.0.1:5000 
+
+pip install mysql-connector-python
+pip install mariadb
 
 
-mysql login:
-mysql -u root -p
-password 1542
+DATABASE_USERNAME = root
+DATABASE_PASS = 1542
+DATABASE_NAME = bethon_worker
+DATABASE_HOST = 192.168.0.8
+DATABASE_PORT = 3306
+ 
+entry with cmd: 
+mysql -h 88.115.201.36 -P 3306 -u root -p
+mysql -h 10.6.128.110 -P 3306 -u root -p  (School) 
+USE bethon_worker;
+SHOW TABLES;
+
+
+bind-address = 0.0.0.0
+
+For new user:
+GRANT ALL PRIVILEGES ON *.* TO 'root'@'%' IDENTIFIED BY '1542';
+FLUSH PRIVILEGES;
+
+USE bethon_workers;
+
+Sites to get work logs 
+http://127.0.0.1:5000/download_work_logs/daily for daily logs
+http://127.0.0.1:5000/download_work_logs/weekly for weekly logs
+http://127.0.0.1:5000/download_work_logs/monthly for monthly logs
+
+
+

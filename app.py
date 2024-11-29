@@ -1,22 +1,49 @@
-from flask import Flask, request, jsonify, render_template, redirect, url_for, session
+import os
+import csv
+from datetime import datetime, timedelta
+from flask import Flask, request, jsonify, render_template, redirect, url_for, session, send_file
 import mariadb
 import uuid
 from werkzeug.security import generate_password_hash, check_password_hash
-from datetime import datetime, timedelta
 
 app = Flask(__name__)
 app.secret_key = 'your_secret_key'
 
-
-# Database connection
 def get_db_connection():
-    conn = mariadb.connect(
-        user="root",
-        password="1542",
-        host="localhost",
-        database="bethon_worker"
-    )
-    return conn
+    try:
+        conn = mariadb.connect(
+            user="root",
+            password="1542",
+            host="10.6.128.110",  # Use the school ip
+            port=3306,
+            database="bethon_worker"
+        )
+        return conn
+    except mariadb.OperationalError:
+        try:
+            conn = mariadb.connect(
+                user="root",
+                password="1542",
+                host="88.115.201.36",  # Fallback to home IP
+                port=3306,
+                database="bethon_worker"
+            )
+            return conn
+        except mariadb.OperationalError as e:
+            print(f"Error connecting to MariaDB: {e}")
+            return None
+
+@app.route('/test_db')
+def test_db():
+    try:
+        conn = get_db_connection()
+        cursor = conn.cursor()
+        cursor.execute('SELECT 1')
+        result = cursor.fetchone()
+        conn.close()
+        return 'Database connection successful!' if result else 'No result!'
+    except Exception as e:
+        return f'Error: {e}'
 
 
 @app.route('/')
@@ -32,9 +59,21 @@ def register():
         hashed_password = generate_password_hash(data['password'], method='pbkdf2:sha256')
         conn = get_db_connection()
         cur = conn.cursor()
+
+        # Find the lowest available ID
+        cur.execute("SELECT id FROM employees ORDER BY id")
+        ids = [row[0] for row in cur.fetchall()]
+        new_id = 1
+        for i in range(len(ids)):
+            if ids[i] != i + 1:
+                new_id = i + 1
+                break
+            new_id = len(ids) + 1
+
         cur.execute(
-            "INSERT INTO employees (name, dob, title, start_date, worker_id, username, password, email, social_security_number) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)",
-            (data['name'], data['dob'], data['title'], data['start_date'], worker_id, data['username'], hashed_password,
+            "INSERT INTO employees (id, name, dob, title, start_date, worker_id, username, password, email, social_security_number) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)",
+            (new_id, data['name'], data['dob'], data['title'], data['start_date'], worker_id, data['username'],
+             hashed_password,
              data['email'], data['social_security_number'])
         )
         conn.commit()
@@ -56,14 +95,18 @@ def login():
         conn.close()
         if user and check_password_hash(user[7], data['password']):
             session['user_id'] = user[0]
-            # Log the login time
+            # Check for an existing session
             conn = get_db_connection()
             cur = conn.cursor()
-            cur.execute(
-                "INSERT INTO work_logs (employee_id, log_in_time) VALUES (?, ?)",
-                (session['user_id'], datetime.now())
-            )
-            conn.commit()
+            cur.execute("SELECT * FROM work_logs WHERE employee_id = ? AND log_out_time IS NULL", (session['user_id'],))
+            existing_session = cur.fetchone()
+            if not existing_session:
+                # Log the login time
+                cur.execute(
+                    "INSERT INTO work_logs (employee_id, log_in_time) VALUES (?, ?)",
+                    (session['user_id'], datetime.now())
+                )
+                conn.commit()
             cur.close()
             conn.close()
             return redirect(url_for('profile'))
@@ -161,19 +204,60 @@ def log_work():
 
 @app.route('/admin', methods=['GET', 'POST'])
 def admin():
+    if 'admin_logged_in' not in session:
+        return redirect(url_for('admin_login'))
+
     if request.method == 'POST':
-        data = request.form
-        worker_id = str(uuid.uuid4())
-        hashed_password = generate_password_hash(data['password'], method='pbkdf2:sha256')
-        conn = get_db_connection()
-        cur = conn.cursor()
-        cur.execute(
-            "INSERT INTO employees (name, dob, title, start_date, worker_id, username, password, email, social_security_number) VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s)",
-            (data['name'], data['dob'], data['title'], data['start_date'], worker_id, data['username'], hashed_password, data['email'], data['social_security_number'])
-        )
-        conn.commit()
-        cur.close()
-        conn.close()
+        # Add employee to the database
+        if 'add_employee' in request.form:
+            data = request.form
+            worker_id = str(uuid.uuid4())
+            hashed_password = generate_password_hash(data['password'], method='pbkdf2:sha256')
+            conn = get_db_connection()
+            cur = conn.cursor()
+
+            # Find the lowest available ID
+            cur.execute("SELECT id FROM employees ORDER BY id")
+            ids = [row[0] for row in cur.fetchall()]
+            new_id = 1
+            for i in range(len(ids)):
+                if ids[i] != i + 1:
+                    new_id = i + 1
+                    break
+                new_id = len(ids) + 1
+
+            cur.execute(
+                "INSERT INTO employees (id, name, dob, title, start_date, worker_id, username, password, email, social_security_number) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)",
+                (new_id, data['name'], data['dob'], data['title'], data['start_date'], worker_id, data['username'],
+                 hashed_password, data['email'], data['social_security_number'])
+            )
+            conn.commit()
+            cur.close()
+            conn.close()
+
+        # Remove employee from the database
+        elif 'remove_employee' in request.form:
+            employee_id = request.form.get('employee_id')
+            conn = get_db_connection()
+            cur = conn.cursor()
+            # Delete related work logs first
+            cur.execute("DELETE FROM work_logs WHERE employee_id=%s", (employee_id,))
+            cur.execute("DELETE FROM employees WHERE id=%s", (employee_id,))
+            conn.commit()
+            cur.close()
+            conn.close()
+
+        # Modify employee details
+        elif 'modify_employee' in request.form:
+            employee_id = request.form.get('employee_id')
+            title = request.form.get('title')
+            work_group = request.form.get('work_group')
+            conn = get_db_connection()
+            cur = conn.cursor()
+            cur.execute("UPDATE employees SET title=%s WHERE id=%s", (title, employee_id))
+            conn.commit()
+            cur.close()
+            conn.close()
 
     # Fetch all employees and work logs for display
     conn = get_db_connection()
@@ -193,7 +277,7 @@ def admin_login():
     if request.method == 'POST':
         data = request.form
         admin_username = "admin"  # Replace with your admin username
-        admin_password = "admin_password"  # Replace with your admin password
+        admin_password = "Admin"  # Replace with your admin password
         if data['username'] == admin_username and data['password'] == admin_password:
             session['admin_logged_in'] = True
             return redirect(url_for('admin'))
@@ -201,10 +285,103 @@ def admin_login():
     return render_template('admin_login.html')
 
 
-@app.route('/admin_logout')
+@app.route('/admin_logout', methods=['POST'])
 def admin_logout():
     session.pop('admin_logged_in', None)
     return redirect(url_for('admin_login'))
+
+
+# Function to save work logs to a CSV file with calculated work hours in hours, minutes, and seconds format
+def save_work_logs_to_csv(logs, filename):
+    with open(filename, 'w', newline='') as csvfile:
+        fieldnames = ['Employee ID', 'Log In Time', 'Log Out Time', 'Category', 'Work Hours']
+        writer = csv.DictWriter(csvfile, fieldnames=fieldnames)
+
+        writer.writeheader()
+        for log in logs:
+            log_in_time = log[2]
+            log_out_time = log[3] if log[3] else datetime.now()  # Use current time if still logged in
+            duration = log_out_time - log_in_time
+            hours, remainder = divmod(duration.total_seconds(), 3600)
+            minutes, seconds = divmod(remainder, 60)
+            work_hours = f'{int(hours)}h {int(minutes)}m {int(seconds)}s'  # Convert duration to HH:MM:SS
+            writer.writerow({
+                'Employee ID': log[1],
+                'Log In Time': log_in_time,
+                'Log Out Time': log_out_time,
+                'Category': log[4],
+                'Work Hours': work_hours
+            })
+
+
+# Function to generate and save work logs for a specific period
+def generate_work_logs(period):
+    conn = get_db_connection()
+    cur = conn.cursor()
+
+    if period == 'daily':
+        date_str = datetime.now().strftime('%Y-%m-%d')
+        cur.execute("SELECT * FROM work_logs WHERE DATE(log_in_time) = %s", (date_str,))
+        filename = f'work_logs/work_logs_daily_{date_str}.csv'
+    elif period == 'weekly':
+        week_str = datetime.now().strftime('%Y-%U')
+        cur.execute("SELECT * FROM work_logs WHERE YEARWEEK(log_in_time, 1) = YEARWEEK(%s, 1)", (datetime.now(),))
+        filename = f'work_logs/work_logs_weekly_{week_str}.csv'
+    elif period == 'monthly':
+        month_str = datetime.now().strftime('%Y-%m')
+        cur.execute("SELECT * FROM work_logs WHERE DATE_FORMAT(log_in_time, '%Y-%m') = %s", (month_str,))
+        filename = f'work_logs/work_logs_monthly_{month_str}.csv'
+
+    logs = cur.fetchall()
+    cur.close()
+    conn.close()
+
+    save_work_logs_to_csv(logs, filename)
+    return filename
+
+
+# Function to generate and save work logs for a specific employee and period
+def generate_employee_work_logs(employee_id, period):
+    conn = get_db_connection()
+    cur = conn.cursor()
+
+    if period == 'daily':
+        date_str = datetime.now().strftime('%Y-%m-%d')
+        cur.execute("SELECT * FROM work_logs WHERE employee_id = ? AND DATE(log_in_time) = ?", (employee_id, date_str))
+        filename = f'work_logs/work_logs_daily_{employee_id}_{date_str}.csv'
+    elif period == 'weekly':
+        week_str = datetime.now().strftime('%Y-%U')
+        cur.execute("SELECT * FROM work_logs WHERE employee_id = ? AND YEARWEEK(log_in_time, 1) = YEARWEEK(?, 1)",
+                    (employee_id, datetime.now()))
+        filename = f'work_logs/work_logs_weekly_{employee_id}_{week_str}.csv'
+    elif period == 'monthly':
+        month_str = datetime.now().strftime('%Y-%m')
+        cur.execute("SELECT * FROM work_logs WHERE employee_id = ? AND DATE_FORMAT(log_in_time, '%Y-%m') = ?",
+                    (employee_id, month_str))
+        filename = f'work_logs/work_logs_monthly_{employee_id}_{month_str}.csv'
+
+    logs = cur.fetchall()
+    cur.close()
+    conn.close()
+
+    save_work_logs_to_csv(logs, filename)
+    return filename
+
+
+# Route to download work logs for a specific employee and period
+@app.route('/download_employee_work_logs/<employee_id>/<period>')
+def download_employee_work_logs(employee_id, period):
+    if period not in ['daily', 'weekly', 'monthly']:
+        return "Invalid period specified", 400
+
+    filename = generate_employee_work_logs(employee_id, period)
+
+    return send_file(filename, as_attachment=True)
+
+
+# Ensure the directory for storing CSV files exists
+if not os.path.exists('work_logs'):
+    os.makedirs('work_logs')
 
 if __name__ == '__main__':
     app.run(debug=True)

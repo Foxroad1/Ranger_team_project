@@ -3,6 +3,55 @@
 <head>
     <meta charset="UTF-8">
     <title>Profile</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+        }
+        h1, h2 {
+            color: #333;
+            text-align: center;
+        }
+        .container {
+            max-width: 800px;
+            margin: 20px auto;
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        .timer {
+            text-align: center;
+            margin-top: 20px;
+        }
+        button {
+            display: inline-block;
+            margin: 10px;
+            padding: 15px 25px;
+            font-size: 16px;
+            color: #fff;
+            background-color: #007bff;
+            border: none;
+            border-radius: 5px;
+            text-decoration: none;
+            transition: background-color 0.3s ease;
+        }
+        button:hover {
+            background-color: #00b303;
+        }
+        ul {
+            list-style-type: none;
+            padding: 0;
+        }
+        ul li {
+            background-color: #f9f9f9;
+            margin-bottom: 10px;
+            padding: 10px;
+            border-radius: 5px;
+        }
+    </style>
     <script>
         function startTimer(startTime) {
             const timerElement = document.getElementById('timer');
@@ -19,54 +68,61 @@
     </script>
 </head>
 <body>
-    <h1>Welcome, {{ user[1] }}</h1>
-    <div>
-        <h2>Title: {{ user[3] }}</h2>
-        <h2>Worker ID: {{ user[5] }}</h2>
-    </div>
-    <div>
-        <h2>Current Session Timer: <span id="timer">0h 0m 0s</span></h2>
-    </div>
-    <div>
-        <button onclick="document.getElementById('workLogs').style.display='block'">View Work Logs</button>
-        <div id="workLogs" style="display:none;">
-            <h2>Work Logs</h2>
+    <div class="container">
+        <h1>Welcome, {{ user[1] }}</h1>
+        <div>
+            <h2>Title: {{ user[3] }}</h2>
+            <h2>Worker ID: {{ user[5] }}</h2>
+        </div>
+        <div class="timer">
+            <h2>Current Session Timer: <span id="timer">0h 0m 0s</span></h2>
+        </div>
+        <div>
+            <button onclick="document.getElementById('workLogs').style.display='block'">View Work Logs</button>
+            <div id="workLogs" style="display:none;">
+                <h2>Work Logs</h2>
+                <ul>
+                    {% for log in work_logs %}
+                        <li>Log In: {{ log[2] }} | Log Out: {{ log[3] }} | Duration: {{ log[3] - log[2] if log[3] else 'Ongoing' }} | Category: {{ log[4] }}</li>
+                    {% endfor %}
+                </ul>
+            </div>
+        </div>
+        <div>
+            <h2>Daily Summary</h2>
             <ul>
-                {% for log in work_logs %}
-                    <li>Log In: {{ log[2] }} | Log Out: {{ log[3] }} | Duration: {{ log[3] - log[2] if log[3] else 'Ongoing' }} | Category: {{ log[4] }}</li>
+                {% for date, duration in daily_summary.items() %}
+                    <li>{{ date }}: {{ duration }}</li>
                 {% endfor %}
             </ul>
         </div>
-    </div>
-    <div>
-        <h2>Daily Summary</h2>
-        <ul>
-            {% for date, duration in daily_summary.items() %}
-                <li>{{ date }}: {{ duration }}</li>
-            {% endfor %}
-        </ul>
-    </div>
-    <div>
-        <h2>Weekly Summary</h2>
-        <ul>
-            {% for week, duration in weekly_summary.items() %}
-                <li>{{ week }}: {{ duration }}</li>
-            {% endfor %}
-        </ul>
-    </div>
-    <div>
-        <h2>Monthly Summary</h2>
-        <ul>
-            {% for month, duration in monthly_summary.items() %}
-                <li>{{ month }}: {{ duration }}</li>
-            {% endfor %}
-        </ul>
-    </div>
-    <div>
+        <div>
+            <h2>Weekly Summary</h2>
+            <ul>
+                {% for week, duration in weekly_summary.items() %}
+                    <li>{{ week }}: {{ duration }}</li>
+                {% endfor %}
+            </ul>
+        </div>
+        <div>
+            <h2>Monthly Summary</h2>
+            <ul>
+                {% for month, duration in monthly_summary.items() %}
+                    <li>{{ month }}: {{ duration }}</li>
+                {% endfor %}
+            </ul>
+        </div>
+        <div class="button-container">
+            <h2>Download Work Logs</h2>
+            <button onclick="window.location.href='{{ url_for('download_employee_work_logs', employee_id=user[0], period='daily') }}'">Download Daily Logs</button>
+            <button onclick="window.location.href='{{ url_for('download_employee_work_logs', employee_id=user[0], period='weekly') }}'">Download Weekly Logs</button>
+            <button onclick="window.location.href='{{ url_for('download_employee_work_logs', employee_id=user[0], period='monthly') }}'">Download Monthly Logs</button>
+        </div>
         <form action="{{ url_for('logout') }}" method="post">
             <button type="submit">Logout</button>
         </form>
     </div>
+
     <script>
         {% if work_logs and work_logs[-1][3] is none %}
             startTimer("{{ work_logs[-1][2] }}");

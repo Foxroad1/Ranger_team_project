@@ -40,8 +40,7 @@ We will go with the Time tracking app within a company's work system.
 20.11.2024. 9:29: Lost track but trying to puzzle out what to do next. Let us see the MySql in XAMMPP. 
 
 
-20.11.2024. 10:24: New Team mate joins to the fold: Joona Lunareonn. The team settles on using  Python, 
-with mariadb for database, and using  Flake8 for format handlings. ( XAMMPP and it's MYSQL havbeen removed from team's scope.)
+20.11.2024. 10:24: Learned about MySQL and server set up, Temmu started to learn about kivy. XAMMPP were turned down exchanged to  mariadb
 
 21.11.2024. 8:04: Today Is a little bit special, Janos working from home,  Yesterday installed  Flake8 due to Request of Joona. Today I try to familiarize myself with it (Janos).
 
@@ -53,37 +52,40 @@ with mariadb for database, and using  Flake8 for format handlings. ( XAMMPP and 
 21.11.2024 : 11:13 Since Janos is working from home ( no lunch break needed): 
 Janos have a suggested team personel role: ( note : all subjective to change by team agreements)
 
-    - Janos : Either sets up and writes the logic for the app that handles server communication and the handling of work hour logging, and the new user registration parts based on the requirements, or designs the UI  with Kivy in Python.
-    - Joona : Since his expertise with server, he could teach the team members for the serverside solutions, and being able to fully set up everything needed for the database.
-    Teemu :  His expertise in TKinter should allow him to easily desing an interface for the mobile app, but aslo able to study about the serverside solutions, and or maybe write the logic that handles server communication and the handling of work hour logging,and the new user registration parts based on the requirements.
+    - Janos : Set's up the server, makes the companion webpage. 
+    - Teemu : Teemu will start to build the android app side as a companion app.  
 
     Side roles: ( suggestions)
                 Janos: Delegates communication within team. Leads the project until see fits. 
                 Documentation specialist (reverse engineering, and Loggs updates), Coding specialist.
-                
-                Joona: Possible take over on leading project at some point. Server side solution Expert,
-                Coding specialist. (other qualities yet to be discovered)
 
-                Teemu: Visual specialist, Coding specialist & UI design developer. (precise skill set.) 
+                Teemu: Visual specialist, Coding specialist & UI design developer, android developer. 
 
-3 members same roles (capabilities overall):
+
+2 members same roles (capabilities overall):
                 Software Developers, Software Designers, Software Engineers
 
 (quick note all roles are subjective to change by team's agreement and needs)
 
 Overall everyone could see how one is proceeding and being able to learn from the processes. 
 
-22.11.2024. 12:45: 
-Team's log: Server is up and running. Joona Did excelent job on troubleshooting the connectivity issues. 
-Janos: fixed python installation, and the installation's own artifacts ( wrong system environment variables and their paths)
-    "Uppon realizing the point of where the more expert Team member is more capable of leading the group, Joona  is giving us details, and isntructions as of now". 
-Set up mariadb, investigated connetion problems related possibilities, within his system. 
+22.11.2024. 12:45: Janos Tries to set up the server, fails and re learns everything from 0. 
+ 
 
-Teemu: Sickday. Get well Buddy 
-
-Joona: Becomes master Engineer, his expertise far outweight's the Team's technical capabilities even if combined. Joona does server related
-problemsolving. Project plan document. 
+Teemu: Sickday. Get well Buddy
 
 26.11.2024. 11:05 Janos  worked from hom. Rest of the team no info. 
 
 27.11.2024 08:03 Janos Starts to resolve webpage set up problems, rest of the team unavailable yet... 
+
+27.11.2024 16:20: Janos worked through the server set up with the basic website. 
+
+
+28.11.2024: 07:04 Janos started to work from home, Updated the websites, to look nicer for the project. Created admin with own priviliges.
+".csv" format files can be downloaded as daily /weekly /monthly work hours. The server runs as long as Janos wont turn off the laptop.
+
+
+28.11.2024 : 10:06 Teemu arrived. Janos  will bring him up to speed, sharing all project files, setting up his connection to the server.
+
+28.112024 13:19  Teemu Set up the server connection with Janos's help. Companion website connected to server, test runs compleeted. 
+Next phase:  making android companion app prototype. 
