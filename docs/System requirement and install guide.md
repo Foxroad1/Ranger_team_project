@@ -35,7 +35,7 @@ Use CMD to launch python app by:
       and andmin_password = (note keep the '' - markings )
 
 Serverside Requirements within MariaDB:
-    - for other users :
+    - for new users to be added:
         GRANT ALL PRIVILEGES ON *.* TO 'username'@'%' IDENTIFIED BY 'password';
         FLUSH PRIVILEGES; (change username as you specify in app.py, and password 
         as you specify in app.py)
