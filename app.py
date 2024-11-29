@@ -192,7 +192,7 @@ def log_work():
         conn = get_db_connection()
         cur = conn.cursor()
         cur.execute(
-            "INSERT INTO work_logs (employee_id, log_in_time, log_out_time, category) VALUES (?, ?, ?, ?)",
+            "INSERT INTO work_logs (employee_id, log_in_time, log_out_time, Title) VALUES (?, ?, ?, ?)",
             (session['user_id'], data['log_in_time'], data['log_out_time'], data['category'])
         )
         conn.commit()
@@ -294,7 +294,7 @@ def admin_logout():
 # Function to save work logs to a CSV file with calculated work hours in hours, minutes, and seconds format
 def save_work_logs_to_csv(logs, filename):
     with open(filename, 'w', newline='') as csvfile:
-        fieldnames = ['Employee ID', 'Log In Time', 'Log Out Time', 'Category', 'Work Hours']
+        fieldnames = ['Employee ID', 'Log In Time', 'Log Out Time', 'Title', 'Work Hours']
         writer = csv.DictWriter(csvfile, fieldnames=fieldnames)
 
         writer.writeheader()
@@ -309,7 +309,7 @@ def save_work_logs_to_csv(logs, filename):
                 'Employee ID': log[1],
                 'Log In Time': log_in_time,
                 'Log Out Time': log_out_time,
-                'Category': log[4],
+                'Title': log[4],
                 'Work Hours': work_hours
             })
 
