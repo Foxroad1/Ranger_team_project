@@ -14,7 +14,7 @@ DATABASE_PORT = 3306
  
 entry with cmd: 
 mysql -h 88.115.201.36 -P 3306 -u root -p
-mysql -h 10.6.128.110 -P 3306 -u root -p  (School) 
+mysql -h 10.6.128.129 -P 3306 -u root -p  (School)
 USE bethon_worker;
 SHOW TABLES;
 

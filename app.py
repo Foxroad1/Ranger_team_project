@@ -14,7 +14,7 @@ def get_db_connection():
         conn = mariadb.connect(
             user="root",
             password="1542",
-            host="10.6.128.110",  # Use the school ip
+            host="10.6.128.129",  # Use the school ip
             port=3306,
             database="bethon_worker"
         )
