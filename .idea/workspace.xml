@@ -4,12 +4,8 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="6e6cc73d-e093-4582-ae6b-b9860e613723" name="Changes" comment="Plan document updated">
+    <list default="true" id="6e6cc73d-e093-4582-ae6b-b9860e613723" name="Changes" comment="Updated website looks half done">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app.py" beforeDir="false" afterPath="$PROJECT_DIR$/app.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/admin.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/admin.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/profile.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/profile.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/work_logs/work_logs_daily_1_2024-11-28.csv" beforeDir="false" afterPath="$PROJECT_DIR$/work_logs/work_logs_daily_1_2024-11-28.csv" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -90,7 +86,15 @@
       <option name="project" value="LOCAL" />
       <updated>1732876765816</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="Updated website looks half done">
+      <option name="closed" value="true" />
+      <created>1732879975893</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1732879975893</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -120,7 +124,8 @@
     <MESSAGE value="tryi to make app good" />
     <MESSAGE value="lets test" />
     <MESSAGE value="Plan document updated" />
-    <option name="LAST_COMMIT_MESSAGE" value="Plan document updated" />
+    <MESSAGE value="Updated website looks half done" />
+    <option name="LAST_COMMIT_MESSAGE" value="Updated website looks half done" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
