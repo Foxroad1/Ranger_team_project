@@ -4,14 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="6e6cc73d-e093-4582-ae6b-b9860e613723" name="Changes" comment="workspace updated link">
+    <list default="true" id="6e6cc73d-e093-4582-ae6b-b9860e613723" name="Changes" comment="worklogs trial download">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app.py" beforeDir="false" afterPath="$PROJECT_DIR$/app.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/docs/use_CMD_as_shelling.txt" beforeDir="false" afterPath="$PROJECT_DIR$/docs/use_CMD_as_shelling.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/admin_login.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/admin_login.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/log_work.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/log_work.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/login.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/login.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/register.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/register.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -108,7 +104,15 @@
       <option name="project" value="LOCAL" />
       <updated>1733210250937</updated>
     </task>
-    <option name="localTasksCounter" value="6" />
+    <task id="LOCAL-00006" summary="worklogs trial download">
+      <option name="closed" value="true" />
+      <created>1733298346105</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1733298346105</updated>
+    </task>
+    <option name="localTasksCounter" value="7" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -140,7 +144,8 @@
     <MESSAGE value="Plan document updated" />
     <MESSAGE value="Updated website looks half done" />
     <MESSAGE value="workspace updated link" />
-    <option name="LAST_COMMIT_MESSAGE" value="workspace updated link" />
+    <MESSAGE value="worklogs trial download" />
+    <option name="LAST_COMMIT_MESSAGE" value="worklogs trial download" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
