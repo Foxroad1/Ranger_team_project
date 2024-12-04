@@ -1,0 +1,39 @@
+Data Privacy and Security Statement
+
+As a private individual managing this project,
+I am committed to ensuring that user data is handled securely and responsibly.
+
+Here are the measures I have implemented:
+
+1. Data Handling:
+User data is strictly processed within,
+the web server and its companion Android app.
+No data is transferred outside these environments.
+
+2. Access Control:
+Only authorized personnel, such as server administrators and HR staff,
+have access to user data.
+Personal worker profiles cannot view or interact with other user profiles.
+
+3. Data Protection:
+All personal information is stored securely and is not shared with third parties,
+including Google, Microsoft, or any other companies.
+
+4. Certificates and Compliance:
+The system is designed to comply with relevant data protection regulations,
+including GDPR (General Data Protection Regulation) and CCPA (California Consumer Privacy Act).
+While this is a school project, I have considered the importance of certifications,
+such as SSL/TLS for secure data transmission.
+
+5. Data Security Practices:
+Basic Security Practices:
+The database is protected by a password and the admin username can be changed.
+Basic security measures, such as the Windows firewall, are in place to protect the system.
+
+Note point 5:
+
+    Note for point 5:
+    "If this software and app were to be released into a real-life environment,
+    such as for a company to purchase and use, we would consider implementing stronger,
+     protections. This would include ensuring server security,
+     encryption, and a robust third-party firewall setup."
