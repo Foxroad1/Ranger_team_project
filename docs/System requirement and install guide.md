@@ -6,6 +6,7 @@ Install in Commandline (windows):
     - pip install flask
     - pip install mysql
     - pip install mysql-connector-python
+    - pip install qrcode[pil]
     
 
 In Windows press Windows button (flag) 

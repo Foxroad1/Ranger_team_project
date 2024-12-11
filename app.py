@@ -71,10 +71,10 @@ def register():
             new_id = len(ids) + 1
 
         cur.execute(
-            "INSERT INTO employees (id, name, dob, title, start_date, worker_id, username, password, email, social_security_number) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)",
+            "INSERT INTO employees (id, name, dob, title, start_date, worker_id, username, password, email, phone_number) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)",
             (new_id, data['name'], data['dob'], data['title'], data['start_date'], worker_id, data['username'],
              hashed_password,
-             data['email'], data['social_security_number'])
+             data['email'], data['phone_number'])
         )
         conn.commit()
         cur.close()
@@ -227,9 +227,9 @@ def admin():
                 new_id = len(ids) + 1
 
             cur.execute(
-                "INSERT INTO employees (id, name, dob, title, start_date, worker_id, username, password, email, social_security_number) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)",
+                "INSERT INTO employees (id, name, dob, title, start_date, worker_id, username, password, email, phone_number) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)",
                 (new_id, data['name'], data['dob'], data['title'], data['start_date'], worker_id, data['username'],
-                 hashed_password, data['email'], data['social_security_number'])
+                 hashed_password, data['email'], data['phone_number'])
             )
             conn.commit()
             cur.close()
