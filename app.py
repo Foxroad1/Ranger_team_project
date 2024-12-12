@@ -201,6 +201,46 @@ def log_work():
         return redirect(url_for('profile'))
     return render_template('log_work.html')
 
+@app.route('/log_start_time', methods=['POST'])
+def log_start_time():
+    if 'user_id' not in session:
+        return jsonify({'error': 'Unauthorized'}), 401
+
+    data = request.get_json()
+    qr_code = data.get('qrCode')
+
+    if not qr_code:
+        return jsonify({'error': 'QR code is required'}), 400
+
+    conn = get_db_connection()
+    cur = conn.cursor()
+    cur.execute(
+        "INSERT INTO work_logs (employee_id, log_in_time) VALUES (?, ?)",
+        (session['user_id'], datetime.now())
+    )
+    conn.commit()
+    cur.close()
+    conn.close()
+
+    return jsonify({'message': 'Start time logged successfully'}), 200
+
+@app.route('/log_end_time', methods=['POST'])
+def log_end_time():
+    if 'user_id' not in session:
+        return jsonify({'error': 'Unauthorized'}), 401
+
+    conn = get_db_connection()
+    cur = conn.cursor()
+    cur.execute(
+        "UPDATE work_logs SET log_out_time = ? WHERE employee_id = ? AND log_out_time IS NULL",
+        (datetime.now(), session['user_id'])
+    )
+    conn.commit()
+    cur.close()
+    conn.close()
+
+    return jsonify({'message': 'End time logged successfully'}), 200
+
 
 @app.route('/admin', methods=['GET', 'POST'])
 def admin():

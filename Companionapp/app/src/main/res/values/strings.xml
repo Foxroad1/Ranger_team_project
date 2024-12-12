@@ -3,4 +3,11 @@
     <string name="login">Login</string>
     <string name="password_label">Password:</string>
     <string name="username_hint">UserName:</string>
+    <string name="name">Name</string>
+    <string name="email">Email</string>
+    <string name="Scan_QR_Code">QrCodeScanner</string>
+    <string name="Logout">Logout</string>
+    <string name="Worker_ID">WorkerID:</string>
+    <string name="Job_title">JobTitle:</string>
+    <string name="Clock">Clock:</string>
 </resources>

@@ -13,6 +13,7 @@ material = "1.12.0"
 activity = "1.9.3"
 constraintlayout = "2.2.0"
 zxing = "4.1.0"
+okhttp = "4.9.3"
 retrofit = "2.9.0"
 gson = "2.8.6"
 
@@ -41,6 +42,8 @@ androidx-appcompat = { group = "androidx.appcompat", name = "appcompat", version
 material = { group = "com.google.android.material", name = "material", version.ref = "material" }
 androidx-activity = { group = "androidx.activity", name = "activity", version.ref = "activity" }
 androidx-constraintlayout = { group = "androidx.constraintlayout", name = "constraintlayout", version.ref = "constraintlayout" }
+okhttp = { group = "com.squareup.okhttp3", name = "okhttp", version.ref = "okhttp" }
+
 
 
 [plugins]

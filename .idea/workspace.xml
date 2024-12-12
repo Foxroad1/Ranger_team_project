@@ -4,86 +4,21 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="6e6cc73d-e093-4582-ae6b-b9860e613723" name="Changes" comment="NEW IP CONFIG FOR ME AND CMD SHELLING UPDATED TO ALLOW REMOTE ACCESS">
-      <change afterPath="$PROJECT_DIR$/Companionapp/.gitignore" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Companionapp/.idea/.gitignore" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Companionapp/.idea/.name" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Companionapp/.idea/compiler.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Companionapp/.idea/gradle.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Companionapp/.idea/migrations.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Companionapp/.idea/misc.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Companionapp/.idea/runConfigurations.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Companionapp/.idea/vcs.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Companionapp/app/.gitignore" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Companionapp/app/build.gradle.kts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Companionapp/app/proguard-rules.pro" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Companionapp/app/src/androidTest/java/com/example/bethonworkercompanion/ExampleInstrumentedTest.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Companionapp/app/src/main/AndroidManifest.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Companionapp/app/src/main/java/com/example/bethonworkercompanion/LoginActivity.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Companionapp/app/src/main/java/com/example/bethonworkercompanion/MainActivity.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Companionapp/app/src/main/java/com/example/bethonworkercompanion/QRCodeScannerActivity.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Companionapp/app/src/main/java/com/example/bethonworkercompanion/ui/theme/Color.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Companionapp/app/src/main/java/com/example/bethonworkercompanion/ui/theme/Theme.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Companionapp/app/src/main/java/com/example/bethonworkercompanion/ui/theme/Type.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Companionapp/app/src/main/res/drawable/ic_launcher_background.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Companionapp/app/src/main/res/drawable/ic_launcher_foreground.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Companionapp/app/src/main/res/layout/activity_login.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Companionapp/app/src/main/res/layout/activity_qr_code_scanner.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Companionapp/app/src/main/res/layout/activity_qrcode_scanner.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Companionapp/app/src/main/res/mipmap-anydpi/ic_launcher.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Companionapp/app/src/main/res/mipmap-anydpi/ic_launcher_round.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Companionapp/app/src/main/res/mipmap-hdpi/ic_launcher.webp" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Companionapp/app/src/main/res/mipmap-hdpi/ic_launcher_round.webp" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Companionapp/app/src/main/res/mipmap-mdpi/ic_launcher.webp" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Companionapp/app/src/main/res/mipmap-mdpi/ic_launcher_round.webp" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Companionapp/app/src/main/res/mipmap-xhdpi/ic_launcher.webp" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Companionapp/app/src/main/res/mipmap-xhdpi/ic_launcher_round.webp" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Companionapp/app/src/main/res/mipmap-xxhdpi/ic_launcher.webp" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Companionapp/app/src/main/res/mipmap-xxhdpi/ic_launcher_round.webp" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Companionapp/app/src/main/res/mipmap-xxxhdpi/ic_launcher.webp" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Companionapp/app/src/main/res/mipmap-xxxhdpi/ic_launcher_round.webp" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Companionapp/app/src/main/res/values/colors.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Companionapp/app/src/main/res/values/strings.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Companionapp/app/src/main/res/values/themes.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Companionapp/app/src/main/res/xml/backup_rules.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Companionapp/app/src/main/res/xml/data_extraction_rules.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Companionapp/app/src/test/java/com/example/bethonworkercompanion/ExampleUnitTest.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Companionapp/build.gradle.kts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Companionapp/gradle.properties" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Companionapp/gradle/libs.versions.toml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Companionapp/gradle/wrapper/gradle-wrapper.jar" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Companionapp/gradle/wrapper/gradle-wrapper.properties" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Companionapp/gradlew" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Companionapp/gradlew.bat" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Companionapp/settings.gradle.kts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Qr_code.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/templates/activity_log.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/templates/log_hours.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/dbnavigator.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dbnavigator.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
+    <list default="true" id="6e6cc73d-e093-4582-ae6b-b9860e613723" name="Changes" comment="Updated kinda everything">
+      <change afterPath="$PROJECT_DIR$/Companionapp/app/src/main/java/com/example/bethonworkercompanion/ProfileActivity.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Companionapp/app/src/main/java/com/example/bethonworkercompanion/RetrofitClient.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Companionapp/app/src/main/java/com/example/bethonworkercompanion/RetryInterceptor.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Companionapp/app/src/main/java/com/example/bethonworkercompanion/User.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Companionapp/app/src/main/res/layout/activity_profile.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Companionapp/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/Companionapp/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Companionapp/app/build.gradle.kts" beforeDir="false" afterPath="$PROJECT_DIR$/Companionapp/app/build.gradle.kts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Companionapp/app/src/main/java/com/example/bethonworkercompanion/ApiService.kt" beforeDir="false" afterPath="$PROJECT_DIR$/Companionapp/app/src/main/java/com/example/bethonworkercompanion/ApiService.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Companionapp/app/src/main/java/com/example/bethonworkercompanion/LoginActivity.kt" beforeDir="false" afterPath="$PROJECT_DIR$/Companionapp/app/src/main/java/com/example/bethonworkercompanion/LoginActivity.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Companionapp/app/src/main/res/values/strings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/Companionapp/app/src/main/res/values/strings.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Companionapp/gradle/libs.versions.toml" beforeDir="false" afterPath="$PROJECT_DIR$/Companionapp/gradle/libs.versions.toml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app.py" beforeDir="false" afterPath="$PROJECT_DIR$/app.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/Data Privacy &amp; Security Statement.txt" beforeDir="false" afterPath="$PROJECT_DIR$/docs/Data Privacy &amp; Security Statement.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/System requirement and install guide.md" beforeDir="false" afterPath="$PROJECT_DIR$/docs/System requirement and install guide.md" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/docs/Team meeting and details log.md" beforeDir="false" afterPath="$PROJECT_DIR$/docs/Team meeting and details log.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/requirements.md" beforeDir="false" afterPath="$PROJECT_DIR$/docs/requirements.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/use_CMD_as_shelling.txt" beforeDir="false" afterPath="$PROJECT_DIR$/docs/use_CMD_as_shelling.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/whatelse.txt" beforeDir="false" afterPath="$PROJECT_DIR$/docs/whatelse.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/static/styles.css" beforeDir="false" afterPath="$PROJECT_DIR$/static/styles.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/add_employee.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/add_employee.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/admin.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/admin.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/admin_login.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/admin_login.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/index.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/log_work.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/log_work.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/login.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/login.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/profile.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/profile.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/register.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/register.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/work_logs/work_logs_daily_1_2024-11-28.csv" beforeDir="false" afterPath="$PROJECT_DIR$/work_logs/work_logs_daily_1_2024-11-28.csv" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/work_logs/work_logs_daily_1_2024-11-29.csv" beforeDir="false" afterPath="$PROJECT_DIR$/work_logs/work_logs_daily_1_2024-11-29.csv" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/work_logs/work_logs_daily_1_2024-12-04.csv" beforeDir="false" afterPath="$PROJECT_DIR$/work_logs/work_logs_daily_1_2024-12-04.csv" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/work_logs/work_logs_daily_2_2024-11-28.csv" beforeDir="false" afterPath="$PROJECT_DIR$/work_logs/work_logs_daily_2_2024-11-28.csv" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/work_logs/work_logs_weekly_1_2024-47.csv" beforeDir="false" afterPath="$PROJECT_DIR$/work_logs/work_logs_weekly_1_2024-47.csv" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -99,6 +34,11 @@
     </option>
   </component>
   <component name="Git.Settings">
+    <option name="RECENT_BRANCH_BY_REPOSITORY">
+      <map>
+        <entry key="$PROJECT_DIR$" value="bethon_workers" />
+      </map>
+    </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="ProjectColorInfo">{
@@ -110,20 +50,21 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;DefaultHtmlFileTemplate&quot;: &quot;HTML File&quot;,
-    &quot;Python.Interface.executor&quot;: &quot;Run&quot;,
-    &quot;Python.app.executor&quot;: &quot;Run&quot;,
-    &quot;Python.main.executor&quot;: &quot;Run&quot;,
-    &quot;Python.manage.executor&quot;: &quot;Run&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;bethon__workers&quot;,
-    &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;,
-    &quot;last_opened_file_path&quot;: &quot;C:/Ranger_team_project&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;promo.django&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "DefaultHtmlFileTemplate": "HTML File",
+    "Python.Interface.executor": "Run",
+    "Python.Qr_code.executor": "Run",
+    "Python.app.executor": "Run",
+    "Python.main.executor": "Run",
+    "Python.manage.executor": "Run",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "git-widget-placeholder": "bethon__workers__companionprototype",
+    "ignore.virus.scanning.warn.message": "true",
+    "last_opened_file_path": "C:/Ranger_team_project",
+    "settings.editor.selected.configurable": "promo.django"
   }
-}</component>
+}]]></component>
   <component name="SharedIndexes">
     <attachedChunks>
       <set>
@@ -196,7 +137,15 @@
       <option name="project" value="LOCAL" />
       <updated>1733301673490</updated>
     </task>
-    <option name="localTasksCounter" value="8" />
+    <task id="LOCAL-00008" summary="Updated kinda everything">
+      <option name="closed" value="true" />
+      <created>1733898252350</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1733898252350</updated>
+    </task>
+    <option name="localTasksCounter" value="9" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -230,7 +179,8 @@
     <MESSAGE value="workspace updated link" />
     <MESSAGE value="worklogs trial download" />
     <MESSAGE value="NEW IP CONFIG FOR ME AND CMD SHELLING UPDATED TO ALLOW REMOTE ACCESS" />
-    <option name="LAST_COMMIT_MESSAGE" value="NEW IP CONFIG FOR ME AND CMD SHELLING UPDATED TO ALLOW REMOTE ACCESS" />
+    <MESSAGE value="Updated kinda everything" />
+    <option name="LAST_COMMIT_MESSAGE" value="Updated kinda everything" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

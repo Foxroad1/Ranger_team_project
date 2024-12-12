@@ -87,5 +87,11 @@ Teemu: Sickday. Get well Buddy
 
 28.11.2024 : 10:06 Teemu arrived. Janos  will bring him up to speed, sharing all project files, setting up his connection to the server.
 
-28.112024 13:19  Teemu Set up the server connection with Janos's help. Companion website connected to server, test runs compleeted. 
-Next phase:  making android companion app prototype. 
+28.11.2024 13:19  Teemu Set up the server connection with Janos's help. Companion website connected to server, test runs compleeted. 
+Next phase:  making android companion app prototype
+
+11.12.2024 10:10  Team started to complete the "Wilma" plans, for evaluation.
+Team maybe back on track te project were on a stand still, due to the fact of trying to resolve some issues where the web site have
+a small, yet frustrating problem. Teemu were sick for a long time, and alone i was stuck on the small details. "Details matters to be
+honest here". Not sure where we are going to end up with the project, we miss a lot of documents still, and a lot of work is still 
+ahead of us. We proceed as best we can 
