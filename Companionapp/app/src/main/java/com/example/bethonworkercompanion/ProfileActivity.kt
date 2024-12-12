@@ -4,6 +4,7 @@ import android.content.Intent
 import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
+import android.util.Log
 import android.widget.Button
 import android.widget.TextView
 import android.widget.Toast
@@ -14,7 +15,6 @@ import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
-import java.util.*
 
 class ProfileActivity : AppCompatActivity() {
     private lateinit var clockTextView: TextView
@@ -66,14 +66,18 @@ class ProfileActivity : AppCompatActivity() {
                 withContext(Dispatchers.Main) {
                     if (response.isSuccessful) {
                         val user = response.body()
+                        // Log the user data
+                        Log.d("ProfileActivity", "User data: $user")
                         // Update UI with user data
                         updateUI(user)
                     } else {
+                        Log.e("ProfileActivity", "Failed to fetch user profile: ${response.errorBody()?.string()}")
                         Toast.makeText(this@ProfileActivity, "Failed to fetch user profile", Toast.LENGTH_LONG).show()
                     }
                 }
             } catch (e: Exception) {
                 withContext(Dispatchers.Main) {
+                    Log.e("ProfileActivity", "Error: ${e.message}", e)
                     Toast.makeText(this@ProfileActivity, "Error: ${e.message}", Toast.LENGTH_LONG).show()
                 }
             }
