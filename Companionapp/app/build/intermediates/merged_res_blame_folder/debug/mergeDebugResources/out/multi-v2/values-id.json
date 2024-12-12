@@ -1,0 +1,19 @@
+{
+    "logs": [
+        {
+            "outputFile": "com.example.bethonworkercompanion.app-mergeDebugResources-2:/values-id/values-id.xml",
+            "map": [
+                {
+                    "source": "C:\\Users\\janos\\.gradle\\caches\\8.9\\transforms\\33e8a2dff4a29f04f092e4a309caee0a\\transformed\\zxing-android-embedded-4.1.0\\res\\values-id\\values-id.xml",
+                    "from": {
+                        "startLines": "2,3,4,5",
+                        "startColumns": "4,4,4,4",
+                        "startOffsets": "55,114,161,293",
+                        "endColumns": "58,46,131,108",
+                        "endOffsets": "109,156,288,397"
+                    }
+                }
+            ]
+        }
+    ]
+}
