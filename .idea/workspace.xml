@@ -4,27 +4,15 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="6e6cc73d-e093-4582-ae6b-b9860e613723" name="Changes" comment="Updated kinda everything">
-      <change afterPath="$PROJECT_DIR$/Companionapp/app/src/main/java/com/example/bethonworkercompanion/ProfileActivity.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Companionapp/app/src/main/java/com/example/bethonworkercompanion/RetrofitClient.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Companionapp/app/src/main/java/com/example/bethonworkercompanion/RetryInterceptor.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Companionapp/app/src/main/java/com/example/bethonworkercompanion/User.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Companionapp/app/src/main/res/layout/activity_profile.xml" afterDir="false" />
+    <list default="true" id="6e6cc73d-e093-4582-ae6b-b9860e613723" name="Changes" comment="Prototyping phase">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Companionapp/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/Companionapp/.idea/misc.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Companionapp/app/build.gradle.kts" beforeDir="false" afterPath="$PROJECT_DIR$/Companionapp/app/build.gradle.kts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Companionapp/app/src/main/java/com/example/bethonworkercompanion/ApiService.kt" beforeDir="false" afterPath="$PROJECT_DIR$/Companionapp/app/src/main/java/com/example/bethonworkercompanion/ApiService.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Companionapp/app/src/main/java/com/example/bethonworkercompanion/LoginActivity.kt" beforeDir="false" afterPath="$PROJECT_DIR$/Companionapp/app/src/main/java/com/example/bethonworkercompanion/LoginActivity.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Companionapp/app/src/main/res/values/strings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/Companionapp/app/src/main/res/values/strings.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Companionapp/gradle/libs.versions.toml" beforeDir="false" afterPath="$PROJECT_DIR$/Companionapp/gradle/libs.versions.toml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app.py" beforeDir="false" afterPath="$PROJECT_DIR$/app.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/Team meeting and details log.md" beforeDir="false" afterPath="$PROJECT_DIR$/docs/Team meeting and details log.md" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
+  <component name="ChangesViewManager" show_ignored="true" />
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
@@ -62,7 +50,7 @@
     "git-widget-placeholder": "bethon__workers__companionprototype",
     "ignore.virus.scanning.warn.message": "true",
     "last_opened_file_path": "C:/Ranger_team_project",
-    "settings.editor.selected.configurable": "promo.django"
+    "settings.editor.selected.configurable": "project.propVCSSupport.DirectoryMappings"
   }
 }]]></component>
   <component name="SharedIndexes">
@@ -145,7 +133,15 @@
       <option name="project" value="LOCAL" />
       <updated>1733898252350</updated>
     </task>
-    <option name="localTasksCounter" value="9" />
+    <task id="LOCAL-00009" summary="Prototyping phase">
+      <option name="closed" value="true" />
+      <created>1733986506882</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1733986506882</updated>
+    </task>
+    <option name="localTasksCounter" value="10" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -180,7 +176,8 @@
     <MESSAGE value="worklogs trial download" />
     <MESSAGE value="NEW IP CONFIG FOR ME AND CMD SHELLING UPDATED TO ALLOW REMOTE ACCESS" />
     <MESSAGE value="Updated kinda everything" />
-    <option name="LAST_COMMIT_MESSAGE" value="Updated kinda everything" />
+    <MESSAGE value="Prototyping phase" />
+    <option name="LAST_COMMIT_MESSAGE" value="Prototyping phase" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
