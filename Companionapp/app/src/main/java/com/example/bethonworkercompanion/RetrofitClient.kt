@@ -5,7 +5,7 @@ import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 
 object RetrofitClient {
-    private const val PRIMARY_BASE_URL = "http://10.6.128.19"  // Primary IP
+    private const val PRIMARY_BASE_URL = "http://10.6.128.19"  //School IP
 
     private val client = OkHttpClient.Builder()
         .addInterceptor(RetryInterceptor())
