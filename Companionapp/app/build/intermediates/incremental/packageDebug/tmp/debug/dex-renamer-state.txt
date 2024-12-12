@@ -1,4 +1,4 @@
-#Thu Dec 12 08:51:21 EET 2024
+#Thu Dec 12 10:01:50 EET 2024
 base.0=C\:\\Ranger_team_project\\Companionapp\\app\\build\\intermediates\\dex\\debug\\mergeExtDexDebug\\classes.dex
 base.1=C\:\\Ranger_team_project\\Companionapp\\app\\build\\intermediates\\dex\\debug\\mergeProjectDexDebug\\0\\classes.dex
 base.2=C\:\\Ranger_team_project\\Companionapp\\app\\build\\intermediates\\dex\\debug\\mergeProjectDexDebug\\12\\classes.dex
