@@ -1,4 +1,4 @@
-#Thu Dec 12 11:02:44 EET 2024
+#Thu Dec 12 11:10:53 EET 2024
 base.0=C\:\\Ranger_team_project\\Companionapp\\app\\build\\intermediates\\dex\\debugAndroidTest\\mergeExtDexDebugAndroidTest\\classes.dex
 base.1=C\:\\Ranger_team_project\\Companionapp\\app\\build\\intermediates\\dex\\debugAndroidTest\\mergeProjectDexDebugAndroidTest\\0\\classes.dex
 base.2=C\:\\Ranger_team_project\\Companionapp\\app\\build\\intermediates\\dex\\debugAndroidTest\\mergeProjectDexDebugAndroidTest\\5\\classes.dex
