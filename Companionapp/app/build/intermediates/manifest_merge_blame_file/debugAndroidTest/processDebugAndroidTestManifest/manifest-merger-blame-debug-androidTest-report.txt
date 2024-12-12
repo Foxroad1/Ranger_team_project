@@ -3,24 +3,24 @@
 3    package="com.example.bethonworkercompanion.test" >
 4
 5    <uses-sdk
-5-->C:\Ranger_team_project\Companionapp\app\build\intermediates\tmp\manifest\androidTest\debug\tempFile1ProcessTestManifest14099111070551029608.xml:5:5-74
+5-->C:\Ranger_team_project\Companionapp\app\build\intermediates\tmp\manifest\androidTest\debug\tempFile1ProcessTestManifest7278762455551852696.xml:5:5-74
 6        android:minSdkVersion="26"
-6-->C:\Ranger_team_project\Companionapp\app\build\intermediates\tmp\manifest\androidTest\debug\tempFile1ProcessTestManifest14099111070551029608.xml:5:15-41
+6-->C:\Ranger_team_project\Companionapp\app\build\intermediates\tmp\manifest\androidTest\debug\tempFile1ProcessTestManifest7278762455551852696.xml:5:15-41
 7        android:targetSdkVersion="35" />
-7-->C:\Ranger_team_project\Companionapp\app\build\intermediates\tmp\manifest\androidTest\debug\tempFile1ProcessTestManifest14099111070551029608.xml:5:42-71
+7-->C:\Ranger_team_project\Companionapp\app\build\intermediates\tmp\manifest\androidTest\debug\tempFile1ProcessTestManifest7278762455551852696.xml:5:42-71
 8
 9    <instrumentation
-9-->C:\Ranger_team_project\Companionapp\app\build\intermediates\tmp\manifest\androidTest\debug\tempFile1ProcessTestManifest14099111070551029608.xml:11:5-15:83
+9-->C:\Ranger_team_project\Companionapp\app\build\intermediates\tmp\manifest\androidTest\debug\tempFile1ProcessTestManifest7278762455551852696.xml:11:5-15:83
 10        android:name="androidx.test.runner.AndroidJUnitRunner"
-10-->C:\Ranger_team_project\Companionapp\app\build\intermediates\tmp\manifest\androidTest\debug\tempFile1ProcessTestManifest14099111070551029608.xml:11:22-76
+10-->C:\Ranger_team_project\Companionapp\app\build\intermediates\tmp\manifest\androidTest\debug\tempFile1ProcessTestManifest7278762455551852696.xml:11:22-76
 11        android:functionalTest="false"
-11-->C:\Ranger_team_project\Companionapp\app\build\intermediates\tmp\manifest\androidTest\debug\tempFile1ProcessTestManifest14099111070551029608.xml:14:22-52
+11-->C:\Ranger_team_project\Companionapp\app\build\intermediates\tmp\manifest\androidTest\debug\tempFile1ProcessTestManifest7278762455551852696.xml:14:22-52
 12        android:handleProfiling="false"
-12-->C:\Ranger_team_project\Companionapp\app\build\intermediates\tmp\manifest\androidTest\debug\tempFile1ProcessTestManifest14099111070551029608.xml:13:22-53
+12-->C:\Ranger_team_project\Companionapp\app\build\intermediates\tmp\manifest\androidTest\debug\tempFile1ProcessTestManifest7278762455551852696.xml:13:22-53
 13        android:label="Tests for com.example.bethonworkercompanion"
-13-->C:\Ranger_team_project\Companionapp\app\build\intermediates\tmp\manifest\androidTest\debug\tempFile1ProcessTestManifest14099111070551029608.xml:15:22-81
+13-->C:\Ranger_team_project\Companionapp\app\build\intermediates\tmp\manifest\androidTest\debug\tempFile1ProcessTestManifest7278762455551852696.xml:15:22-81
 14        android:targetPackage="com.example.bethonworkercompanion" />
-14-->C:\Ranger_team_project\Companionapp\app\build\intermediates\tmp\manifest\androidTest\debug\tempFile1ProcessTestManifest14099111070551029608.xml:12:22-79
+14-->C:\Ranger_team_project\Companionapp\app\build\intermediates\tmp\manifest\androidTest\debug\tempFile1ProcessTestManifest7278762455551852696.xml:12:22-79
 15
 16    <uses-permission android:name="android.permission.REORDER_TASKS" />
 16-->[androidx.test:core:1.6.1] C:\Users\janos\.gradle\caches\8.9\transforms\06436c7fd12507ad5d8b95017bb4277e\transformed\core-1.6.1\AndroidManifest.xml:24:5-72
@@ -40,12 +40,12 @@
 22    </queries>
 23
 24    <application
-24-->C:\Ranger_team_project\Companionapp\app\build\intermediates\tmp\manifest\androidTest\debug\tempFile1ProcessTestManifest14099111070551029608.xml:7:5-9:19
+24-->C:\Ranger_team_project\Companionapp\app\build\intermediates\tmp\manifest\androidTest\debug\tempFile1ProcessTestManifest7278762455551852696.xml:7:5-9:19
 25        android:debuggable="true"
 26        android:extractNativeLibs="false" >
 27        <uses-library android:name="android.test.runner" />
-27-->C:\Ranger_team_project\Companionapp\app\build\intermediates\tmp\manifest\androidTest\debug\tempFile1ProcessTestManifest14099111070551029608.xml:8:9-60
-27-->C:\Ranger_team_project\Companionapp\app\build\intermediates\tmp\manifest\androidTest\debug\tempFile1ProcessTestManifest14099111070551029608.xml:8:23-57
+27-->C:\Ranger_team_project\Companionapp\app\build\intermediates\tmp\manifest\androidTest\debug\tempFile1ProcessTestManifest7278762455551852696.xml:8:9-60
+27-->C:\Ranger_team_project\Companionapp\app\build\intermediates\tmp\manifest\androidTest\debug\tempFile1ProcessTestManifest7278762455551852696.xml:8:23-57
 28
 29        <activity
 29-->[androidx.test:core:1.6.1] C:\Users\janos\.gradle\caches\8.9\transforms\06436c7fd12507ad5d8b95017bb4277e\transformed\core-1.6.1\AndroidManifest.xml:27:9-34:20

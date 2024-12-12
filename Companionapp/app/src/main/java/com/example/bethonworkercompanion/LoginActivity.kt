@@ -25,11 +25,9 @@ class LoginActivity : AppCompatActivity() {
     }
 
     private fun performLogin(username: String, password: String) {
-        val loginRequest = LoginRequest(username, password)
-
         CoroutineScope(Dispatchers.IO).launch {
             try {
-                val response = RetrofitClient.instance.login(loginRequest)
+                val response = RetrofitClient.instance.login(username, password)
                 withContext(Dispatchers.Main) {
                     if (response.isSuccessful && response.body()?.success == true) {
                         val intent = Intent(this@LoginActivity, ProfileActivity::class.java)
