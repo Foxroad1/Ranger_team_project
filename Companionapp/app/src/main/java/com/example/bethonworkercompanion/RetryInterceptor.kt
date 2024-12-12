@@ -8,7 +8,7 @@ import java.lang.reflect.Field
 
 class RetryInterceptor : Interceptor {
     private val primaryBaseUrl = "http://10.6.128.19:5000"
-    private val secondaryBaseUrl = "http://88.115.201.36:5000"
+    private val secondaryBaseUrl = "http://10.6.128.19:5000"
 
     override fun intercept(chain: Interceptor.Chain): Response {
         var request: Request = chain.request()
