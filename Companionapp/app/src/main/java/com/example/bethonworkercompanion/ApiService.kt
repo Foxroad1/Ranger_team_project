@@ -1,21 +1,27 @@
 package com.example.bethonworkercompanion
 
 import retrofit2.Response
-import retrofit2.http.Body
-import retrofit2.http.GET
+import retrofit2.http.Field
+import retrofit2.http.FormUrlEncoded
 import retrofit2.http.POST
+import retrofit2.http.GET
 
 interface ApiService {
+    @FormUrlEncoded
     @POST("/login")
-    suspend fun login(@Body loginRequest: LoginRequest): Response<LoginResponse>
+    suspend fun login(
+        @Field("username") username: String,
+        @Field("password") password: String
+    ): Response<LoginResponse>
 
     @GET("/profile")
     suspend fun getUserProfile(): Response<User>
 
+    @FormUrlEncoded
     @POST("/log_start_time")
-    suspend fun logStartTime(@Body qrCode: String): Response<Void>
+    suspend fun logStartTime(@Field("qrCode") qrCode: String): Response<Void>
 
+    @FormUrlEncoded
     @POST("/log_end_time")
     suspend fun logEndTime(): Response<Void>
-
 }
