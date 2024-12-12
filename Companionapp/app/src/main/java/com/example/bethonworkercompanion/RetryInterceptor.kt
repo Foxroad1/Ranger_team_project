@@ -20,7 +20,6 @@ class RetryInterceptor : Interceptor {
             urlField.isAccessible = true
             val url = urlField.get(request) as okhttp3.HttpUrl
             val newUrl = url.newBuilder()
-                .host(primaryBaseUrl)
                 .host(secondaryBaseUrl)
                 .build()
             request = request.newBuilder().url(newUrl).build()
