@@ -7,7 +7,7 @@ import java.io.IOException
 import java.lang.reflect.Field
 
 class RetryInterceptor : Interceptor {
-    private val primaryBaseUrl = "http://10.6.128.19:5000"
+    private val primaryBaseUrl = "http://10.6.128.19"
     private val secondaryBaseUrl = "http://10.6.128.19"
 
     override fun intercept(chain: Interceptor.Chain): Response {
