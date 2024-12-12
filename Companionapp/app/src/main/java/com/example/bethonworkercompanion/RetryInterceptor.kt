@@ -7,7 +7,7 @@ import java.io.IOException
 import android.util.Log
 
 class RetryInterceptor : Interceptor {
-    private val secondaryBaseUrl = "88.115.201.36"
+    private val secondaryBaseUrl = "88.115.201.36:5000"
 
     override fun intercept(chain: Interceptor.Chain): Response {
         var request: Request = chain.request()

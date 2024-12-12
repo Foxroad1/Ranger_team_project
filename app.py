@@ -137,11 +137,11 @@ def profile():
         return redirect(url_for('login'))
     conn = get_db_connection()
     cur = conn.cursor()
-    cur.execute("SELECT * FROM employees WHERE id = %s", (session['user_id'],))
+    cur.execute("SELECT * FROM employees WHERE id = ?", (session['user_id'],))
     user = cur.fetchone()
 
     # Fetch work logs for the logged-in user
-    cur.execute("SELECT * FROM work_logs WHERE employee_id = %s", (session['user_id'],))
+    cur.execute("SELECT * FROM work_logs WHERE employee_id = ?", (session['user_id'],))
     work_logs = cur.fetchall()
 
     # Summarize work hours by day, week, and month
@@ -177,10 +177,19 @@ def profile():
     cur.close()
     conn.close()
 
-    return render_template('profile.html', user=user, work_logs=work_logs,
-                           daily_summary=daily_summary,
-                           weekly_summary=weekly_summary,
-                           monthly_summary=monthly_summary)
+    if request.is_json:
+        return jsonify({
+            "user": user,
+            "work_logs": work_logs,
+            "daily_summary": daily_summary,
+            "weekly_summary": weekly_summary,
+            "monthly_summary": monthly_summary
+        })
+    else:
+        return render_template('profile.html', user=user, work_logs=work_logs,
+                               daily_summary=daily_summary,
+                               weekly_summary=weekly_summary,
+                               monthly_summary=monthly_summary)
 
 
 @app.route('/log_work', methods=['GET', 'POST'])
