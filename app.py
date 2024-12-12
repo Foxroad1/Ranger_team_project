@@ -109,8 +109,8 @@ def login():
                 conn.commit()
             cur.close()
             conn.close()
-            return redirect(url_for('profile'))
-        return 'Invalid username or password'
+            return jsonify({"success": True, "userId": user[0]})
+        return jsonify({"success": False, "message": "Invalid username or password"}), 401
     return render_template('login.html')
 
 
