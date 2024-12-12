@@ -7410,3 +7410,4 @@ int[] styleable zxing_view { 0x7f0304f2 }
 int styleable zxing_view_zxing_scanner_layout 0
 int xml backup_rules 0x7f130000
 int xml data_extraction_rules 0x7f130001
+int xml network_security_config 0x7f130002

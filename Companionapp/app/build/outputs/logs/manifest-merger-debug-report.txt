@@ -1,9 +1,9 @@
 -- Merging decision tree log ---
 manifest
-ADDED from C:\Ranger_team_project\Companionapp\app\src\main\AndroidManifest.xml:2:1-26:12
-INJECTED from C:\Ranger_team_project\Companionapp\app\src\main\AndroidManifest.xml:2:1-26:12
-INJECTED from C:\Ranger_team_project\Companionapp\app\src\main\AndroidManifest.xml:2:1-26:12
-INJECTED from C:\Ranger_team_project\Companionapp\app\src\main\AndroidManifest.xml:2:1-26:12
+ADDED from C:\Ranger_team_project\Companionapp\app\src\main\AndroidManifest.xml:2:1-32:12
+INJECTED from C:\Ranger_team_project\Companionapp\app\src\main\AndroidManifest.xml:2:1-32:12
+INJECTED from C:\Ranger_team_project\Companionapp\app\src\main\AndroidManifest.xml:2:1-32:12
+INJECTED from C:\Ranger_team_project\Companionapp\app\src\main\AndroidManifest.xml:2:1-32:12
 MERGED from [com.google.android.material:material:1.12.0] C:\Users\janos\.gradle\caches\8.9\transforms\92cc1aade69a0de15c3d2cb41c996482\transformed\material-1.12.0\AndroidManifest.xml:17:1-24:12
 MERGED from [androidx.constraintlayout:constraintlayout:2.2.0] C:\Users\janos\.gradle\caches\8.9\transforms\9516ad9fbdd5e487d6f760cf60dc7f1d\transformed\constraintlayout-2.2.0\AndroidManifest.xml:2:1-9:12
 MERGED from [androidx.appcompat:appcompat-resources:1.7.0] C:\Users\janos\.gradle\caches\8.9\transforms\625479492f3bd0ebe07766c2c95451ef\transformed\appcompat-resources-1.7.0\AndroidManifest.xml:2:1-7:12
@@ -91,8 +91,8 @@ MERGED from [androidx.annotation:annotation-experimental:1.4.1] C:\Users\janos\.
 	xmlns:android
 		ADDED from C:\Ranger_team_project\Companionapp\app\src\main\AndroidManifest.xml:2:11-69
 application
-ADDED from C:\Ranger_team_project\Companionapp\app\src\main\AndroidManifest.xml:5:5-24:19
-INJECTED from C:\Ranger_team_project\Companionapp\app\src\main\AndroidManifest.xml:5:5-24:19
+ADDED from C:\Ranger_team_project\Companionapp\app\src\main\AndroidManifest.xml:5:5-26:19
+INJECTED from C:\Ranger_team_project\Companionapp\app\src\main\AndroidManifest.xml:5:5-26:19
 MERGED from [com.google.android.material:material:1.12.0] C:\Users\janos\.gradle\caches\8.9\transforms\92cc1aade69a0de15c3d2cb41c996482\transformed\material-1.12.0\AndroidManifest.xml:22:5-20
 MERGED from [com.google.android.material:material:1.12.0] C:\Users\janos\.gradle\caches\8.9\transforms\92cc1aade69a0de15c3d2cb41c996482\transformed\material-1.12.0\AndroidManifest.xml:22:5-20
 MERGED from [androidx.constraintlayout:constraintlayout:2.2.0] C:\Users\janos\.gradle\caches\8.9\transforms\9516ad9fbdd5e487d6f760cf60dc7f1d\transformed\constraintlayout-2.2.0\AndroidManifest.xml:7:5-20
@@ -131,30 +131,42 @@ MERGED from [androidx.versionedparcelable:versionedparcelable:1.1.1] C:\Users\ja
 		ADDED from C:\Ranger_team_project\Companionapp\app\src\main\AndroidManifest.xml:6:9-35
 	android:theme
 		ADDED from C:\Ranger_team_project\Companionapp\app\src\main\AndroidManifest.xml:11:9-59
+	android:networkSecurityConfig
+		ADDED from C:\Ranger_team_project\Companionapp\app\src\main\AndroidManifest.xml:13:9-69
+	android:usesCleartextTraffic
+		ADDED from C:\Ranger_team_project\Companionapp\app\src\main\AndroidManifest.xml:12:9-44
 activity#com.example.bethonworkercompanion.LoginActivity
-ADDED from C:\Ranger_team_project\Companionapp\app\src\main\AndroidManifest.xml:13:9-19:20
+ADDED from C:\Ranger_team_project\Companionapp\app\src\main\AndroidManifest.xml:15:9-21:20
 	android:exported
-		ADDED from C:\Ranger_team_project\Companionapp\app\src\main\AndroidManifest.xml:14:13-36
+		ADDED from C:\Ranger_team_project\Companionapp\app\src\main\AndroidManifest.xml:16:13-36
 	android:name
-		ADDED from C:\Ranger_team_project\Companionapp\app\src\main\AndroidManifest.xml:13:19-48
+		ADDED from C:\Ranger_team_project\Companionapp\app\src\main\AndroidManifest.xml:15:19-48
 intent-filter#action:name:android.intent.action.MAIN+category:name:android.intent.category.LAUNCHER
-ADDED from C:\Ranger_team_project\Companionapp\app\src\main\AndroidManifest.xml:15:13-18:29
+ADDED from C:\Ranger_team_project\Companionapp\app\src\main\AndroidManifest.xml:17:13-20:29
 action#android.intent.action.MAIN
-ADDED from C:\Ranger_team_project\Companionapp\app\src\main\AndroidManifest.xml:16:17-69
+ADDED from C:\Ranger_team_project\Companionapp\app\src\main\AndroidManifest.xml:18:17-69
 	android:name
-		ADDED from C:\Ranger_team_project\Companionapp\app\src\main\AndroidManifest.xml:16:25-66
+		ADDED from C:\Ranger_team_project\Companionapp\app\src\main\AndroidManifest.xml:18:25-66
 category#android.intent.category.LAUNCHER
-ADDED from C:\Ranger_team_project\Companionapp\app\src\main\AndroidManifest.xml:17:17-77
+ADDED from C:\Ranger_team_project\Companionapp\app\src\main\AndroidManifest.xml:19:17-77
 	android:name
-		ADDED from C:\Ranger_team_project\Companionapp\app\src\main\AndroidManifest.xml:17:27-74
+		ADDED from C:\Ranger_team_project\Companionapp\app\src\main\AndroidManifest.xml:19:27-74
 activity#com.example.bethonworkercompanion.MainActivity
-ADDED from C:\Ranger_team_project\Companionapp\app\src\main\AndroidManifest.xml:21:9-50
+ADDED from C:\Ranger_team_project\Companionapp\app\src\main\AndroidManifest.xml:23:9-50
 	android:name
-		ADDED from C:\Ranger_team_project\Companionapp\app\src\main\AndroidManifest.xml:21:19-47
+		ADDED from C:\Ranger_team_project\Companionapp\app\src\main\AndroidManifest.xml:23:19-47
 activity#com.example.bethonworkercompanion.ProfileActivity
-ADDED from C:\Ranger_team_project\Companionapp\app\src\main\AndroidManifest.xml:22:9-53
+ADDED from C:\Ranger_team_project\Companionapp\app\src\main\AndroidManifest.xml:24:9-53
 	android:name
-		ADDED from C:\Ranger_team_project\Companionapp\app\src\main\AndroidManifest.xml:22:19-50
+		ADDED from C:\Ranger_team_project\Companionapp\app\src\main\AndroidManifest.xml:24:19-50
+uses-permission#android.permission.INTERNET
+ADDED from C:\Ranger_team_project\Companionapp\app\src\main\AndroidManifest.xml:29:5-67
+	android:name
+		ADDED from C:\Ranger_team_project\Companionapp\app\src\main\AndroidManifest.xml:29:22-64
+uses-permission#android.permission.ACCESS_NETWORK_STATE
+ADDED from C:\Ranger_team_project\Companionapp\app\src\main\AndroidManifest.xml:30:5-79
+	android:name
+		ADDED from C:\Ranger_team_project\Companionapp\app\src\main\AndroidManifest.xml:30:22-76
 uses-sdk
 INJECTED from C:\Ranger_team_project\Companionapp\app\src\main\AndroidManifest.xml reason: use-sdk injection requested
 INJECTED from C:\Ranger_team_project\Companionapp\app\src\main\AndroidManifest.xml
