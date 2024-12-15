@@ -4,7 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="6e6cc73d-e093-4582-ae6b-b9860e613723" name="Changes" comment="login .. cant build...." />
+    <list default="true" id="6e6cc73d-e093-4582-ae6b-b9860e613723" name="Changes" comment="weblogin web side all works base line app.py">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -423,7 +425,15 @@
       <option name="project" value="LOCAL" />
       <updated>1734274874388</updated>
     </task>
-    <option name="localTasksCounter" value="44" />
+    <task id="LOCAL-00044" summary="weblogin web side all works base line app.py">
+      <option name="closed" value="true" />
+      <created>1734275248658</created>
+      <option name="number" value="00044" />
+      <option name="presentableId" value="LOCAL-00044" />
+      <option name="project" value="LOCAL" />
+      <updated>1734275248658</updated>
+    </task>
+    <option name="localTasksCounter" value="45" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -471,7 +481,8 @@
     <MESSAGE value="Unresolved reference 'tzinfo' lines: 258, 298,  299, 320, 321." />
     <MESSAGE value="python app.py web fixed check the clock" />
     <MESSAGE value="login .. cant build...." />
-    <option name="LAST_COMMIT_MESSAGE" value="login .. cant build...." />
+    <MESSAGE value="weblogin web side all works base line app.py" />
+    <option name="LAST_COMMIT_MESSAGE" value="weblogin web side all works base line app.py" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

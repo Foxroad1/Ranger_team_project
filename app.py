@@ -1,6 +1,8 @@
 import os
 import csv
 from datetime import datetime, timedelta
+from functools import wraps
+import jwt
 from flask import Flask, request, jsonify, render_template, redirect, url_for, session, send_file
 import mariadb
 import uuid
@@ -200,6 +202,85 @@ def log_work():
         conn.close()
         return redirect(url_for('profile'))
     return render_template('log_work.html')
+
+def token_required(f):
+    @wraps(f)
+    def decorated(*args, **kwargs):
+        token = None
+        if 'Authorization' in request.headers:
+            token = request.headers['Authorization'].split()[1]
+
+        if not token:
+            return jsonify({'message': 'Token is missing!'}), 401
+
+        try:
+            data = jwt.decode(token, app.secret_key, algorithms=["HS256"])
+            current_user = data['user_id']
+        except:
+            return jsonify({'message': 'Token is invalid!'}), 401
+
+        return f(current_user, *args, **kwargs)
+    return decorated
+
+@app.route('/api/login', methods=['POST'])
+def api_login():
+    data = request.get_json()
+    conn = get_db_connection()
+    cur = conn.cursor()
+    cur.execute("SELECT * FROM employees WHERE username = ?", (data['username'],))
+    user = cur.fetchone()
+    cur.close()
+    conn.close()
+    if user and check_password_hash(user[7], data['password']):
+        token = jwt.encode({'user_id': user[0], 'exp': datetime.utcnow() + timedelta(hours=24)}, app.secret_key)
+        return jsonify({'token': token})
+    return jsonify({'message': 'Invalid username or password'}), 401
+
+@app.route('/api/profile', methods=['GET'])
+@token_required
+def api_profile(current_user):
+    conn = get_db_connection()
+    cur = conn.cursor()
+    cur.execute("SELECT * FROM employees WHERE id = ?", (current_user,))
+    user = cur.fetchone()
+    cur.close()
+    conn.close()
+    if user:
+        user_data = {
+            'id': user[0],
+            'name': user[1],
+            'dob': user[2],
+            'title': user[3],
+            'start_date': user[4],
+            'worker_id': user[5],
+            'username': user[6],
+            'email': user[8]
+        }
+        return jsonify(user_data)
+    return jsonify({'message': 'User not found'}), 404
+
+@app.route('/api/log_start_time', methods=['POST'])
+@token_required
+def log_start_time(current_user):
+    data = request.get_json()
+    conn = get_db_connection()
+    cur = conn.cursor()
+    cur.execute("INSERT INTO work_logs (employee_id, log_in_time, qr_code) VALUES (?, ?, ?)", (current_user, datetime.utcnow(), data['qrCode']))
+    conn.commit()
+    cur.close()
+    conn.close()
+    return jsonify({'message': 'Start time logged successfully'}), 200
+
+@app.route('/api/log_end_time', methods=['POST'])
+@token_required
+def log_end_time(current_user):
+    conn = get_db_connection()
+    cur = conn.cursor()
+    cur.execute("UPDATE work_logs SET log_out_time = ? WHERE employee_id = ? AND log_out_time IS NULL", (datetime.utcnow(), current_user))
+    conn.commit()
+    cur.close()
+    conn.close()
+    return jsonify({'message': 'End time logged successfully'}), 200
 
 
 @app.route('/admin', methods=['GET', 'POST'])
