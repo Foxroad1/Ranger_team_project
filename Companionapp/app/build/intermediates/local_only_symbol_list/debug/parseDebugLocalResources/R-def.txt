@@ -24,10 +24,12 @@ layout activity_login
 layout activity_profile
 layout activity_qr_code_scanner
 layout activity_qrcode_scanner
+layout progress_dialog
 mipmap ic_launcher
 mipmap ic_launcher_round
 string Clock
 string Job_title
+string Loading...
 string Logout
 string Scan_QR_Code
 string Worker_ID

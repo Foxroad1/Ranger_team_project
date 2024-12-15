@@ -56,6 +56,10 @@
         "source": "com.example.bethonworkercompanion.app-main-6:/mipmap-xxhdpi/ic_launcher_round.webp"
     },
     {
+        "merged": "com.example.bethonworkercompanion.app-debug-4:/layout_progress_dialog.xml.flat",
+        "source": "com.example.bethonworkercompanion.app-main-6:/layout/progress_dialog.xml"
+    },
+    {
         "merged": "com.example.bethonworkercompanion.app-debug-4:/drawable_ic_launcher_foreground.xml.flat",
         "source": "com.example.bethonworkercompanion.app-main-6:/drawable/ic_launcher_foreground.xml"
     },

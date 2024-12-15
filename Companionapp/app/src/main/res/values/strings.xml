@@ -10,4 +10,5 @@
     <string name="Worker_ID">WorkerID:</string>
     <string name="Job_title">JobTitle:</string>
     <string name="Clock">Clock:</string>
+    <string name="Loading...">Loading</string>
 </resources>

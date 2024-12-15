@@ -1990,6 +1990,7 @@
   </plurals>
     <string name="Clock">Clock:</string>
     <string name="Job_title">JobTitle:</string>
+    <string name="Loading...">Loading</string>
     <string name="Logout">Logout</string>
     <string name="Scan_QR_Code">QrCodeScanner</string>
     <string name="Worker_ID">WorkerID:</string>

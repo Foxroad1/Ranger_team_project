@@ -1,12 +1,13 @@
 package com.example.bethonworkercompanion
 
 import android.app.Activity
-import android.app.ProgressDialog
+import android.app.AlertDialog
 import android.content.Intent
 import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
 import android.util.Log
+import android.view.LayoutInflater
 import android.widget.Button
 import android.widget.TextView
 import android.widget.Toast
@@ -28,7 +29,7 @@ class ProfileActivity : AppCompatActivity() {
     private lateinit var qrScanLauncher: ActivityResultLauncher<Intent>
     private val handler = Handler(Looper.getMainLooper())
     private var startTime: Long = 0
-    private lateinit var progressDialog: ProgressDialog
+    private lateinit var progressDialog: AlertDialog
 
     private val clockRunnable = object : Runnable {
         override fun run() {
@@ -45,10 +46,13 @@ class ProfileActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_profile)
 
-        // Initialize ProgressDialog
-        progressDialog = ProgressDialog(this)
-        progressDialog.setMessage("Loading...")
-        progressDialog.setCancelable(false)
+        // Initialize AlertDialog
+        val builder = AlertDialog.Builder(this)
+        val inflater: LayoutInflater = this.layoutInflater
+        val dialogView = inflater.inflate(R.layout.progress_dialog, findViewById(android.R.id.content), false)
+        builder.setView(dialogView)
+        builder.setCancelable(false)
+        progressDialog = builder.create()
 
         qrScanLauncher = registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
             val data = result.data

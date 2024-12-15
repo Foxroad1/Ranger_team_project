@@ -3885,6 +3885,7 @@ layout notification_template_media
 layout notification_template_media_custom
 layout notification_template_part_chronometer
 layout notification_template_part_time
+layout progress_dialog
 layout select_dialog_item_material
 layout select_dialog_multichoice_material
 layout select_dialog_singlechoice_material
@@ -3897,6 +3898,7 @@ plurals mtrl_badge_content_description
 raw zxing_beep
 string Clock
 string Job_title
+string Loading___
 string Logout
 string Scan_QR_Code
 string Worker_ID
