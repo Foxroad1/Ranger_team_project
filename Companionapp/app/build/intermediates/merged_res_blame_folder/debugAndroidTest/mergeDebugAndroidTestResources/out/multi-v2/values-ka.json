@@ -4,7 +4,7 @@
             "outputFile": "com.example.bethonworkercompanion.test.app-mergeDebugAndroidTestResources-1:/values-ka/values-ka.xml",
             "map": [
                 {
-                    "source": "C:\\Users\\janos\\.gradle\\caches\\8.9\\transforms\\0c9641fd0caa76322adc7dbab55b6542\\transformed\\ui-release\\res\\values-ka\\values-ka.xml",
+                    "source": "C:\\Users\\janos\\.gradle\\caches\\8.9\\transforms\\c1a669ff9a02194912dae465d4bd964b\\transformed\\ui-release\\res\\values-ka\\values-ka.xml",
                     "from": {
                         "startLines": "2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18",
                         "startColumns": "4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4",
@@ -21,7 +21,7 @@
                     }
                 },
                 {
-                    "source": "C:\\Users\\janos\\.gradle\\caches\\8.9\\transforms\\1baedce298a55b4ed5f5c7eff303bdc1\\transformed\\core-1.15.0\\res\\values-ka\\values-ka.xml",
+                    "source": "C:\\Users\\janos\\.gradle\\caches\\8.9\\transforms\\52f317b8fb9eac5e1a9a9dbcbe683a82\\transformed\\core-1.15.0\\res\\values-ka\\values-ka.xml",
                     "from": {
                         "startLines": "2,3,4,5,6,7,8,9",
                         "startColumns": "4,4,4,4,4,4,4,4",
