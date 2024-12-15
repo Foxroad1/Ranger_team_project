@@ -12,6 +12,10 @@ drawable ic_launcher_foreground
 id clockTextView
 id editTextTextPassword
 id jobTitleTextView
+id labelEmployee
+id labelEmployeeID
+id labelJobTitle
+id labelWorkTime
 id login_button
 id logoutButton
 id main

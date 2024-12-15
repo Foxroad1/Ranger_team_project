@@ -8,62 +8,122 @@
 
     <TextView
         android:id="@+id/nameTextView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="135dp"
+        android:layout_height="35dp"
+        android:layout_marginTop="28dp"
         android:text="@string/name"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        android:layout_marginTop="16dp"/>
+        app:layout_constraintHorizontal_bias="0.754"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
         android:id="@+id/workerIdTextView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="76dp"
+        android:layout_height="27dp"
+        android:layout_marginTop="60dp"
         android:text="@string/Worker_ID"
-        app:layout_constraintTop_toBottomOf="@id/nameTextView"
-        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        android:layout_marginTop="8dp"/>
+        app:layout_constraintHorizontal_bias="0.698"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/nameTextView" />
 
     <TextView
         android:id="@+id/jobTitleTextView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="155dp"
+        android:layout_height="40dp"
+        android:layout_marginTop="37dp"
         android:text="@string/Job_title"
-        app:layout_constraintTop_toBottomOf="@id/workerIdTextView"
-        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        android:layout_marginTop="8dp"/>
+        app:layout_constraintHorizontal_bias="0.843"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/workerIdTextView" />
 
     <TextView
         android:id="@+id/clockTextView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="102dp"
+        android:layout_height="42dp"
+        android:layout_marginTop="56dp"
         android:text="@string/Clock"
-        app:layout_constraintTop_toBottomOf="@id/jobTitleTextView"
-        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        android:layout_marginTop="8dp"/>
+        app:layout_constraintHorizontal_bias="0.783"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/jobTitleTextView" />
 
     <Button
         android:id="@+id/scanQrButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="140dp"
+        android:layout_marginBottom="152dp"
         android:text="@string/Scan_QR_Code"
-        app:layout_constraintTop_toBottomOf="@id/clockTextView"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintBottom_toTopOf="@+id/logoutButton"
         app:layout_constraintEnd_toEndOf="parent"
-        android:layout_marginTop="16dp"/>
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/clockTextView" />
 
     <Button
         android:id="@+id/logoutButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="152dp"
         android:text="@string/Logout"
-        app:layout_constraintTop_toBottomOf="@id/scanQrButton"
-        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        android:layout_marginTop="16dp"/>
+        app:layout_constraintHorizontal_bias="0.501"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/scanQrButton" />
+
+    <TextView
+        android:id="@+id/labelEmployee"
+        android:layout_width="131dp"
+        android:layout_height="34dp"
+        android:layout_marginStart="52dp"
+        android:layout_marginTop="28dp"
+        android:layout_marginEnd="25dp"
+        android:layout_marginBottom="48dp"
+        android:text="Employee:"
+        app:layout_constraintBottom_toTopOf="@+id/labelEmployeeID"
+        app:layout_constraintEnd_toStartOf="@+id/nameTextView"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/labelEmployeeID"
+        android:layout_width="143dp"
+        android:layout_height="40dp"
+        android:layout_marginStart="36dp"
+        android:layout_marginTop="48dp"
+        android:layout_marginEnd="29dp"
+        android:text="EmployeeID:"
+        app:layout_constraintEnd_toStartOf="@+id/workerIdTextView"
+        app:layout_constraintHorizontal_bias="0.49"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/labelEmployee" />
+
+    <TextView
+        android:id="@+id/labelJobTitle"
+        android:layout_width="165dp"
+        android:layout_height="40dp"
+        android:layout_marginStart="36dp"
+        android:layout_marginTop="37dp"
+        android:layout_marginEnd="15dp"
+        android:text="Job Title:"
+        app:layout_constraintEnd_toStartOf="@+id/jobTitleTextView"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/labelEmployeeID" />
+
+    <TextView
+        android:id="@+id/labelWorkTime"
+        android:layout_width="115dp"
+        android:layout_height="38dp"
+        android:layout_marginStart="84dp"
+        android:layout_marginTop="60dp"
+        android:layout_marginEnd="43dp"
+        android:layout_marginBottom="141dp"
+        android:text="Work Time:"
+        app:layout_constraintBottom_toTopOf="@+id/scanQrButton"
+        app:layout_constraintEnd_toStartOf="@+id/clockTextView"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/labelJobTitle" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

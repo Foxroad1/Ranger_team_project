@@ -30,9 +30,9 @@ object RetrofitClient {
             chain.proceed(request)
         }
         .addInterceptor(loggingInterceptor)
-        .connectTimeout(40, TimeUnit.SECONDS)
-        .readTimeout(40, TimeUnit.SECONDS)
-        .writeTimeout(40, TimeUnit.SECONDS)
+        .connectTimeout(22, TimeUnit.SECONDS)
+        .readTimeout(22, TimeUnit.SECONDS)
+        .writeTimeout(22, TimeUnit.SECONDS)
         .build()
 
     private val retrofit = Retrofit.Builder()

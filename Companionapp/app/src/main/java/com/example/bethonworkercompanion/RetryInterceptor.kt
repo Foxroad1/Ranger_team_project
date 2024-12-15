@@ -9,7 +9,7 @@ import android.util.Log
 
 class RetryInterceptor : Interceptor {
     private val secondaryBaseUrl = "10.6.128.19:5000"
-    private val timeout = 40000 // 40 seconds
+    private val timeout = 22000 // 22 seconds
 
     override fun intercept(chain: Interceptor.Chain): Response {
         var request: Request = chain.request()

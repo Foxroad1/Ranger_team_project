@@ -3388,6 +3388,10 @@ id item_touch_helper_previous_elevation
 id jobTitleTextView
 id jumpToEnd
 id jumpToStart
+id labelEmployee
+id labelEmployeeID
+id labelJobTitle
+id labelWorkTime
 id labeled
 id layout
 id left
