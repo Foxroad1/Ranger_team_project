@@ -59,7 +59,7 @@ class LoginActivity : AppCompatActivity() {
                             Log.e("LoginActivity", "Login failed: Response body is null")
                             Toast.makeText(this@LoginActivity, "Login failed: Response body is null", Toast.LENGTH_SHORT).show()
                         }
-                    
+
                     } else {
                         val errorBody = response.errorBody()?.string()
                         Log.e("LoginActivity", "Login failed: $errorBody")

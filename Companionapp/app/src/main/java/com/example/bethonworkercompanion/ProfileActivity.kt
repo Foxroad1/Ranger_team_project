@@ -118,7 +118,8 @@ class ProfileActivity : AppCompatActivity() {
 
         CoroutineScope(Dispatchers.IO).launch {
             try {
-                val response = RetrofitClient.instance.logStartTime(qrCodeMap)
+                val token = getSharedPreferences("app_prefs", MODE_PRIVATE).getString("auth_token", "") ?: ""
+                val response = RetrofitClient.instance.logStartTime("Bearer $token", qrCodeMap)
                 withContext(Dispatchers.Main) {
                     if (response.isSuccessful) {
                         Toast.makeText(this@ProfileActivity, "Start time logged", Toast.LENGTH_LONG).show()
@@ -129,12 +130,16 @@ class ProfileActivity : AppCompatActivity() {
                         val errorBody = response.errorBody()?.string()
                         Log.e("ProfileActivity", "Failed to log start time: $errorBody")
                         Toast.makeText(this@ProfileActivity, "Failed to log start time: $errorBody", Toast.LENGTH_LONG).show()
+                        // Reset the clock
+                        handler.removeCallbacks(clockRunnable)
                     }
                 }
             } catch (e: Exception) {
                 withContext(Dispatchers.Main) {
                     Log.e("ProfileActivity", "Error logging start time: ${e.message}", e)
                     Toast.makeText(this@ProfileActivity, "Error logging start time: ${e.message}", Toast.LENGTH_LONG).show()
+                    // Reset the clock
+                    handler.removeCallbacks(clockRunnable)
                 }
             }
         }
@@ -143,7 +148,8 @@ class ProfileActivity : AppCompatActivity() {
     private fun logEndTime() {
         CoroutineScope(Dispatchers.IO).launch {
             try {
-                val response = RetrofitClient.instance.logEndTime()
+                val token = getSharedPreferences("app_prefs", MODE_PRIVATE).getString("auth_token", "") ?: ""
+                val response = RetrofitClient.instance.logEndTime("Bearer $token")
                 withContext(Dispatchers.Main) {
                     if (response.isSuccessful) {
                         Toast.makeText(this@ProfileActivity, "End time logged", Toast.LENGTH_LONG).show()
