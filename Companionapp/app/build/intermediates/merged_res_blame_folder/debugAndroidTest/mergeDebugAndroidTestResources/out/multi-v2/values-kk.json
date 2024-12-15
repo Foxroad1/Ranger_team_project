@@ -4,7 +4,7 @@
             "outputFile": "com.example.bethonworkercompanion.test.app-mergeDebugAndroidTestResources-1:/values-kk/values-kk.xml",
             "map": [
                 {
-                    "source": "C:\\Users\\janos\\.gradle\\caches\\8.9\\transforms\\43235631621d037cd7f49ba80c799ea3\\transformed\\ui-release\\res\\values-kk\\values-kk.xml",
+                    "source": "C:\\Users\\janos\\.gradle\\caches\\8.9\\transforms\\41aeab1715b8db081c496edc1077efae\\transformed\\ui-release\\res\\values-kk\\values-kk.xml",
                     "from": {
                         "startLines": "2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18",
                         "startColumns": "4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4",
@@ -21,7 +21,7 @@
                     }
                 },
                 {
-                    "source": "C:\\Users\\janos\\.gradle\\caches\\8.9\\transforms\\8eb19931bf092a1030ea314aa3c9c896\\transformed\\core-1.15.0\\res\\values-kk\\values-kk.xml",
+                    "source": "C:\\Users\\janos\\.gradle\\caches\\8.9\\transforms\\81c6e58f9e790769b5c1a234e27be96c\\transformed\\core-1.15.0\\res\\values-kk\\values-kk.xml",
                     "from": {
                         "startLines": "2,3,4,5,6,7,8,9",
                         "startColumns": "4,4,4,4,4,4,4,4",

@@ -6,6 +6,13 @@ import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.google.zxing.integration.android.IntentIntegrator
 import com.google.zxing.integration.android.IntentResult
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
 
 class QRCodeScannerActivity : AppCompatActivity() {
 
@@ -39,7 +46,27 @@ class QRCodeScannerActivity : AppCompatActivity() {
     }
 
     private fun validateQRCodeAndLocation(qrCodeData: String) {
-        // TODO: Implement location validation and shift start logic
-        // For example, get current location and compare with QR code data
+        // Create a map to pass to the logStartTime method
+        val qrCodeMap = mapOf("qrCode" to qrCodeData)
+
+        // Call the logStartTime method with the map
+        CoroutineScope(Dispatchers.Main).launch {
+            try {
+                val response = logStartTime(qrCodeMap)
+                if (response.isSuccessful) {
+                    Toast.makeText(this@QRCodeScannerActivity, "Start time logged successfully!", Toast.LENGTH_SHORT).show()
+                } else {
+                    Toast.makeText(this@QRCodeScannerActivity, "Failed to log start time: ${response.errorBody()?.string()}", Toast.LENGTH_SHORT).show()
+                }
+            } catch (e: Exception) {
+                Toast.makeText(this@QRCodeScannerActivity, "Error: ${e.message}", Toast.LENGTH_SHORT).show()
+            }
+        }
+    }
+
+    private suspend fun logStartTime(qrCodeMap: Map<String, String>): Response<Void> {
+        return withContext(Dispatchers.IO) {
+            RetrofitClient.instance.logStartTime(qrCodeMap)
+        }
     }
 }

@@ -24,7 +24,7 @@ def get_db_connection():
             conn = mariadb.connect(
                 user="root",
                 password="1542",
-                host="88.115.201.36",  # Fallback to home IP
+                host="192.168.0.100",  # Fallback to home IP
                 port=3306,
                 database="bethon_worker"
             )
@@ -83,35 +83,45 @@ def register():
     return render_template('register.html')
 
 
-@app.route('/login', methods=['GET', 'POST'])
-def login():
+# Shared authentication logic
+def authenticate_user(username, password):
+    conn = get_db_connection()
+    cur = conn.cursor()
+    cur.execute("SELECT * FROM employees WHERE username = ?", (username,))
+    user = cur.fetchone()
+    cur.close()
+    conn.close()
+    if user and check_password_hash(user[7], password):
+        return user
+    return None
+
+# Web page login route
+@app.route('/web_login', methods=['GET', 'POST'])
+def web_login():
     if request.method == 'POST':
-        data = request.form
-        conn = get_db_connection()
-        cur = conn.cursor()
-        cur.execute("SELECT * FROM employees WHERE username = ?", (data['username'],))
-        user = cur.fetchone()
-        cur.close()
-        conn.close()
-        if user and check_password_hash(user[7], data['password']):
+        username = request.form['username']
+        password = request.form['password']
+        user = authenticate_user(username, password)
+        if user:
             session['user_id'] = user[0]
-            # Check for an existing session
-            conn = get_db_connection()
-            cur = conn.cursor()
-            cur.execute("SELECT * FROM work_logs WHERE employee_id = ? AND log_out_time IS NULL", (session['user_id'],))
-            existing_session = cur.fetchone()
-            if not existing_session:
-                # Log the login time
-                cur.execute(
-                    "INSERT INTO work_logs (employee_id, log_in_time) VALUES (?, ?)",
-                    (session['user_id'], datetime.now())
-                )
-                conn.commit()
-            cur.close()
-            conn.close()
-            return jsonify({"success": True, "userId": user[0]})
-        return jsonify({"success": False, "message": "Invalid username or password"}), 401
+            return redirect(url_for('profile'))
+        else:
+            return render_template('login.html', error="Invalid username or password")
     return render_template('login.html')
+
+# Android login route
+@app.route('/api/login', methods=['POST'])
+def api_login():
+    if request.method == 'POST':
+        data = request.get_json()
+        username = data['username']
+        password = data['password']
+        user = authenticate_user(username, password)
+        if user:
+            session['user_id'] = user[0]
+            return jsonify({"success": True, "userId": user[0]})
+        else:
+            return jsonify({"success": False, "message": "Invalid username or password"}), 401
 
 
 @app.route('/logout', methods=['POST'])
@@ -134,13 +144,16 @@ def logout():
 @app.route('/profile')
 def profile():
     if 'user_id' not in session:
-        return redirect(url_for('login'))
+        if request.is_json:
+            return jsonify({'error': 'Unauthorized'}), 401
+        else:
+            return redirect(url_for('web_login'))
+
     conn = get_db_connection()
     cur = conn.cursor()
     cur.execute("SELECT * FROM employees WHERE id = ?", (session['user_id'],))
     user = cur.fetchone()
 
-    # Fetch work logs for the logged-in user
     cur.execute("SELECT * FROM work_logs WHERE employee_id = ?", (session['user_id'],))
     work_logs = cur.fetchall()
 
@@ -177,14 +190,28 @@ def profile():
     cur.close()
     conn.close()
 
+    user_data = {
+        'id': user[0],
+        'name': user[1],
+        'dob': user[2],
+        'title': user[3],
+        'start_date': user[4],
+        'worker_id': user[5],
+        'username': user[6],
+        'email': user[8],
+        'phone_number': user[9]
+    }
+
+    work_logs_data = [
+        {
+            'log_in_time': log[2],
+            'log_out_time': log[3],
+            'title': log[4]
+        } for log in work_logs
+    ]
+
     if request.is_json:
-        return jsonify({
-            "user": user,
-            "work_logs": work_logs,
-            "daily_summary": daily_summary,
-            "weekly_summary": weekly_summary,
-            "monthly_summary": monthly_summary
-        })
+        return jsonify({'user': user_data, 'work_logs': work_logs_data})
     else:
         return render_template('profile.html', user=user, work_logs=work_logs,
                                daily_summary=daily_summary,
@@ -192,46 +219,6 @@ def profile():
                                monthly_summary=monthly_summary)
 
 
-@app.route('/log_work', methods=['GET', 'POST'])
-def log_work():
-    if 'user_id' not in session:
-        return redirect(url_for('login'))
-    if request.method == 'POST':
-        data = request.form
-        conn = get_db_connection()
-        cur = conn.cursor()
-        cur.execute(
-            "INSERT INTO work_logs (employee_id, log_in_time, log_out_time, Title) VALUES (?, ?, ?, ?)",
-            (session['user_id'], data['log_in_time'], data['log_out_time'], data['category'])
-        )
-        conn.commit()
-        cur.close()
-        conn.close()
-        return redirect(url_for('profile'))
-    return render_template('log_work.html')
-
-@app.route('/log_start_time', methods=['POST'])
-def log_start_time():
-    if 'user_id' not in session:
-        return jsonify({'error': 'Unauthorized'}), 401
-
-    data = request.get_json()
-    qr_code = data.get('qrCode')
-
-    if not qr_code:
-        return jsonify({'error': 'QR code is required'}), 400
-
-    conn = get_db_connection()
-    cur = conn.cursor()
-    cur.execute(
-        "INSERT INTO work_logs (employee_id, log_in_time) VALUES (?, ?)",
-        (session['user_id'], datetime.now())
-    )
-    conn.commit()
-    cur.close()
-    conn.close()
-
-    return jsonify({'message': 'Start time logged successfully'}), 200
 
 @app.route('/log_end_time', methods=['POST'])
 def log_end_time():

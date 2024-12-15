@@ -4,25 +4,40 @@ import okhttp3.Interceptor
 import okhttp3.Request
 import okhttp3.Response
 import java.io.IOException
+import java.util.concurrent.TimeUnit
 import android.util.Log
 
 class RetryInterceptor : Interceptor {
-    private val secondaryBaseUrl = "88.115.201.36:5000"
+    private val secondaryBaseUrl = "192.168.0.100:5000"
+    private val timeout = 60000 // 60 seconds
 
     override fun intercept(chain: Interceptor.Chain): Response {
         var request: Request = chain.request()
         return try {
-            chain.proceed(request)
+            chain.withConnectTimeout(timeout, TimeUnit.MILLISECONDS)
+                .withReadTimeout(timeout, TimeUnit.MILLISECONDS)
+                .withWriteTimeout(timeout, TimeUnit.MILLISECONDS)
+                .proceed(request)
         } catch (e: IOException) {
-            // Log the error
             Log.e("RetryInterceptor", "Primary URL failed: ${e.message}")
-            // If the primary IP fails, retry with the secondary IP
+
+            // Extract hostname and port from secondaryBaseUrl
+            val urlParts = secondaryBaseUrl.split(":")
+            val hostname = urlParts[0]
+            val port = urlParts[1].toInt()
+
+            // Build new URL with extracted hostname and port
             val newUrl = request.url.newBuilder()
-                .host(secondaryBaseUrl)
+                .host(hostname)
+                .port(port)
                 .build()
+
             request = request.newBuilder().url(newUrl).build()
             try {
-                chain.proceed(request)
+                chain.withConnectTimeout(timeout, TimeUnit.MILLISECONDS)
+                    .withReadTimeout(timeout, TimeUnit.MILLISECONDS)
+                    .withWriteTimeout(timeout, TimeUnit.MILLISECONDS)
+                    .proceed(request)
             } catch (e: IOException) {
                 Log.e("RetryInterceptor", "Secondary URL failed: ${e.message}")
                 throw e

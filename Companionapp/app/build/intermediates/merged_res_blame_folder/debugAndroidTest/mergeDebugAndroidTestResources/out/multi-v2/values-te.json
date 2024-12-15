@@ -4,24 +4,7 @@
             "outputFile": "com.example.bethonworkercompanion.test.app-mergeDebugAndroidTestResources-1:/values-te/values-te.xml",
             "map": [
                 {
-                    "source": "C:\\Users\\janos\\.gradle\\caches\\8.9\\transforms\\8eb19931bf092a1030ea314aa3c9c896\\transformed\\core-1.15.0\\res\\values-te\\values-te.xml",
-                    "from": {
-                        "startLines": "2,3,4,5,6,7,8,9",
-                        "startColumns": "4,4,4,4,4,4,4,4",
-                        "startOffsets": "55,157,265,367,468,574,681,805",
-                        "endColumns": "101,107,101,100,105,106,123,100",
-                        "endOffsets": "152,260,362,463,569,676,800,901"
-                    },
-                    "to": {
-                        "startLines": "2,3,4,5,6,7,8,23",
-                        "startColumns": "4,4,4,4,4,4,4,4",
-                        "startOffsets": "105,207,315,417,518,624,731,2078",
-                        "endColumns": "101,107,101,100,105,106,123,100",
-                        "endOffsets": "202,310,412,513,619,726,850,2174"
-                    }
-                },
-                {
-                    "source": "C:\\Users\\janos\\.gradle\\caches\\8.9\\transforms\\43235631621d037cd7f49ba80c799ea3\\transformed\\ui-release\\res\\values-te\\values-te.xml",
+                    "source": "C:\\Users\\janos\\.gradle\\caches\\8.9\\transforms\\41aeab1715b8db081c496edc1077efae\\transformed\\ui-release\\res\\values-te\\values-te.xml",
                     "from": {
                         "startLines": "2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18",
                         "startColumns": "4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4",
@@ -35,6 +18,23 @@
                         "startOffsets": "855,951,1038,1135,1235,1324,1413,1509,1597,1681,1754,1827,1911,2001,2179,2256,2325",
                         "endColumns": "95,86,96,99,88,88,95,87,83,72,72,83,89,76,76,68,116",
                         "endOffsets": "946,1033,1130,1230,1319,1408,1504,1592,1676,1749,1822,1906,1996,2073,2251,2320,2437"
+                    }
+                },
+                {
+                    "source": "C:\\Users\\janos\\.gradle\\caches\\8.9\\transforms\\81c6e58f9e790769b5c1a234e27be96c\\transformed\\core-1.15.0\\res\\values-te\\values-te.xml",
+                    "from": {
+                        "startLines": "2,3,4,5,6,7,8,9",
+                        "startColumns": "4,4,4,4,4,4,4,4",
+                        "startOffsets": "55,157,265,367,468,574,681,805",
+                        "endColumns": "101,107,101,100,105,106,123,100",
+                        "endOffsets": "152,260,362,463,569,676,800,901"
+                    },
+                    "to": {
+                        "startLines": "2,3,4,5,6,7,8,23",
+                        "startColumns": "4,4,4,4,4,4,4,4",
+                        "startOffsets": "105,207,315,417,518,624,731,2078",
+                        "endColumns": "101,107,101,100,105,106,123,100",
+                        "endOffsets": "202,310,412,513,619,726,850,2174"
                     }
                 }
             ]

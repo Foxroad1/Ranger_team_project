@@ -4,7 +4,7 @@
             "outputFile": "com.example.bethonworkercompanion.test.app-mergeDebugAndroidTestResources-1:/values-v28/values-v28.xml",
             "map": [
                 {
-                    "source": "C:\\Users\\janos\\.gradle\\caches\\8.9\\transforms\\06436c7fd12507ad5d8b95017bb4277e\\transformed\\core-1.6.1\\res\\values-v28\\values.xml",
+                    "source": "C:\\Users\\janos\\.gradle\\caches\\8.9\\transforms\\bf08c64fb0827eb23688525f821d616a\\transformed\\core-1.6.1\\res\\values-v28\\values.xml",
                     "from": {
                         "startLines": "4,13",
                         "startColumns": "0,0",

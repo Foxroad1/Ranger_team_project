@@ -2,43 +2,70 @@ package com.example.bethonworkercompanion
 
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import android.widget.Button
 import android.widget.EditText
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
-import kotlinx.coroutines.CoroutineScope
+import androidx.compose.ui.semantics.text
+import androidx.lifecycle.lifecycleScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
+import retrofit2.HttpException
 
 class LoginActivity : AppCompatActivity() {
+
+    private lateinit var apiService: ApiService
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_login)
 
-        val loginButton: Button = findViewById(R.id.login_button)
-        loginButton.setOnClickListener {
-            val username = findViewById<EditText>(R.id.username).text.toString()
-            val password = findViewById<EditText>(R.id.editTextTextPassword).text.toString()
-            performLogin(username, password)
-        }
-    }
+        apiService = RetrofitClient.instance
 
-    private fun performLogin(username: String, password: String) {
-        CoroutineScope(Dispatchers.IO).launch {
-            try {
-                val response = RetrofitClient.instance.login(username, password)
-                withContext(Dispatchers.Main) {
-                    if (response.isSuccessful && response.body()?.success == true) {
-                        val intent = Intent(this@LoginActivity, ProfileActivity::class.java)
-                        startActivity(intent)
-                    } else {
-                        Toast.makeText(this@LoginActivity, "Invalid username or password", Toast.LENGTH_LONG).show()
+        val usernameEditText = findViewById<EditText>(R.id.username)
+        val passwordEditText = findViewById<EditText>(R.id.editTextTextPassword)
+        val loginButton = findViewById<Button>(R.id.login_button)
+
+        loginButton.setOnClickListener {
+            val username = usernameEditText.text.toString()
+            val password = passwordEditText.text.toString()
+
+            // Debugging logs
+            Log.d("LoginActivity", "Username: $username")
+            Log.d("LoginActivity", "Password: $password")
+
+            lifecycleScope.launch {
+                try {
+                    val loginRequest = LoginRequest(username, password) // Create LoginRequest object
+                    val response = withContext(Dispatchers.IO) {
+                        apiService.login(loginRequest) // Pass LoginRequest to API call
                     }
-                }
-            } catch (e: Exception) {
-                withContext(Dispatchers.Main) {
-                    Toast.makeText(this@LoginActivity, "Error: ${e.message}", Toast.LENGTH_LONG).show()
+
+                    if (response.isSuccessful) {
+                        val loginResponse = response.body()
+                        loginResponse?.let {
+                            Toast.makeText(this@LoginActivity, "Login successful!", Toast.LENGTH_SHORT).show()
+                            // Navigate to ProfileActivity
+                            val intent = Intent(this@LoginActivity, ProfileActivity::class.java)
+                            startActivity(intent)
+                            finish() // Optional: Call finish() if you don't want to keep the login activity in the back stack
+                        } ?: run {
+                            Log.e("LoginActivity", "Login failed: Response body is null")
+                            Toast.makeText(this@LoginActivity, "Login failed: Response body is null", Toast.LENGTH_SHORT).show()
+                        }
+                    } else {
+                        val errorBody = response.errorBody()?.string()
+                        Log.e("LoginActivity", "Login failed: $errorBody")
+                        Toast.makeText(this@LoginActivity, "Login failed: $errorBody", Toast.LENGTH_SHORT).show()
+                    }
+                } catch (e: HttpException) {
+                    Log.e("LoginActivity", "HTTP error: ${e.message}", e)
+                    Toast.makeText(this@LoginActivity, "HTTP error: ${e.message}", Toast.LENGTH_SHORT).show()
+                } catch (e: Exception) {
+                    Log.e("LoginActivity", "Error: ${e.message}", e)
+                    Toast.makeText(this@LoginActivity, "Error: ${e.message}", Toast.LENGTH_SHORT).show()
                 }
             }
         }

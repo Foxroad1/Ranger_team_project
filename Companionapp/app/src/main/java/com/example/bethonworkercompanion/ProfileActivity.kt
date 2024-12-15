@@ -113,9 +113,12 @@ class ProfileActivity : AppCompatActivity() {
     }
 
     private fun logStartTime(qrCode: String) {
+        // Create a map to pass to the logStartTime method
+        val qrCodeMap = mapOf("qrCode" to qrCode)
+
         CoroutineScope(Dispatchers.IO).launch {
             try {
-                val response = RetrofitClient.instance.logStartTime(qrCode)
+                val response = RetrofitClient.instance.logStartTime(qrCodeMap)
                 withContext(Dispatchers.Main) {
                     if (response.isSuccessful) {
                         Toast.makeText(this@ProfileActivity, "Start time logged", Toast.LENGTH_LONG).show()
@@ -123,12 +126,15 @@ class ProfileActivity : AppCompatActivity() {
                         startTime = System.currentTimeMillis()
                         handler.post(clockRunnable)
                     } else {
-                        Toast.makeText(this@ProfileActivity, "Failed to log start time", Toast.LENGTH_LONG).show()
+                        val errorBody = response.errorBody()?.string()
+                        Log.e("ProfileActivity", "Failed to log start time: $errorBody")
+                        Toast.makeText(this@ProfileActivity, "Failed to log start time: $errorBody", Toast.LENGTH_LONG).show()
                     }
                 }
             } catch (e: Exception) {
                 withContext(Dispatchers.Main) {
-                    Toast.makeText(this@ProfileActivity, "Error: ${e.message}", Toast.LENGTH_LONG).show()
+                    Log.e("ProfileActivity", "Error logging start time: ${e.message}", e)
+                    Toast.makeText(this@ProfileActivity, "Error logging start time: ${e.message}", Toast.LENGTH_LONG).show()
                 }
             }
         }
