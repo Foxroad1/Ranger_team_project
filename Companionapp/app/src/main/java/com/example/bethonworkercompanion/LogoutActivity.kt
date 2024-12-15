@@ -4,10 +4,9 @@ import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
-import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.launch
-import kotlinx.coroutines.withContext
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
 import java.time.Instant
 import java.time.ZoneId
 import java.time.format.DateTimeFormatter
@@ -24,26 +23,24 @@ class LogoutActivity : AppCompatActivity() {
 
     private fun logLogoutTime() {
         val apiService = ApiClient.createService(ApiService::class.java)
+        val call = apiService.logout()
 
         logWithTime("Sending logout request to server")
-        CoroutineScope(Dispatchers.IO).launch {
-            try {
-                val response = apiService.logEndTime()
-                withContext(Dispatchers.Main) {
-                    if (response.isSuccessful) {
-                        logWithTime("Logout time logged successfully")
-                    } else {
-                        logWithTime("Failed to log logout time: ${response.errorBody()?.string()}")
-                    }
-                    navigateToLogin()
+        call.enqueue(object : Callback<Void> {
+            override fun onResponse(call: Call<Void>, response: Response<Void>) {
+                if (response.isSuccessful) {
+                    logWithTime("Logout time logged successfully")
+                } else {
+                    logWithTime("Failed to log logout time: ${response.errorBody()?.string()}")
                 }
-            } catch (e: Exception) {
-                withContext(Dispatchers.Main) {
-                    logWithTime("Error logging logout time: ${e.message}")
-                    navigateToLogin()
-                }
+                navigateToLogin()
             }
-        }
+
+            override fun onFailure(call: Call<Void>, t: Throwable) {
+                logWithTime("Error logging logout time: ${t.message}")
+                navigateToLogin()
+            }
+        })
     }
 
     private fun navigateToLogin() {
