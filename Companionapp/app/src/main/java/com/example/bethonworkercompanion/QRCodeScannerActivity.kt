@@ -1,12 +1,15 @@
 package com.example.bethonworkercompanion
 
 import android.Manifest
+import android.app.Activity
 import android.content.Intent
 import android.content.pm.PackageManager
 import android.location.Location
 import android.location.LocationManager
 import android.os.Bundle
 import android.widget.Toast
+import androidx.activity.result.ActivityResultLauncher
+import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
@@ -21,6 +24,7 @@ import retrofit2.Response
 
 class QRCodeScannerActivity : AppCompatActivity() {
     private lateinit var locationManager: LocationManager
+    private lateinit var qrScanLauncher: ActivityResultLauncher<Intent>
     private val locationPermissionCode = 2
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -28,6 +32,18 @@ class QRCodeScannerActivity : AppCompatActivity() {
         setContentView(R.layout.activity_qr_code_scanner)
 
         locationManager = getSystemService(LOCATION_SERVICE) as LocationManager
+
+        qrScanLauncher = registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
+            val data = result.data
+            if (result.resultCode == Activity.RESULT_OK && data != null) {
+                val result: IntentResult = IntentIntegrator.parseActivityResult(result.resultCode, data)
+                if (result.contents == null) {
+                    Toast.makeText(this, "Cancelled", Toast.LENGTH_LONG).show()
+                } else {
+                    validateQRCodeAndLocation(result.contents)
+                }
+            }
+        }
 
         // Request location permissions
         if (ContextCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED &&
@@ -46,7 +62,8 @@ class QRCodeScannerActivity : AppCompatActivity() {
         integrator.setCameraId(0)  // Use a specific camera of the device
         integrator.setBeepEnabled(true)
         integrator.setBarcodeImageEnabled(true)
-        integrator.initiateScan()
+        val intent = integrator.createScanIntent()
+        qrScanLauncher.launch(intent)
     }
 
     override fun onRequestPermissionsResult(requestCode: Int, permissions: Array<out String>, grantResults: IntArray) {
@@ -59,21 +76,6 @@ class QRCodeScannerActivity : AppCompatActivity() {
             } else {
                 Toast.makeText(this, "Location Permission Denied", Toast.LENGTH_SHORT).show()
             }
-        }
-    }
-
-    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
-        val result: IntentResult = IntentIntegrator.parseActivityResult(requestCode, resultCode, data)
-        if (result != null) {
-            if (result.contents == null) {
-                Toast.makeText(this, "Cancelled", Toast.LENGTH_LONG).show()
-            } else {
-                val qrCodeData = result.contents
-                // Validate the QR code and location
-                validateQRCodeAndLocation(qrCodeData)
-            }
-        } else {
-            super.onActivityResult(requestCode, resultCode, data)
         }
     }
 

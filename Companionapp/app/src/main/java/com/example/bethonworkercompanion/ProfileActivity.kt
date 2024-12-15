@@ -1,5 +1,6 @@
 package com.example.bethonworkercompanion
 
+import android.app.Activity
 import android.content.Intent
 import android.os.Bundle
 import android.os.Handler
@@ -8,6 +9,8 @@ import android.util.Log
 import android.widget.Button
 import android.widget.TextView
 import android.widget.Toast
+import androidx.activity.result.ActivityResultLauncher
+import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AppCompatActivity
 import com.google.zxing.integration.android.IntentIntegrator
 import com.google.zxing.integration.android.IntentResult
@@ -18,6 +21,7 @@ import kotlinx.coroutines.withContext
 
 class ProfileActivity : AppCompatActivity() {
     private lateinit var clockTextView: TextView
+    private lateinit var qrScanLauncher: ActivityResultLauncher<Intent>
     private val handler = Handler(Looper.getMainLooper())
     private var startTime: Long = 0
 
@@ -35,6 +39,18 @@ class ProfileActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_profile)
+
+        qrScanLauncher = registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
+            val data = result.data
+            if (result.resultCode == Activity.RESULT_OK && data != null) {
+                val result: IntentResult = IntentIntegrator.parseActivityResult(result.resultCode, data)
+                if (result.contents == null) {
+                    Toast.makeText(this, "Cancelled", Toast.LENGTH_LONG).show()
+                } else {
+                    logStartTime(result.contents)
+                }
+            }
+        }
 
         // Fetch user profile data when the activity is created
         fetchUserProfile()
@@ -104,21 +120,8 @@ class ProfileActivity : AppCompatActivity() {
         val qrScanIntegrator = IntentIntegrator(this)
         qrScanIntegrator.setPrompt("Scan a QR code")
         qrScanIntegrator.setOrientationLocked(false)
-        qrScanIntegrator.initiateScan()
-    }
-
-    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
-        val result: IntentResult = IntentIntegrator.parseActivityResult(requestCode, resultCode, data)
-        if (result != null) {
-            if (result.contents == null) {
-                Toast.makeText(this, "Cancelled", Toast.LENGTH_LONG).show()
-            } else {
-                // Send request to server to log start time
-                logStartTime(result.contents)
-            }
-        } else {
-            super.onActivityResult(requestCode, resultCode, data)
-        }
+        val intent = qrScanIntegrator.createScanIntent()
+        qrScanLauncher.launch(intent)
     }
 
     private fun logStartTime(qrCode: String) {
