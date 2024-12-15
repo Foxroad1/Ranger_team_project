@@ -9,7 +9,7 @@ import retrofit2.converter.gson.GsonConverterFactory
 import java.util.concurrent.TimeUnit
 
 object RetrofitClient {
-    private const val PRIMARY_BASE_URL = "http://10.6.128.19:5000"  // School IP
+    private const val PRIMARY_BASE_URL = "192.168.0.100:5000"  // School IP
 
     private val gson: Gson = GsonBuilder()
         .setLenient()
