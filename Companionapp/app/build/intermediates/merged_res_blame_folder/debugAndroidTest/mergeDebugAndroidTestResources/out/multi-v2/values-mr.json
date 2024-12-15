@@ -4,24 +4,7 @@
             "outputFile": "com.example.bethonworkercompanion.test.app-mergeDebugAndroidTestResources-1:/values-mr/values-mr.xml",
             "map": [
                 {
-                    "source": "C:\\Users\\janos\\.gradle\\caches\\8.9\\transforms\\81c6e58f9e790769b5c1a234e27be96c\\transformed\\core-1.15.0\\res\\values-mr\\values-mr.xml",
-                    "from": {
-                        "startLines": "2,3,4,5,6,7,8,9",
-                        "startColumns": "4,4,4,4,4,4,4,4",
-                        "startOffsets": "55,155,259,360,463,565,670,787",
-                        "endColumns": "99,103,100,102,101,104,116,100",
-                        "endOffsets": "150,254,355,458,560,665,782,883"
-                    },
-                    "to": {
-                        "startLines": "2,3,4,5,6,7,8,23",
-                        "startColumns": "4,4,4,4,4,4,4,4",
-                        "startOffsets": "105,205,309,410,513,615,720,2013",
-                        "endColumns": "99,103,100,102,101,104,116,100",
-                        "endOffsets": "200,304,405,508,610,715,832,2109"
-                    }
-                },
-                {
-                    "source": "C:\\Users\\janos\\.gradle\\caches\\8.9\\transforms\\41aeab1715b8db081c496edc1077efae\\transformed\\ui-release\\res\\values-mr\\values-mr.xml",
+                    "source": "C:\\Users\\janos\\.gradle\\caches\\8.9\\transforms\\69b455680a59e27d176f3e34777dfb32\\transformed\\ui-release\\res\\values-mr\\values-mr.xml",
                     "from": {
                         "startLines": "2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18",
                         "startColumns": "4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4",
@@ -35,6 +18,23 @@
                         "startOffsets": "837,931,1013,1110,1208,1295,1381,1466,1555,1638,1707,1777,1857,1942,2114,2190,2256",
                         "endColumns": "93,81,96,97,86,85,84,88,82,68,69,79,84,70,75,65,117",
                         "endOffsets": "926,1008,1105,1203,1290,1376,1461,1550,1633,1702,1772,1852,1937,2008,2185,2251,2369"
+                    }
+                },
+                {
+                    "source": "C:\\Users\\janos\\.gradle\\caches\\8.9\\transforms\\b8cfcef4efe285142a9e41723872c8d2\\transformed\\core-1.15.0\\res\\values-mr\\values-mr.xml",
+                    "from": {
+                        "startLines": "2,3,4,5,6,7,8,9",
+                        "startColumns": "4,4,4,4,4,4,4,4",
+                        "startOffsets": "55,155,259,360,463,565,670,787",
+                        "endColumns": "99,103,100,102,101,104,116,100",
+                        "endOffsets": "150,254,355,458,560,665,782,883"
+                    },
+                    "to": {
+                        "startLines": "2,3,4,5,6,7,8,23",
+                        "startColumns": "4,4,4,4,4,4,4,4",
+                        "startOffsets": "105,205,309,410,513,615,720,2013",
+                        "endColumns": "99,103,100,102,101,104,116,100",
+                        "endOffsets": "200,304,405,508,610,715,832,2109"
                     }
                 }
             ]

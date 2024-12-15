@@ -5,6 +5,7 @@ import retrofit2.http.Body
 import retrofit2.http.Field
 import retrofit2.http.FormUrlEncoded
 import retrofit2.http.GET
+import retrofit2.http.Header
 import retrofit2.http.POST
 
 interface ApiService {
@@ -18,6 +19,6 @@ interface ApiService {
     @POST("/log_end_time")
     suspend fun logEndTime(): Response<Void>
 
-    @GET("/profile") // Corrected endpoint for fetching user profile
-    suspend fun getUserProfile(): Response<User>
+    @GET("/profile")
+    suspend fun getUserProfile(@Header("Authorization") token: String): Response<User>
 }

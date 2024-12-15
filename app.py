@@ -106,10 +106,10 @@ def web_login():
             session['user_id'] = user[0]
             return redirect(url_for('profile'))
         else:
-            return render_template('login.html', error="Invalid username or password")
-    return render_template('login.html')
+            return render_template('web_login.html', error="Invalid username or password")
+    return render_template('web_login.html')
 
-# Android login route
+#Android login route
 @app.route('/api/login', methods=['POST'])
 def api_login():
     if request.method == 'POST':
@@ -122,7 +122,6 @@ def api_login():
             return jsonify({"success": True, "userId": user[0]})
         else:
             return jsonify({"success": False, "message": "Invalid username or password"}), 401
-
 
 @app.route('/logout', methods=['POST'])
 def logout():
@@ -138,7 +137,7 @@ def logout():
         cur.close()
         conn.close()
         session.pop('user_id', None)
-    return redirect(url_for('login'))
+    return redirect(url_for('web_login'))
 
 
 @app.route('/profile')

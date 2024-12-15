@@ -62,13 +62,13 @@ class ProfileActivity : AppCompatActivity() {
     private fun fetchUserProfile() {
         CoroutineScope(Dispatchers.IO).launch {
             try {
-                val response = RetrofitClient.instance.getUserProfile()
+                // Assuming the token is stored in SharedPreferences
+                val token = getSharedPreferences("app_prefs", MODE_PRIVATE).getString("auth_token", "") ?: ""
+                val response = RetrofitClient.instance.getUserProfile("Bearer $token")
                 withContext(Dispatchers.Main) {
                     if (response.isSuccessful) {
                         val user = response.body()
-                        // Log the user data
                         Log.d("ProfileActivity", "User data: $user")
-                        // Update UI with user data
                         updateUI(user)
                     } else {
                         Log.e("ProfileActivity", "Failed to fetch user profile: ${response.errorBody()?.string()}")
