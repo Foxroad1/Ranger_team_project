@@ -7,7 +7,6 @@ import android.widget.Button
 import android.widget.EditText
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
-import androidx.compose.ui.semantics.text
 import androidx.lifecycle.lifecycleScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
@@ -46,6 +45,8 @@ class LoginActivity : AppCompatActivity() {
                     if (response.isSuccessful) {
                         val loginResponse = response.body()
                         loginResponse?.let {
+                            // Debugging log
+                            Log.d("LoginActivity", "Token: ${it.token}")
                             // Store token in SharedPreferences
                             val sharedPrefs = getSharedPreferences("app_prefs", MODE_PRIVATE)
                             sharedPrefs.edit().putString("auth_token", it.token).apply()

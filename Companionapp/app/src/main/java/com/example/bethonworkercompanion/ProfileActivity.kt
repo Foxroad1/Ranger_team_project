@@ -52,7 +52,7 @@ class ProfileActivity : AppCompatActivity() {
             // Optionally, navigate back to the login screen
             val intent = Intent(this, LoginActivity::class.java)
             startActivity(intent)
-            finish()
+            finish() // Optional: Call finish() if you don't want to keep the login activity in the back stack
         }
 
         // Initialize the clock TextView
@@ -63,16 +63,25 @@ class ProfileActivity : AppCompatActivity() {
         CoroutineScope(Dispatchers.IO).launch {
             try {
                 // Assuming the token is stored in SharedPreferences
-                val token = getSharedPreferences("app_prefs", MODE_PRIVATE).getString("auth_token", "") ?: ""
-                val response = RetrofitClient.instance.getUserProfile("Bearer $token")
-                withContext(Dispatchers.Main) {
-                    if (response.isSuccessful) {
-                        val user = response.body()
-                        Log.d("ProfileActivity", "User data: $user")
-                        updateUI(user)
-                    } else {
-                        Log.e("ProfileActivity", "Failed to fetch user profile: ${response.errorBody()?.string()}")
-                        Toast.makeText(this@ProfileActivity, "Failed to fetch user profile", Toast.LENGTH_LONG).show()
+                val prefs = getSharedPreferences("app_prefs", MODE_PRIVATE)
+                val token = prefs.getString("auth_token", "") ?: ""
+                // Debugging log
+                Log.d("ProfileActivity", "Retrieved Token: $token")
+                if (token.isNotEmpty()) {
+                    val response = RetrofitClient.instance.getUserProfile("Bearer $token")
+                    withContext(Dispatchers.Main) {
+                        if (response.isSuccessful) {
+                            val user = response.body()
+                            Log.d("ProfileActivity", "User data: $user")
+                            updateUI(user)
+                        } else {
+                            Log.e("ProfileActivity", "Failed to fetch user profile: ${response.errorBody()?.string()}")
+                            Toast.makeText(this@ProfileActivity, "Failed to fetch user profile", Toast.LENGTH_LONG).show()
+                        }
+                    }
+                } else {
+                    withContext(Dispatchers.Main) {
+                        Toast.makeText(this@ProfileActivity, "Token is missing", Toast.LENGTH_LONG).show()
                     }
                 }
             } catch (e: Exception) {
