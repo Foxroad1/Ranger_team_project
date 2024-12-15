@@ -263,9 +263,13 @@ def api_profile(current_user):
 @token_required
 def log_start_time(current_user):
     data = request.get_json()
+    qr_code_data = data.get('qrCode')
+
+    # No need to validate QR code again, assume Android app has validated it
+
     conn = get_db_connection()
     cur = conn.cursor()
-    cur.execute("INSERT INTO work_logs (employee_id, log_in_time, qr_code) VALUES (?, ?, ?)", (current_user, datetime.utcnow(), data['qrCode']))
+    cur.execute("INSERT INTO work_logs (employee_id, log_in_time, qr_code) VALUES (?, ?, ?)", (current_user, datetime.utcnow(), qr_code_data))
     conn.commit()
     cur.close()
     conn.close()
@@ -274,6 +278,12 @@ def log_start_time(current_user):
 @app.route('/api/log_end_time', methods=['POST'])
 @token_required
 def log_end_time(current_user):
+    data = request.get_json()
+    qr_code_data = data.get('qrCode')
+
+    if not qr_code_data:
+        return jsonify({'message': 'QR code data is required'}), 400
+
     conn = get_db_connection()
     cur = conn.cursor()
     cur.execute("UPDATE work_logs SET log_out_time = ? WHERE employee_id = ? AND log_out_time IS NULL", (datetime.utcnow(), current_user))
@@ -281,7 +291,6 @@ def log_end_time(current_user):
     cur.close()
     conn.close()
     return jsonify({'message': 'End time logged successfully'}), 200
-
 
 @app.route('/admin', methods=['GET', 'POST'])
 def admin():

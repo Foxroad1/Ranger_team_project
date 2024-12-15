@@ -125,31 +125,40 @@ class ProfileActivity : AppCompatActivity() {
         // Create a map to pass to the logStartTime method
         val qrCodeMap = mapOf("qrCode" to qrCode)
 
-        CoroutineScope(Dispatchers.IO).launch {
-            try {
-                val response = RetrofitClient.instance.logStartTime(qrCodeMap)
-                withContext(Dispatchers.Main) {
-                    if (response.isSuccessful) {
-                        Toast.makeText(this@ProfileActivity, "Start time logged", Toast.LENGTH_LONG).show()
-                        // Start the clock from 0:00:00
-                        startTime = System.currentTimeMillis()
-                        handler.post(clockRunnable)
-                    } else {
-                        val errorBody = response.errorBody()?.string()
-                        Log.e("ProfileActivity", "Failed to log start time: $errorBody")
-                        Toast.makeText(this@ProfileActivity, "Failed to log start time: $errorBody", Toast.LENGTH_LONG).show()
+        // Retrieve the token from SharedPreferences (adjust the key as needed)
+        val sharedPreferences = getSharedPreferences("app_prefs", MODE_PRIVATE)
+        val token = sharedPreferences.getString("auth_token", null)
+
+        if (token != null) {
+            // Call the logStartTime method with the token and the map
+            CoroutineScope(Dispatchers.IO).launch {
+                try {
+                    val response = RetrofitClient.instance.logStartTime("Bearer $token", qrCodeMap)
+                    withContext(Dispatchers.Main) {
+                        if (response.isSuccessful) {
+                            Toast.makeText(this@ProfileActivity, "Start time logged", Toast.LENGTH_LONG).show()
+                            // Start the clock from 0:00:00
+                            startTime = System.currentTimeMillis()
+                            handler.post(clockRunnable)
+                        } else {
+                            val errorBody = response.errorBody()?.string()
+                            Log.e("ProfileActivity", "Failed to log start time: $errorBody")
+                            Toast.makeText(this@ProfileActivity, "Failed to log start time: $errorBody", Toast.LENGTH_LONG).show()
+                            // Reset the clock
+                            handler.removeCallbacks(clockRunnable)
+                        }
+                    }
+                } catch (e: Exception) {
+                    withContext(Dispatchers.Main) {
+                        Log.e("ProfileActivity", "Error logging start time: ${e.message}", e)
+                        Toast.makeText(this@ProfileActivity, "Error logging start time: ${e.message}", Toast.LENGTH_LONG).show()
                         // Reset the clock
                         handler.removeCallbacks(clockRunnable)
                     }
                 }
-            } catch (e: Exception) {
-                withContext(Dispatchers.Main) {
-                    Log.e("ProfileActivity", "Error logging start time: ${e.message}", e)
-                    Toast.makeText(this@ProfileActivity, "Error logging start time: ${e.message}", Toast.LENGTH_LONG).show()
-                    // Reset the clock
-                    handler.removeCallbacks(clockRunnable)
-                }
             }
+        } else {
+            Toast.makeText(this, "Token is missing!", Toast.LENGTH_SHORT).show()
         }
     }
 

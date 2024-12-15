@@ -12,13 +12,13 @@ interface ApiService {
     @POST("/api/login")
     suspend fun login(@Body request: LoginRequest): Response<LoginResponse>
 
-    @POST("/log_start_time")
-    suspend fun logStartTime(@Body qrCode: Map<String, String>): Response<Void>
+    @POST("/api/log_start_time")
+    suspend fun logStartTime(@Header("Authorization") token: String, @Body qrCode: Map<String, String>): Response<Void>
 
     @FormUrlEncoded
-    @POST("/log_end_time")
+    @POST("/api/log_end_time")
     suspend fun logEndTime(): Response<Void>
 
-    @GET("/profile")
+    @GET("/api/profile")
     suspend fun getUserProfile(@Header("Authorization") token: String): Response<User>
 }
