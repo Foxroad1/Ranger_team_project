@@ -63,6 +63,7 @@
         </activity>
         <activity android:name="com.example.bethonworkercompanion.MainActivity" />
         <activity android:name="com.example.bethonworkercompanion.ProfileActivity" />
+        <activity android:name="com.example.bethonworkercompanion.LogoutActivity" />
         <activity
             android:name="androidx.compose.ui.tooling.PreviewActivity"
             android:exported="true" />

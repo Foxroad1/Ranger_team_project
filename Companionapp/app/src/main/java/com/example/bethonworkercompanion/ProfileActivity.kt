@@ -18,6 +18,9 @@ import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
+import java.time.Instant
+import java.time.ZoneId
+import java.time.ZonedDateTime
 
 class ProfileActivity : AppCompatActivity() {
     private lateinit var clockTextView: TextView
@@ -133,6 +136,14 @@ class ProfileActivity : AppCompatActivity() {
         val token = sharedPreferences.getString("auth_token", null)
 
         if (token != null) {
+            // Get current time in UTC
+            val utcTime = Instant.now()
+            // Convert to Helsinki time
+            val helsinkiTime = utcTime.atZone(ZoneId.of("Europe/Helsinki"))
+
+            // Log the Helsinki time
+            Log.d("ProfileActivity", "Helsinki time: $helsinkiTime")
+
             // Call the logStartTime method with the token and the map
             CoroutineScope(Dispatchers.IO).launch {
                 try {
@@ -140,8 +151,8 @@ class ProfileActivity : AppCompatActivity() {
                     withContext(Dispatchers.Main) {
                         if (response.isSuccessful) {
                             Toast.makeText(this@ProfileActivity, "Start time logged", Toast.LENGTH_LONG).show()
-                            // Start the clock from 0:00:00
-                            startTime = System.currentTimeMillis()
+                            // Start the clock from current Helsinki time
+                            startTime = helsinkiTime.toInstant().toEpochMilli()
                             handler.post(clockRunnable)
                         } else {
                             val errorBody = response.errorBody()?.string()
@@ -166,24 +177,9 @@ class ProfileActivity : AppCompatActivity() {
     }
 
     private fun logEndTime() {
-        CoroutineScope(Dispatchers.IO).launch {
-            try {
-                val response = RetrofitClient.instance.logEndTime()
-                withContext(Dispatchers.Main) {
-                    if (response.isSuccessful) {
-                        Toast.makeText(this@ProfileActivity, "End time logged", Toast.LENGTH_LONG).show()
-                        // Stop the clock
-                        handler.removeCallbacks(clockRunnable)
-                    } else {
-                        Toast.makeText(this@ProfileActivity, "Failed to log end time", Toast.LENGTH_LONG).show()
-                    }
-                }
-            } catch (e: Exception) {
-                withContext(Dispatchers.Main) {
-                    Toast.makeText(this@ProfileActivity, "Error: ${e.message}", Toast.LENGTH_LONG).show()
-                }
-            }
-        }
+        val intent = Intent(this, LogoutActivity::class.java)
+        startActivity(intent)
+        finish()
     }
 
     override fun onDestroy() {
