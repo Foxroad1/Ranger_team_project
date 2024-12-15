@@ -1,5 +1,6 @@
 package com.example.bethonworkercompanion
 
+
 import com.journeyapps.barcodescanner.IntentIntegrator
 import com.journeyapps.barcodescanner.IntentResult
 import android.content.Intent
@@ -163,19 +164,16 @@ class ProfileActivity : AppCompatActivity() {
     }
 
     private fun logEndTime() {
-        // Retrieve the token from SharedPreferences (adjust the key as needed)
         val sharedPreferences = getSharedPreferences("app_prefs", MODE_PRIVATE)
         val token = sharedPreferences.getString("auth_token", null)
 
         if (token != null) {
-            // Call the logEndTime method with the token
             CoroutineScope(Dispatchers.IO).launch {
                 try {
-                    val response = RetrofitClient.instance.logEndTime("Bearer $token")
+                    val response = RetrofitClient.instance.logEndTime()
                     withContext(Dispatchers.Main) {
                         if (response.isSuccessful) {
                             Toast.makeText(this@ProfileActivity, "End time logged", Toast.LENGTH_LONG).show()
-                            // Stop the clock
                             handler.removeCallbacks(clockRunnable)
                         } else {
                             Toast.makeText(this@ProfileActivity, "Failed to log end time", Toast.LENGTH_LONG).show()
