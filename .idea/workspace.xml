@@ -4,7 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="6e6cc73d-e093-4582-ae6b-b9860e613723" name="Changes" comment="Loging in, Qrcode timer Start, Logout Logs spent time measured by the app.." />
+    <list default="true" id="6e6cc73d-e093-4582-ae6b-b9860e613723" name="Changes" comment="new profile try." />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -78,22 +78,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1732173378005</updated>
-    </task>
-    <task id="LOCAL-00014" summary="Prototyping phase">
-      <option name="closed" value="true" />
-      <created>1733993834282</created>
-      <option name="number" value="00014" />
-      <option name="presentableId" value="LOCAL-00014" />
-      <option name="project" value="LOCAL" />
-      <updated>1733993834282</updated>
-    </task>
-    <task id="LOCAL-00015" summary="Prototyping phase">
-      <option name="closed" value="true" />
-      <created>1733994120863</created>
-      <option name="number" value="00015" />
-      <option name="presentableId" value="LOCAL-00015" />
-      <option name="project" value="LOCAL" />
-      <updated>1733994120863</updated>
     </task>
     <task id="LOCAL-00016" summary="Prototyping phase">
       <option name="closed" value="true" />
@@ -471,7 +455,23 @@
       <option name="project" value="LOCAL" />
       <updated>1734301475006</updated>
     </task>
-    <option name="localTasksCounter" value="63" />
+    <task id="LOCAL-00063" summary="new profile try.">
+      <option name="closed" value="true" />
+      <created>1734301648685</created>
+      <option name="number" value="00063" />
+      <option name="presentableId" value="LOCAL-00063" />
+      <option name="project" value="LOCAL" />
+      <updated>1734301648685</updated>
+    </task>
+    <task id="LOCAL-00064" summary="new profile try.">
+      <option name="closed" value="true" />
+      <created>1734303296297</created>
+      <option name="number" value="00064" />
+      <option name="presentableId" value="LOCAL-00064" />
+      <option name="project" value="LOCAL" />
+      <updated>1734303296297</updated>
+    </task>
+    <option name="localTasksCounter" value="65" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -498,7 +498,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Updated login separation and updated home working IP" />
     <MESSAGE value="unversioned files ? wonder what are they" />
     <MESSAGE value="Updated communications with the server" />
     <MESSAGE value="Updated LoginActivity.kt and LoginResponse.kt" />
@@ -523,7 +522,8 @@
     <MESSAGE value="removed logoutactivity.... apiclient... and the relatedxml" />
     <MESSAGE value="Retrofitnewer vesion" />
     <MESSAGE value="Loging in, Qrcode timer Start, Logout Logs spent time measured by the app.." />
-    <option name="LAST_COMMIT_MESSAGE" value="Loging in, Qrcode timer Start, Logout Logs spent time measured by the app.." />
+    <MESSAGE value="new profile try." />
+    <option name="LAST_COMMIT_MESSAGE" value="new profile try." />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

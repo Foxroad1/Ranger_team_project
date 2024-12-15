@@ -8,12 +8,12 @@
 
     <TextView
         android:id="@+id/nameTextView"
-        android:layout_width="112dp"
+        android:layout_width="135dp"
         android:layout_height="35dp"
-        android:layout_marginTop="24dp"
+        android:layout_marginTop="28dp"
         android:text="@string/name"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.775"
+        app:layout_constraintHorizontal_bias="0.754"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -21,23 +21,23 @@
         android:id="@+id/workerIdTextView"
         android:layout_width="76dp"
         android:layout_height="27dp"
-        android:layout_marginTop="44dp"
+        android:layout_marginTop="60dp"
         android:text="@string/Worker_ID"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.746"
+        app:layout_constraintHorizontal_bias="0.698"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/nameTextView" />
 
     <TextView
         android:id="@+id/jobTitleTextView"
-        android:layout_width="124dp"
-        android:layout_height="33dp"
-        android:layout_marginTop="28dp"
+        android:layout_width="155dp"
+        android:layout_height="40dp"
+        android:layout_marginTop="37dp"
         android:text="@string/Job_title"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.804"
+        app:layout_constraintHorizontal_bias="0.843"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/workerIdTextView" />
+        app:layout_constraintTop_toBottomOf="@+id/workerIdTextView" />
 
     <TextView
         android:id="@+id/clockTextView"
@@ -73,64 +73,57 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/scanQrButton" />
 
-    <EditText
-        android:id="@+id/editTextText2"
-        android:layout_width="150dp"
-        android:layout_height="40dp"
-        android:layout_marginStart="30dp"
-        android:layout_marginTop="16dp"
-        android:layout_marginEnd="52dp"
-        android:layout_marginBottom="40dp"
-        android:ems="10"
-        android:inputType="text"
+    <TextView
+        android:id="@+id/labelEmployee"
+        android:layout_width="131dp"
+        android:layout_height="34dp"
+        android:layout_marginStart="52dp"
+        android:layout_marginTop="28dp"
+        android:layout_marginEnd="25dp"
+        android:layout_marginBottom="48dp"
         android:text="Employee:"
-        app:layout_constraintBottom_toTopOf="@+id/editTextText3"
+        app:layout_constraintBottom_toTopOf="@+id/labelEmployeeID"
         app:layout_constraintEnd_toStartOf="@+id/nameTextView"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <EditText
-        android:id="@+id/editTextText3"
-        android:layout_width="162dp"
-        android:layout_height="42dp"
-        android:layout_marginStart="21dp"
-        android:layout_marginTop="40dp"
-        android:layout_marginEnd="67dp"
-        android:layout_marginBottom="20dp"
-        android:ems="10"
-        android:inputType="text"
+    <TextView
+        android:id="@+id/labelEmployeeID"
+        android:layout_width="143dp"
+        android:layout_height="40dp"
+        android:layout_marginStart="36dp"
+        android:layout_marginTop="48dp"
+        android:layout_marginEnd="29dp"
         android:text="EmployeeID:"
-        app:layout_constraintBottom_toTopOf="@+id/editTextText4"
         app:layout_constraintEnd_toStartOf="@+id/workerIdTextView"
+        app:layout_constraintHorizontal_bias="0.49"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editTextText2" />
+        app:layout_constraintTop_toBottomOf="@+id/labelEmployee" />
 
-    <EditText
-        android:id="@+id/editTextText4"
+    <TextView
+        android:id="@+id/labelJobTitle"
         android:layout_width="165dp"
         android:layout_height="40dp"
-        android:layout_marginStart="21dp"
-        android:layout_marginEnd="45dp"
-        android:layout_marginBottom="49dp"
-        android:ems="10"
-        android:inputType="text"
+        android:layout_marginStart="36dp"
+        android:layout_marginTop="37dp"
+        android:layout_marginEnd="15dp"
         android:text="Job Title:"
-        app:layout_constraintBottom_toTopOf="@+id/editTextText5"
         app:layout_constraintEnd_toStartOf="@+id/jobTitleTextView"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/labelEmployeeID" />
 
-    <EditText
-        android:id="@+id/editTextText5"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="22dp"
-        android:layout_marginEnd="11dp"
-        android:layout_marginBottom="138dp"
-        android:ems="10"
-        android:inputType="text"
+    <TextView
+        android:id="@+id/labelWorkTime"
+        android:layout_width="115dp"
+        android:layout_height="38dp"
+        android:layout_marginStart="84dp"
+        android:layout_marginTop="60dp"
+        android:layout_marginEnd="43dp"
+        android:layout_marginBottom="141dp"
         android:text="Work Time:"
         app:layout_constraintBottom_toTopOf="@+id/scanQrButton"
         app:layout_constraintEnd_toStartOf="@+id/clockTextView"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/labelJobTitle" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
