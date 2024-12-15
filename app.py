@@ -107,7 +107,7 @@ def web_login():
         if user:
             token = jwt.encode({
                 'user_id': user[0],
-                'exp': datetime.now(pytz.utc) + timedelta(hours=24)  # Use timezone-aware datetime
+                'exp': datetime.now(pytz.UTC) + timedelta(hours=24)  # Use timezone-aware datetime
             }, app.secret_key, algorithm='HS256')
             session['token'] = token  # Store the token in the session
             return redirect(url_for('profile'))
@@ -147,7 +147,7 @@ def api_login():
         if user:
             token = jwt.encode({
                 'user_id': user[0],
-                'exp': datetime.now(pytz.utc) + timedelta(hours=24)  # Use timezone-aware datetime
+                'exp': datetime.now(pytz.UTC) + timedelta(hours=24)  # Use timezone-aware datetime
             }, SECRET_KEY, algorithm='HS256')
             return jsonify({"success": True, "token": token})
         else:
@@ -187,8 +187,8 @@ def profile(current_user):
     monthly_summary = {}
 
     for log in work_logs:
-        log_in_time = log[2].replace(tzinfo=pytz.utc).astimezone(FINLAND_TZ)
-        log_out_time = log[3].replace(tzinfo=pytz.utc).astimezone(FINLAND_TZ) if log[3] else datetime.now(FINLAND_TZ)  # Use current time if still logged in
+        log_in_time = log[2].replace(tzinfo=pytz.UTC).astimezone(FINLAND_TZ)
+        log_out_time = log[3].replace(tzinfo=pytz.UTC).astimezone(FINLAND_TZ) if log[3] else datetime.now(FINLAND_TZ)  # Use current time if still logged in
         date_str = log_in_time.strftime('%Y-%m-%d')
 
         # Calculate the duration of each work session
@@ -228,8 +228,8 @@ def profile(current_user):
 
     work_logs_data = [
         {
-            'log_in_time': log[2].replace(tzinfo=pytz.utc).astimezone(FINLAND_TZ),
-            'log_out_time': log[3].replace(tzinfo=pytz.utc).astimezone(FINLAND_TZ) if log[3] else None,
+            'log_in_time': log[2].replace(tzinfo=pytz.UTC).astimezone(FINLAND_TZ),
+            'log_out_time': log[3].replace(tzinfo=pytz.UTC).astimezone(FINLAND_TZ) if log[3] else None,
             'title': log[4]
         } for log in work_logs
     ]
@@ -250,8 +250,8 @@ def save_work_logs_to_csv(logs, filename):
 
         writer.writeheader()
         for log in logs:
-            log_in_time = log[2].replace(tzinfo=pytz.utc).astimezone(FINLAND_TZ)
-            log_out_time = log[3].replace(tzinfo.pytz.utc).astimezone(FINLAND_TZ) if log[3] else datetime.now(FINLAND_TZ)  # Use current time if still logged in
+            log_in_time = log[2].replace(tzinfo=pytz.UTC).astimezone(FINLAND_TZ)
+            log_out_time = log[3].replace(tzinfo.pytz.UTC).astimezone(FINLAND_TZ) if log[3] else datetime.now(FINLAND_TZ)  # Use current time if still logged in
             duration = log_out_time - log_in_time
             hours, remainder = divmod(duration.total_seconds(), 3600)
             minutes, seconds = divmod(remainder, 60)
