@@ -4,11 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="6e6cc73d-e093-4582-ae6b-b9860e613723" name="Changes" comment="python app.py web fixed check the clock">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app.py" beforeDir="false" afterPath="$PROJECT_DIR$/app.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/web_login.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/web_login.html" afterDir="false" />
-    </list>
+    <list default="true" id="6e6cc73d-e093-4582-ae6b-b9860e613723" name="Changes" comment="login .. cant build...." />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -419,7 +415,15 @@
       <option name="project" value="LOCAL" />
       <updated>1734273464711</updated>
     </task>
-    <option name="localTasksCounter" value="43" />
+    <task id="LOCAL-00043" summary="login .. cant build....">
+      <option name="closed" value="true" />
+      <created>1734274874388</created>
+      <option name="number" value="00043" />
+      <option name="presentableId" value="LOCAL-00043" />
+      <option name="project" value="LOCAL" />
+      <updated>1734274874388</updated>
+    </task>
+    <option name="localTasksCounter" value="44" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -466,7 +470,8 @@
     <MESSAGE value="Unresolved reference 'tzinfo' line 254 still not solved" />
     <MESSAGE value="Unresolved reference 'tzinfo' lines: 258, 298,  299, 320, 321." />
     <MESSAGE value="python app.py web fixed check the clock" />
-    <option name="LAST_COMMIT_MESSAGE" value="python app.py web fixed check the clock" />
+    <MESSAGE value="login .. cant build...." />
+    <option name="LAST_COMMIT_MESSAGE" value="login .. cant build...." />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

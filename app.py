@@ -84,7 +84,7 @@ def register():
 
 
 @app.route('/web_login', methods=['GET', 'POST'])
-def login():
+def web_login():
     if request.method == 'POST':
         data = request.form
         conn = get_db_connection()
