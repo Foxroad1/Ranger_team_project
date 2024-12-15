@@ -251,7 +251,7 @@ def save_work_logs_to_csv(logs, filename):
         writer.writeheader()
         for log in logs:
             log_in_time = log[2].replace(tzinfo=pytz.UTC).astimezone(FINLAND_TZ)
-            log_out_time = log[3].replace(tzinfo.pytz.UTC).astimezone(FINLAND_TZ) if log[3] else datetime.now(FINLAND_TZ)  # Use current time if still logged in
+            log_out_time = log[3].replace(tzinfo=pytz.UTC).astimezone(FINLAND_TZ) if log[3] else datetime.now(FINLAND_TZ)  # Use current time if still logged in
             duration = log_out_time - log_in_time
             hours, remainder = divmod(duration.total_seconds(), 3600)
             minutes, seconds = divmod(remainder, 60)
@@ -329,6 +329,59 @@ def download_employee_work_logs(employee_id, period):
 # Ensure the directory for storing CSV files exists
 if not os.path.exists('work_logs'):
     os.makedirs('work_logs')
+
+
+# Admin login route
+@app.route('/admin_login', methods=['GET', 'POST'])
+def admin_login():
+    if request.method == 'POST':
+        username = request.form['username']  # Ensure the form field name is 'username'
+        password = request.form['password']  # Ensure the form field name is 'password'
+        user = authenticate_user(username, password)
+        if user and user[3] == 'admin':  # Assuming 'title' is at index 3 and contains 'admin' for admin users
+            token = jwt.encode({
+                'user_id': user[0],
+                'exp': datetime.now(pytz.UTC) + timedelta(hours=24)
+            }, app.secret_key, algorithm='HS256')
+            session['token'] = token
+            return redirect(url_for('admin_dashboard'))
+        else:
+            return render_template('admin_login.html', error="Invalid username or password or not an admin")
+    return render_template('admin_login.html')
+
+# Admin dashboard route
+@app.route('/admin_dashboard')
+@token_required
+def admin_dashboard(current_user):
+    conn = get_db_connection()
+    cur = conn.cursor()
+    cur.execute("SELECT * FROM employees")
+    employees = cur.fetchall()
+    cur.close()
+    conn.close()
+    return render_template('admin_dashboard.html', employees=employees)
+
+# Admin add employee route
+@app.route('/admin_add_employee', methods=['GET', 'POST'])
+@token_required
+def admin_add_employee(current_user):
+    if request.method == 'POST':
+        data = request.form
+        worker_id = str(uuid.uuid4())
+        hashed_password = generate_password_hash(data['password'], method='pbkdf2:sha256')
+        conn = get_db_connection()
+        cur = conn.cursor()
+        cur.execute(
+            "INSERT INTO employees (name, dob, title, start_date, worker_id, username, password, email, phone_number) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)",
+            (data['name'], data['dob'], data['title'], data['start_date'], worker_id, data['username'],
+             hashed_password, data['email'], data['phone_number'])
+        )
+        conn.commit()
+        cur.close()
+        conn.close()
+        return redirect(url_for('admin_dashboard'))
+    return render_template('admin_add_employee.html')
+
 
 if __name__ == "__main__":
     app.run(host="0.0.0.0", port=5000, debug=True)
