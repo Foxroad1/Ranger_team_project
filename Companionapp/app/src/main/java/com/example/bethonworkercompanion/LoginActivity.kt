@@ -1,8 +1,10 @@
 package com.example.bethonworkercompanion
 
+import android.app.AlertDialog
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
+import android.view.LayoutInflater
 import android.widget.Button
 import android.widget.EditText
 import android.widget.Toast
@@ -16,6 +18,7 @@ import retrofit2.HttpException
 class LoginActivity : AppCompatActivity() {
 
     private lateinit var apiService: ApiService
+    private lateinit var progressDialog: AlertDialog
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -27,9 +30,20 @@ class LoginActivity : AppCompatActivity() {
         val passwordEditText = findViewById<EditText>(R.id.editTextTextPassword)
         val loginButton = findViewById<Button>(R.id.login_button)
 
+        // Initialize AlertDialog
+        val builder = AlertDialog.Builder(this)
+        val inflater: LayoutInflater = this.layoutInflater
+        val dialogView = inflater.inflate(R.layout.progress_dialog, findViewById(android.R.id.content), false)
+        builder.setView(dialogView)
+        builder.setCancelable(false)
+        progressDialog = builder.create()
+
         loginButton.setOnClickListener {
             val username = usernameEditText.text.toString()
             val password = passwordEditText.text.toString()
+
+            // Show loading indicator
+            progressDialog.show()
 
             // Debugging logs
             Log.d("LoginActivity", "Username: $username")
@@ -41,6 +55,8 @@ class LoginActivity : AppCompatActivity() {
                     val response = withContext(Dispatchers.IO) {
                         apiService.login(loginRequest) // Pass LoginRequest to API call
                     }
+
+                    progressDialog.dismiss() // Hide loading indicator
 
                     if (response.isSuccessful) {
                         val loginResponse = response.body()
@@ -75,9 +91,11 @@ class LoginActivity : AppCompatActivity() {
                         Toast.makeText(this@LoginActivity, "Login failed: $errorBody", Toast.LENGTH_SHORT).show()
                     }
                 } catch (e: HttpException) {
+                    progressDialog.dismiss() // Hide loading indicator
                     Log.e("LoginActivity", "HTTP error: ${e.message}", e)
                     Toast.makeText(this@LoginActivity, "HTTP error: ${e.message}", Toast.LENGTH_SHORT).show()
                 } catch (e: Exception) {
+                    progressDialog.dismiss() // Hide loading indicator
                     Log.e("LoginActivity", "Error: ${e.message}", e)
                     Toast.makeText(this@LoginActivity, "Error: ${e.message}", Toast.LENGTH_SHORT).show()
                 }
