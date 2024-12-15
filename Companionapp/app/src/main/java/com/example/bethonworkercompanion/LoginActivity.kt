@@ -46,6 +46,10 @@ class LoginActivity : AppCompatActivity() {
                     if (response.isSuccessful) {
                         val loginResponse = response.body()
                         loginResponse?.let {
+                            // Store token in SharedPreferences
+                            val sharedPrefs = getSharedPreferences("app_prefs", MODE_PRIVATE)
+                            sharedPrefs.edit().putString("auth_token", it.token).apply()
+
                             Toast.makeText(this@LoginActivity, "Login successful!", Toast.LENGTH_SHORT).show()
                             // Navigate to ProfileActivity
                             val intent = Intent(this@LoginActivity, ProfileActivity::class.java)
@@ -55,6 +59,7 @@ class LoginActivity : AppCompatActivity() {
                             Log.e("LoginActivity", "Login failed: Response body is null")
                             Toast.makeText(this@LoginActivity, "Login failed: Response body is null", Toast.LENGTH_SHORT).show()
                         }
+                    
                     } else {
                         val errorBody = response.errorBody()?.string()
                         Log.e("LoginActivity", "Login failed: $errorBody")
