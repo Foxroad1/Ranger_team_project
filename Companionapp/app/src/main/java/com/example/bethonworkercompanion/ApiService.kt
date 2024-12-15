@@ -14,7 +14,7 @@ interface ApiService {
     suspend fun login(@Body request: LoginRequest): Response<LoginResponse>
 
     @POST("/api/log_start_time")
-    suspend fun logStartTime(@Header("Authorization") token: String, @Body qrCode: Map<String, String>): Response<Void>
+    suspend fun logStartTime(@Header("Authorization") token: String?, @Body qrCode: Map<String, String>?): Response<Void>
 
     @FormUrlEncoded
     @POST("/api/log_end_time")

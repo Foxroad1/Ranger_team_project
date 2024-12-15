@@ -9,14 +9,11 @@ import uuid
 from werkzeug.security import generate_password_hash, check_password_hash
 import pytz
 
-
-
 app = Flask(__name__)
 app.secret_key = 'your_secret_key'
 
-# Convert to Finland timezone
-helsinki = pytz.timezone('Europe/Helsinki')
-
+# Convert to UTC+2 timezone
+utc_plus_two = timezone(timedelta(hours=2))
 
 def get_db_connection():
     try:
@@ -109,7 +106,7 @@ def web_login():
                 # Log the login time
                 cur.execute(
                     "INSERT INTO work_logs (employee_id, log_in_time) VALUES (?, ?)",
-                    (session['user_id'], datetime.now(helsinki))
+                    (session['user_id'], datetime.now(utc_plus_two))
                 )
                 conn.commit()
             cur.close()
@@ -126,7 +123,7 @@ def logout():
         cur = conn.cursor()
         cur.execute(
             "UPDATE work_logs SET log_out_time = ? WHERE employee_id = ? AND log_out_time IS NULL",
-            (datetime.now(helsinki), session['user_id'])
+            (datetime.now(utc_plus_two), session['user_id'])
         )
         conn.commit()
         cur.close()
@@ -153,8 +150,8 @@ def profile():
     monthly_summary = {}
 
     for log in work_logs:
-        log_in_time = log[2].replace(tzinfo=timezone.utc).astimezone(helsinki)
-        log_out_time = log[3].replace(tzinfo=timezone.utc).astimezone(helsinki) if log[3] else datetime.now(helsinki)
+        log_in_time = log[2].replace(tzinfo=timezone.utc).astimezone(utc_plus_two)
+        log_out_time = log[3].replace(tzinfo=timezone.utc).astimezone(utc_plus_two) if log[3] else datetime.now(utc_plus_two)
         date_str = log_in_time.strftime('%Y-%m-%d')
 
         # Calculate the duration of each work session
@@ -184,7 +181,6 @@ def profile():
                            daily_summary=daily_summary,
                            weekly_summary=weekly_summary,
                            monthly_summary=monthly_summary)
-
 
 @app.route('/log_work', methods=['GET', 'POST'])
 def log_work():
@@ -266,17 +262,15 @@ def log_start_time(current_user):
     data = request.get_json()
     qr_code_data = data.get('qrCode')
 
-
     # No need to validate QR code again, assume Android app has validated it
 
     conn = get_db_connection()
     cur = conn.cursor()
-    cur.execute("INSERT INTO work_logs (employee_id, log_in_time, qr_code) VALUES (?, ?, ?)", (current_user, datetime.now(timezone.utc), qr_code_data))
+    cur.execute("INSERT INTO work_logs (employee_id, log_in_time, qr_code) VALUES (?, ?, ?)", (current_user, datetime.now(utc_plus_two), qr_code_data))
     conn.commit()
     cur.close()
     conn.close()
     return jsonify({'message': 'Start time logged successfully'}), 200
-
 
 @app.route('/api/logout', methods=['POST'])
 @token_required
@@ -286,7 +280,7 @@ def api_logout(current_user):
     cur = conn.cursor()
     cur.execute(
         "UPDATE work_logs SET log_out_time = ? WHERE employee_id = ? AND log_out_time IS NULL",
-        (datetime.now(timezone.utc), current_user)
+        (datetime.now(utc_plus_two), current_user)
     )
     conn.commit()
     cur.close()
@@ -305,7 +299,7 @@ def log_end_time(current_user):
 
     conn = get_db_connection()
     cur = conn.cursor()
-    cur.execute("UPDATE work_logs SET log_out_time = ? WHERE employee_id = ? AND log_out_time IS NULL", (datetime.now(timezone.utc), current_user))
+    cur.execute("UPDATE work_logs SET log_out_time = ? WHERE employee_id = ? AND log_out_time IS NULL", (datetime.now(utc_plus_two), current_user))
     conn.commit()
     cur.close()
     conn.close()
@@ -404,8 +398,8 @@ def save_work_logs_to_csv(logs, filename):
 
         writer.writeheader()
         for log in logs:
-            log_in_time = log[2].replace(tzinfo=timezone.utc).astimezone(helsinki)
-            log_out_time = log[3].replace(tzinfo=timezone.utc).astimezone(helsinki) if log[3] else datetime.now(helsinki)
+            log_in_time = log[2].replace(tzinfo=timezone.utc).astimezone(utc_plus_two)
+            log_out_time = log[3].replace(tzinfo=timezone.utc).astimezone(utc_plus_two) if log[3] else datetime.now(utc_plus_two)
             duration = log_out_time - log_in_time
             hours, remainder = divmod(duration.total_seconds(), 3600)
             minutes, seconds = divmod(remainder, 60)
@@ -423,15 +417,15 @@ def generate_work_logs(period):
     cur = conn.cursor()
 
     if period == 'daily':
-        date_str = datetime.now(helsinki).strftime('%Y-%m-%d')
+        date_str = datetime.now(utc_plus_two).strftime('%Y-%m-%d')
         cur.execute("SELECT * FROM work_logs WHERE DATE(log_in_time) = %s", (date_str,))
         filename = f'work_logs/work_logs_daily_{date_str}.csv'
     elif period == 'weekly':
-        week_str = datetime.now(helsinki).strftime('%Y-%U')
-        cur.execute("SELECT * FROM work_logs WHERE YEARWEEK(log_in_time, 1) = YEARWEEK(%s, 1)", (datetime.now(helsinki),))
+        week_str = datetime.now(utc_plus_two).strftime('%Y-%U')
+        cur.execute("SELECT * FROM work_logs WHERE YEARWEEK(log_in_time, 1) = YEARWEEK(%s, 1)", (datetime.now(utc_plus_two),))
         filename = f'work_logs/work_logs_weekly_{week_str}.csv'
     elif period == 'monthly':
-        month_str = datetime.now(helsinki).strftime('%Y-%m')
+        month_str = datetime.now(utc_plus_two).strftime('%Y-%m')
         cur.execute("SELECT * FROM work_logs WHERE DATE_FORMAT(log_in_time, '%Y-%m') = %s", (month_str,))
         filename = f'work_logs/work_logs_monthly_{month_str}.csv'
 
@@ -447,16 +441,16 @@ def generate_employee_work_logs(employee_id, period):
     cur = conn.cursor()
 
     if period == 'daily':
-        date_str = datetime.now(helsinki).strftime('%Y-%m-%d')
+        date_str = datetime.now(utc_plus_two).strftime('%Y-%m-%d')
         cur.execute("SELECT * FROM work_logs WHERE employee_id = ? AND DATE(log_in_time) = ?", (employee_id, date_str))
         filename = f'work_logs/work_logs_daily_{employee_id}_{date_str}.csv'
     elif period == 'weekly':
-        week_str = datetime.now(helsinki).strftime('%Y-%U')
+        week_str = datetime.now(utc_plus_two).strftime('%Y-%U')
         cur.execute("SELECT * FROM work_logs WHERE employee_id = ? AND YEARWEEK(log_in_time, 1) = YEARWEEK(?, 1)",
-                    (employee_id, datetime.now(helsinki)))
+                    (employee_id, datetime.now(utc_plus_two)))
         filename = f'work_logs/work_logs_weekly_{employee_id}_{week_str}.csv'
     elif period == 'monthly':
-        month_str = datetime.now(helsinki).strftime('%Y-%m')
+        month_str = datetime.now(utc_plus_two).strftime('%Y-%m')
         cur.execute("SELECT * FROM work_logs WHERE employee_id = ? AND DATE_FORMAT(log_in_time, '%Y-%m') = ?",
                     (employee_id, month_str))
         filename = f'work_logs/work_logs_monthly_{employee_id}_{month_str}.csv'

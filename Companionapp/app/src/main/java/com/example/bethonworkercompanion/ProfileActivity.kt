@@ -20,7 +20,6 @@ import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 import java.time.Instant
 import java.time.ZoneId
-import java.time.ZonedDateTime
 
 class ProfileActivity : AppCompatActivity() {
     private lateinit var clockTextView: TextView
@@ -55,36 +54,29 @@ class ProfileActivity : AppCompatActivity() {
             }
         }
 
-        // Fetch user profile data when the activity is created
         fetchUserProfile()
 
-        // Set up the QR code scanner button
         val scanQrButton: Button = findViewById(R.id.scanQrButton)
         scanQrButton.setOnClickListener {
             startQrCodeScanner()
         }
 
-        // Set up the logout button
         val logoutButton: Button = findViewById(R.id.logoutButton)
         logoutButton.setOnClickListener {
             logEndTime()
-            // Optionally, navigate back to the login screen
             val intent = Intent(this, LoginActivity::class.java)
             startActivity(intent)
-            finish() // Optional: Call finish() if you don't want to keep the login activity in the back stack
+            finish()
         }
 
-        // Initialize the clock TextView
         clockTextView = findViewById(R.id.clockTextView)
     }
 
     private fun fetchUserProfile() {
         CoroutineScope(Dispatchers.IO).launch {
             try {
-                // Assuming the token is stored in SharedPreferences
                 val prefs = getSharedPreferences("app_prefs", MODE_PRIVATE)
                 val token = prefs.getString("auth_token", "") ?: ""
-                // Debugging log
                 Log.d("ProfileActivity", "Retrieved Token: $token")
                 if (token.isNotEmpty()) {
                     val response = RetrofitClient.instance.getUserProfile("Bearer $token")
@@ -116,7 +108,6 @@ class ProfileActivity : AppCompatActivity() {
         findViewById<TextView>(R.id.nameTextView).text = user?.name
         findViewById<TextView>(R.id.workerIdTextView).text = user?.id.toString()
         findViewById<TextView>(R.id.jobTitleTextView).text = user?.title
-        // Update other UI elements with user data
     }
 
     private fun startQrCodeScanner() {
@@ -128,37 +119,28 @@ class ProfileActivity : AppCompatActivity() {
     }
 
     private fun logStartTime(qrCode: String) {
-        // Create a map to pass to the logStartTime method
         val qrCodeMap = mapOf("qrCode" to qrCode)
-
-        // Retrieve the token from SharedPreferences (adjust the key as needed)
         val sharedPreferences = getSharedPreferences("app_prefs", MODE_PRIVATE)
         val token = sharedPreferences.getString("auth_token", null)
 
         if (token != null) {
-            // Get current time in UTC
             val utcTime = Instant.now()
-            // Convert to Helsinki time
             val helsinkiTime = utcTime.atZone(ZoneId.of("Europe/Helsinki"))
 
-            // Log the Helsinki time
             Log.d("ProfileActivity", "Helsinki time: $helsinkiTime")
 
-            // Call the logStartTime method with the token and the map
             CoroutineScope(Dispatchers.IO).launch {
                 try {
                     val response = RetrofitClient.instance.logStartTime("Bearer $token", qrCodeMap)
                     withContext(Dispatchers.Main) {
                         if (response.isSuccessful) {
                             Toast.makeText(this@ProfileActivity, "Start time logged", Toast.LENGTH_LONG).show()
-                            // Start the clock from current Helsinki time
                             startTime = helsinkiTime.toInstant().toEpochMilli()
                             handler.post(clockRunnable)
                         } else {
                             val errorBody = response.errorBody()?.string()
                             Log.e("ProfileActivity", "Failed to log start time: $errorBody")
                             Toast.makeText(this@ProfileActivity, "Failed to log start time: $errorBody", Toast.LENGTH_LONG).show()
-                            // Reset the clock
                             handler.removeCallbacks(clockRunnable)
                         }
                     }
@@ -166,7 +148,6 @@ class ProfileActivity : AppCompatActivity() {
                     withContext(Dispatchers.Main) {
                         Log.e("ProfileActivity", "Error logging start time: ${e.message}", e)
                         Toast.makeText(this@ProfileActivity, "Error logging start time: ${e.message}", Toast.LENGTH_LONG).show()
-                        // Reset the clock
                         handler.removeCallbacks(clockRunnable)
                     }
                 }

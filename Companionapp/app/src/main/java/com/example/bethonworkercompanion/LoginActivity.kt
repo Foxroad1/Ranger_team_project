@@ -51,11 +51,19 @@ class LoginActivity : AppCompatActivity() {
                             val sharedPrefs = getSharedPreferences("app_prefs", MODE_PRIVATE)
                             sharedPrefs.edit().putString("auth_token", it.token).apply()
 
-                            Toast.makeText(this@LoginActivity, "Login successful!", Toast.LENGTH_SHORT).show()
-                            // Navigate to ProfileActivity
-                            val intent = Intent(this@LoginActivity, ProfileActivity::class.java)
-                            startActivity(intent)
-                            finish() // Optional: Call finish() if you don't want to keep the login activity in the back stack
+                            // Verify token storage
+                            val storedToken = sharedPrefs.getString("auth_token", null)
+                            if (storedToken == it.token) {
+                                Log.d("LoginActivity", "Token successfully stored in SharedPreferences")
+                                Toast.makeText(this@LoginActivity, "Login successful!", Toast.LENGTH_SHORT).show()
+                                // Navigate to ProfileActivity
+                                val intent = Intent(this@LoginActivity, ProfileActivity::class.java)
+                                startActivity(intent)
+                                finish() // Optional: Call finish() if you don't want to keep the login activity in the back stack
+                            } else {
+                                Log.e("LoginActivity", "Token verification failed")
+                                Toast.makeText(this@LoginActivity, "Token verification failed", Toast.LENGTH_SHORT).show()
+                            }
                         } ?: run {
                             Log.e("LoginActivity", "Login failed: Response body is null")
                             Toast.makeText(this@LoginActivity, "Login failed: Response body is null", Toast.LENGTH_SHORT).show()
