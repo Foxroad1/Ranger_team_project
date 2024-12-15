@@ -291,12 +291,6 @@ def api_logout(current_user):
 @app.route('/api/log_end_time', methods=['POST'])
 @token_required
 def log_end_time(current_user):
-    data = request.get_json()
-    qr_code_data = data.get('qrCode')
-
-    if not qr_code_data:
-        return jsonify({'message': 'QR code data is required'}), 400
-
     conn = get_db_connection()
     cur = conn.cursor()
     cur.execute("UPDATE work_logs SET log_out_time = ? WHERE employee_id = ? AND log_out_time IS NULL", (datetime.now(utc_plus_two), current_user))

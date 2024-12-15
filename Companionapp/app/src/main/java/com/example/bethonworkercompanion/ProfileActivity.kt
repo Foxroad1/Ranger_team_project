@@ -162,7 +162,7 @@ class ProfileActivity : AppCompatActivity() {
         if (token != null) {
             CoroutineScope(Dispatchers.IO).launch {
                 try {
-                    val response: Response<Void> = RetrofitClient.instance.logEndTime()
+                    val response: Response<Void> = RetrofitClient.instance.logEndTime("Bearer $token")
                     withContext(Dispatchers.Main) {
                         if (response.isSuccessful) {
                             Toast.makeText(this@ProfileActivity, "End time logged successfully", Toast.LENGTH_LONG).show()
