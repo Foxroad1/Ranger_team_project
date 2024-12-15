@@ -21,6 +21,7 @@ id textInputLayout3
 id username
 id workerIdTextView
 layout activity_login
+layout activity_logout
 layout activity_profile
 layout activity_qr_code_scanner
 layout activity_qrcode_scanner

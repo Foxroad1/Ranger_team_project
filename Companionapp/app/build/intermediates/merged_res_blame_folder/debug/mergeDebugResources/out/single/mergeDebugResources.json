@@ -20,6 +20,10 @@
         "source": "com.example.bethonworkercompanion.app-main-6:/xml/data_extraction_rules.xml"
     },
     {
+        "merged": "com.example.bethonworkercompanion.app-debug-4:/layout_activity_logout.xml.flat",
+        "source": "com.example.bethonworkercompanion.app-main-6:/layout/activity_logout.xml"
+    },
+    {
         "merged": "com.example.bethonworkercompanion.app-debug-4:/layout_activity_qr_code_scanner.xml.flat",
         "source": "com.example.bethonworkercompanion.app-main-6:/layout/activity_qr_code_scanner.xml"
     },

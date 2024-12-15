@@ -1,5 +1,6 @@
 package com.example.bethonworkercompanion
 
+import retrofit2.Call
 import retrofit2.Response
 import retrofit2.http.Body
 import retrofit2.http.Field
@@ -21,4 +22,7 @@ interface ApiService {
 
     @GET("/api/profile")
     suspend fun getUserProfile(@Header("Authorization") token: String): Response<User>
+
+    @POST("logout")
+    fun logout(): Call<Void>
 }
