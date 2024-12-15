@@ -121,9 +121,12 @@ def token_required(f):
     def decorated(*args, **kwargs):
         token = request.headers.get('Authorization')
         if not token:
+            token = session.get('token')  # Retrieve token from session if not in headers
+        if not token:
             return jsonify({'message': 'Token is missing!'}), 401
         try:
-            token = token.split(" ")[1]  # Extract token part after 'Bearer'
+            if isinstance(token, str) and ' ' in token:
+                token = token.split(" ")[1]  # Extract token part after 'Bearer'
             data = jwt.decode(token, SECRET_KEY, algorithms=['HS256'])
             current_user = data['user_id']
         except jwt.ExpiredSignatureError:
@@ -164,23 +167,12 @@ def logout():
         cur.close()
         conn.close()
         session.pop('user_id', None)
+        session.pop('token', None)  # Remove token from session
     return redirect(url_for('web_login'))
 
-
 @app.route('/profile')
-def profile():
-    token = session.get('token')
-    if not token:
-        return redirect(url_for('web_login'))
-
-    try:
-        data = jwt.decode(token, app.secret_key, algorithms=['HS256'])
-        current_user = data['user_id']
-    except jwt.ExpiredSignatureError:
-        return redirect(url_for('web_login'))
-    except jwt.InvalidTokenError:
-        return redirect(url_for('web_login'))
-
+@token_required
+def profile(current_user):
     conn = get_db_connection()
     cur = conn.cursor()
     cur.execute("SELECT * FROM employees WHERE id = ?", (current_user,))
@@ -196,8 +188,7 @@ def profile():
 
     for log in work_logs:
         log_in_time = log[2].replace(tzinfo=pytz.utc).astimezone(FINLAND_TZ)
-        log_out_time = log[3].replace(tzinfo=pytz.utc).astimezone(FINLAND_TZ) if log[3] else datetime.now(
-            FINLAND_TZ)  # Use current time if still logged in
+        log_out_time = log[3].replace(tzinfo=pytz.utc).astimezone(FINLAND_TZ) if log[3] else datetime.now(FINLAND_TZ)  # Use current time if still logged in
         date_str = log_in_time.strftime('%Y-%m-%d')
 
         # Calculate the duration of each work session
@@ -251,107 +242,6 @@ def profile():
                                weekly_summary=weekly_summary,
                                monthly_summary=monthly_summary)
 
-@app.route('/log_end_time', methods=['POST'])
-@token_required
-def log_end_time(current_user):
-    conn = get_db_connection()
-    cur = conn.cursor()
-    cur.execute(
-        "UPDATE work_logs SET log_out_time = ? WHERE employee_id = ? AND log_out_time IS NULL",
-        (datetime.now(FINLAND_TZ), current_user)
-    )
-    conn.commit()
-    cur.close()
-    conn.close()
-
-    return jsonify({'message': 'End time logged successfully'}), 200
-
-@app.route('/admin', methods=['GET', 'POST'])
-def admin():
-    if 'admin_logged_in' not in session:
-        return redirect(url_for('admin_login'))
-
-    if request.method == 'POST':
-        # Add employee to the database
-        if 'add_employee' in request.form:
-            data = request.form
-            worker_id = str(uuid.uuid4())
-            hashed_password = generate_password_hash(data['password'], method='pbkdf2:sha256')
-            conn = get_db_connection()
-            cur = conn.cursor()
-
-            # Find the lowest available ID
-            cur.execute("SELECT id FROM employees ORDER BY id")
-            ids = [row[0] for row in cur.fetchall()]
-            new_id = 1
-            for i in range(len(ids)):
-                if ids[i] != i + 1:
-                    new_id = i + 1
-                    break
-                new_id = len(ids) + 1
-
-            cur.execute(
-                "INSERT INTO employees (id, name, dob, title, start_date, worker_id, username, password, email, phone_number) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)",
-                (new_id, data['name'], data['dob'], data['title'], data['start_date'], worker_id, data['username'],
-                 hashed_password, data['email'], data['phone_number'])
-            )
-            conn.commit()
-            cur.close()
-            conn.close()
-
-        # Remove employee from the database
-        elif 'remove_employee' in request.form:
-            employee_id = request.form.get('employee_id')
-            conn = get_db_connection()
-            cur = conn.cursor()
-            # Delete related work logs first
-            cur.execute("DELETE FROM work_logs WHERE employee_id=%s", (employee_id,))
-            cur.execute("DELETE FROM employees WHERE id=%s", (employee_id,))
-            conn.commit()
-            cur.close()
-            conn.close()
-
-        # Modify employee details
-        elif 'modify_employee' in request.form:
-            employee_id = request.form.get('employee_id')
-            title = request.form.get('title')
-            work_group = request.form.get('work_group')
-            conn = get_db_connection()
-            cur = conn.cursor()
-            cur.execute("UPDATE employees SET title=%s WHERE id=%s", (title, employee_id))
-            conn.commit()
-            cur.close()
-            conn.close()
-
-    # Fetch all employees and work logs for display
-    conn = get_db_connection()
-    cur = conn.cursor()
-    cur.execute("SELECT * FROM employees")
-    employees = cur.fetchall()
-    cur.execute("SELECT * FROM work_logs")
-    work_logs = cur.fetchall()
-    cur.close()
-    conn.close()
-
-    return render_template('admin.html', employees=employees, work_logs=work_logs)
-
-@app.route('/admin_login', methods=['GET', 'POST'])
-def admin_login():
-    if request.method == 'POST':
-        data = request.form
-        admin_username = "admin"  # Replace with your admin username
-        admin_password = "Admin"  # Replace with your admin password
-        if data['username'] == admin_username and data['password'] == admin_password:
-            session['admin_logged_in'] = True
-            return redirect(url_for('admin'))
-        return 'Invalid username or password'
-    return render_template('admin_login.html')
-
-@app.route('/admin_logout', methods=['POST'])
-def admin_logout():
-    session.pop('admin_logged_in', None)
-    return redirect(url_for('admin_login'))
-
 # Function to save work logs to a CSV file with calculated work hours in hours, minutes, and seconds format
 def save_work_logs_to_csv(logs, filename):
     with open(filename, 'w', newline='') as csvfile:
@@ -361,7 +251,7 @@ def save_work_logs_to_csv(logs, filename):
         writer.writeheader()
         for log in logs:
             log_in_time = log[2].replace(tzinfo=pytz.utc).astimezone(FINLAND_TZ)
-            log_out_time = log[3].replace(tzinfo=pytz.utc).astimezone(FINLAND_TZ) if log[3] else datetime.now(FINLAND_TZ)  # Use current time if still logged in
+            log_out_time = log[3].replace(tzinfo.pytz.utc).astimezone(FINLAND_TZ) if log[3] else datetime.now(FINLAND_TZ)  # Use current time if still logged in
             duration = log_out_time - log_in_time
             hours, remainder = divmod(duration.total_seconds(), 3600)
             minutes, seconds = divmod(remainder, 60)
