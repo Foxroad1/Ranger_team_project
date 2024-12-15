@@ -1,6 +1,7 @@
 package com.example.bethonworkercompanion
 
 import android.app.Activity
+import android.app.ProgressDialog
 import android.content.Intent
 import android.os.Bundle
 import android.os.Handler
@@ -27,6 +28,7 @@ class ProfileActivity : AppCompatActivity() {
     private lateinit var qrScanLauncher: ActivityResultLauncher<Intent>
     private val handler = Handler(Looper.getMainLooper())
     private var startTime: Long = 0
+    private lateinit var progressDialog: ProgressDialog
 
     private val clockRunnable = object : Runnable {
         override fun run() {
@@ -42,6 +44,11 @@ class ProfileActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_profile)
+
+        // Initialize ProgressDialog
+        progressDialog = ProgressDialog(this)
+        progressDialog.setMessage("Loading...")
+        progressDialog.setCancelable(false)
 
         qrScanLauncher = registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
             val data = result.data
@@ -71,6 +78,7 @@ class ProfileActivity : AppCompatActivity() {
     }
 
     private fun fetchUserProfile() {
+        progressDialog.show()
         CoroutineScope(Dispatchers.IO).launch {
             try {
                 val prefs = getSharedPreferences("app_prefs", MODE_PRIVATE)
@@ -79,6 +87,7 @@ class ProfileActivity : AppCompatActivity() {
                 if (token.isNotEmpty()) {
                     val response = RetrofitClient.instance.getUserProfile("Bearer $token")
                     withContext(Dispatchers.Main) {
+                        progressDialog.dismiss()
                         if (response.isSuccessful) {
                             val user = response.body()
                             Log.d("ProfileActivity", "User data: $user")
@@ -90,11 +99,13 @@ class ProfileActivity : AppCompatActivity() {
                     }
                 } else {
                     withContext(Dispatchers.Main) {
+                        progressDialog.dismiss()
                         Toast.makeText(this@ProfileActivity, "Token is missing", Toast.LENGTH_LONG).show()
                     }
                 }
             } catch (e: Exception) {
                 withContext(Dispatchers.Main) {
+                    progressDialog.dismiss()
                     Log.e("ProfileActivity", "Error: ${e.message}", e)
                     Toast.makeText(this@ProfileActivity, "Error: ${e.message}", Toast.LENGTH_LONG).show()
                 }
@@ -127,10 +138,12 @@ class ProfileActivity : AppCompatActivity() {
 
             Log.d("ProfileActivity", "Helsinki time: $helsinkiTime")
 
+            progressDialog.show()
             CoroutineScope(Dispatchers.IO).launch {
                 try {
                     val response = RetrofitClient.instance.logStartTime("Bearer $token", qrCodeMap)
                     withContext(Dispatchers.Main) {
+                        progressDialog.dismiss()
                         if (response.isSuccessful) {
                             Toast.makeText(this@ProfileActivity, "Start time logged", Toast.LENGTH_LONG).show()
                             startTime = helsinkiTime.toInstant().toEpochMilli()
@@ -144,6 +157,7 @@ class ProfileActivity : AppCompatActivity() {
                     }
                 } catch (e: Exception) {
                     withContext(Dispatchers.Main) {
+                        progressDialog.dismiss()
                         Log.e("ProfileActivity", "Error logging start time: ${e.message}", e)
                         Toast.makeText(this@ProfileActivity, "Error logging start time: ${e.message}", Toast.LENGTH_LONG).show()
                         handler.removeCallbacks(clockRunnable)
@@ -160,10 +174,12 @@ class ProfileActivity : AppCompatActivity() {
         val token = sharedPreferences.getString("auth_token", null)
 
         if (token != null) {
+            progressDialog.show()
             CoroutineScope(Dispatchers.IO).launch {
                 try {
                     val response: Response<Void> = RetrofitClient.instance.logEndTime("Bearer $token")
                     withContext(Dispatchers.Main) {
+                        progressDialog.dismiss()
                         if (response.isSuccessful) {
                             Toast.makeText(this@ProfileActivity, "End time logged successfully", Toast.LENGTH_LONG).show()
                             val intent = Intent(this@ProfileActivity, LoginActivity::class.java)
@@ -177,6 +193,7 @@ class ProfileActivity : AppCompatActivity() {
                     }
                 } catch (e: Exception) {
                     withContext(Dispatchers.Main) {
+                        progressDialog.dismiss()
                         Log.e("ProfileActivity", "Error logging end time: ${e.message}", e)
                         Toast.makeText(this@ProfileActivity, "Error logging end time: ${e.message}", Toast.LENGTH_LONG).show()
                     }
