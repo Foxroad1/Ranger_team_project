@@ -118,8 +118,7 @@ class ProfileActivity : AppCompatActivity() {
 
         CoroutineScope(Dispatchers.IO).launch {
             try {
-                val token = getSharedPreferences("app_prefs", MODE_PRIVATE).getString("auth_token", "") ?: ""
-                val response = RetrofitClient.instance.logStartTime("Bearer $token", qrCodeMap)
+                val response = RetrofitClient.instance.logStartTime(qrCodeMap)
                 withContext(Dispatchers.Main) {
                     if (response.isSuccessful) {
                         Toast.makeText(this@ProfileActivity, "Start time logged", Toast.LENGTH_LONG).show()
@@ -148,8 +147,7 @@ class ProfileActivity : AppCompatActivity() {
     private fun logEndTime() {
         CoroutineScope(Dispatchers.IO).launch {
             try {
-                val token = getSharedPreferences("app_prefs", MODE_PRIVATE).getString("auth_token", "") ?: ""
-                val response = RetrofitClient.instance.logEndTime("Bearer $token")
+                val response = RetrofitClient.instance.logEndTime()
                 withContext(Dispatchers.Main) {
                     if (response.isSuccessful) {
                         Toast.makeText(this@ProfileActivity, "End time logged", Toast.LENGTH_LONG).show()
