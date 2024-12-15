@@ -159,4 +159,6 @@ class QRCodeScannerActivity : AppCompatActivity() {
             Toast.makeText(this, "Token is missing!", Toast.LENGTH_SHORT).show()
         }
     }
+
+    // No longer need to log end time with QR code
 }

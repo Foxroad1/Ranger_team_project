@@ -4,7 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="6e6cc73d-e093-4582-ae6b-b9860e613723" name="Changes" comment="activity and apiservice" />
+    <list default="true" id="6e6cc73d-e093-4582-ae6b-b9860e613723" name="Changes" comment="activity and apiservice one issue sloved another arise">
+      <change beforePath="$PROJECT_DIR$/Companionapp/app/src/main/java/com/example/bethonworkercompanion/ProfileActivity.kt" beforeDir="false" afterPath="$PROJECT_DIR$/Companionapp/app/src/main/java/com/example/bethonworkercompanion/ProfileActivity.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Companionapp/app/src/main/java/com/example/bethonworkercompanion/QRCodeScannerActivity.kt" beforeDir="false" afterPath="$PROJECT_DIR$/Companionapp/app/src/main/java/com/example/bethonworkercompanion/QRCodeScannerActivity.kt" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -78,14 +81,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1732173378005</updated>
-    </task>
-    <task id="LOCAL-00009" summary="Prototyping phase">
-      <option name="closed" value="true" />
-      <created>1733986506882</created>
-      <option name="number" value="00009" />
-      <option name="presentableId" value="LOCAL-00009" />
-      <option name="project" value="LOCAL" />
-      <updated>1733986506882</updated>
     </task>
     <task id="LOCAL-00010" summary="Prototyping phase">
       <option name="closed" value="true" />
@@ -471,7 +466,15 @@
       <option name="project" value="LOCAL" />
       <updated>1734297452795</updated>
     </task>
-    <option name="localTasksCounter" value="58" />
+    <task id="LOCAL-00058" summary="activity and apiservice one issue sloved another arise">
+      <option name="closed" value="true" />
+      <created>1734297643514</created>
+      <option name="number" value="00058" />
+      <option name="presentableId" value="LOCAL-00058" />
+      <option name="project" value="LOCAL" />
+      <updated>1734297643514</updated>
+    </task>
+    <option name="localTasksCounter" value="59" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -498,7 +501,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="worklogs trial download" />
     <MESSAGE value="NEW IP CONFIG FOR ME AND CMD SHELLING UPDATED TO ALLOW REMOTE ACCESS" />
     <MESSAGE value="Updated kinda everything" />
     <MESSAGE value="Prototyping phase" />
@@ -523,7 +525,8 @@
     <MESSAGE value="app.py time zone corrected" />
     <MESSAGE value="changed activities?" />
     <MESSAGE value="activity and apiservice" />
-    <option name="LAST_COMMIT_MESSAGE" value="activity and apiservice" />
+    <MESSAGE value="activity and apiservice one issue sloved another arise" />
+    <option name="LAST_COMMIT_MESSAGE" value="activity and apiservice one issue sloved another arise" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

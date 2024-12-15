@@ -18,6 +18,7 @@ import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
+import retrofit2.Response
 import java.time.Instant
 import java.time.ZoneId
 
@@ -64,9 +65,6 @@ class ProfileActivity : AppCompatActivity() {
         val logoutButton: Button = findViewById(R.id.logoutButton)
         logoutButton.setOnClickListener {
             logEndTime()
-            val intent = Intent(this, LoginActivity::class.java)
-            startActivity(intent)
-            finish()
         }
 
         clockTextView = findViewById(R.id.clockTextView)
@@ -158,9 +156,35 @@ class ProfileActivity : AppCompatActivity() {
     }
 
     private fun logEndTime() {
-        val intent = Intent(this, LogoutActivity::class.java)
-        startActivity(intent)
-        finish()
+        val sharedPreferences = getSharedPreferences("app_prefs", MODE_PRIVATE)
+        val token = sharedPreferences.getString("auth_token", null)
+
+        if (token != null) {
+            CoroutineScope(Dispatchers.IO).launch {
+                try {
+                    val response: Response<Void> = RetrofitClient.instance.logEndTime()
+                    withContext(Dispatchers.Main) {
+                        if (response.isSuccessful) {
+                            Toast.makeText(this@ProfileActivity, "End time logged successfully", Toast.LENGTH_LONG).show()
+                            val intent = Intent(this@ProfileActivity, LoginActivity::class.java)
+                            startActivity(intent)
+                            finish()
+                        } else {
+                            val errorBody = response.errorBody()?.string()
+                            Log.e("ProfileActivity", "Failed to log end time: $errorBody")
+                            Toast.makeText(this@ProfileActivity, "Failed to log end time: $errorBody", Toast.LENGTH_LONG).show()
+                        }
+                    }
+                } catch (e: Exception) {
+                    withContext(Dispatchers.Main) {
+                        Log.e("ProfileActivity", "Error logging end time: ${e.message}", e)
+                        Toast.makeText(this@ProfileActivity, "Error logging end time: ${e.message}", Toast.LENGTH_LONG).show()
+                    }
+                }
+            }
+        } else {
+            Toast.makeText(this, "Token is missing!", Toast.LENGTH_SHORT).show()
+        }
     }
 
     override fun onDestroy() {
