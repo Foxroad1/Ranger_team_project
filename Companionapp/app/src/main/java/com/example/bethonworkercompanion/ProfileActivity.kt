@@ -1,8 +1,5 @@
 package com.example.bethonworkercompanion
 
-
-import com.journeyapps.barcodescanner.IntentIntegrator
-import com.journeyapps.barcodescanner.IntentResult
 import android.content.Intent
 import android.os.Bundle
 import android.os.Handler
@@ -12,6 +9,8 @@ import android.widget.Button
 import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import com.google.zxing.integration.android.IntentIntegrator
+import com.google.zxing.integration.android.IntentResult
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
@@ -164,29 +163,23 @@ class ProfileActivity : AppCompatActivity() {
     }
 
     private fun logEndTime() {
-        val sharedPreferences = getSharedPreferences("app_prefs", MODE_PRIVATE)
-        val token = sharedPreferences.getString("auth_token", null)
-
-        if (token != null) {
-            CoroutineScope(Dispatchers.IO).launch {
-                try {
-                    val response = RetrofitClient.instance.logEndTime()
-                    withContext(Dispatchers.Main) {
-                        if (response.isSuccessful) {
-                            Toast.makeText(this@ProfileActivity, "End time logged", Toast.LENGTH_LONG).show()
-                            handler.removeCallbacks(clockRunnable)
-                        } else {
-                            Toast.makeText(this@ProfileActivity, "Failed to log end time", Toast.LENGTH_LONG).show()
-                        }
-                    }
-                } catch (e: Exception) {
-                    withContext(Dispatchers.Main) {
-                        Toast.makeText(this@ProfileActivity, "Error: ${e.message}", Toast.LENGTH_LONG).show()
+        CoroutineScope(Dispatchers.IO).launch {
+            try {
+                val response = RetrofitClient.instance.logEndTime()
+                withContext(Dispatchers.Main) {
+                    if (response.isSuccessful) {
+                        Toast.makeText(this@ProfileActivity, "End time logged", Toast.LENGTH_LONG).show()
+                        // Stop the clock
+                        handler.removeCallbacks(clockRunnable)
+                    } else {
+                        Toast.makeText(this@ProfileActivity, "Failed to log end time", Toast.LENGTH_LONG).show()
                     }
                 }
+            } catch (e: Exception) {
+                withContext(Dispatchers.Main) {
+                    Toast.makeText(this@ProfileActivity, "Error: ${e.message}", Toast.LENGTH_LONG).show()
+                }
             }
-        } else {
-            Toast.makeText(this, "Token is missing!", Toast.LENGTH_SHORT).show()
         }
     }
 
