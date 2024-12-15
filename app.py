@@ -38,23 +38,85 @@ def get_db_connection():
             print(f"Error connecting to MariaDB: {e}")
             return None
 
-def create_admin_user():
-    admin_username = 'admin'
-    admin_password = 'admin_password'  # Change this to the desired admin password
-    hashed_password = generate_password_hash(admin_password, method='pbkdf2:sha256')
+@app.route('/admin', methods=['GET', 'POST'])
+def admin():
+    if 'admin_logged_in' not in session:
+        return redirect(url_for('admin_login'))
+
+    if request.method == 'POST':
+        if 'add_employee' in request.form:
+            data = request.form
+            worker_id = str(uuid.uuid4())
+            hashed_password = generate_password_hash(data['password'], method='pbkdf2:sha256')
+            conn = get_db_connection()
+            cur = conn.cursor()
+
+            cur.execute("SELECT id FROM employees ORDER BY id")
+            ids = [row[0] for row in cur.fetchall()]
+            new_id = 1
+            for i in range(len(ids)):
+                if ids[i] != i + 1:
+                    new_id = i + 1
+                    break
+                new_id = len(ids) + 1
+
+            cur.execute(
+                "INSERT INTO employees (id, name, dob, title, start_date, worker_id, username, password, email, phone_number) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)",
+                (new_id, data['name'], data['dob'], data['title'], data['start_date'], worker_id, data['username'],
+                 hashed_password, data['email'], data['phone_number'])
+            )
+            conn.commit()
+            cur.close()
+            conn.close()
+
+        elif 'remove_employee' in request.form:
+            employee_id = request.form.get('employee_id')
+            conn = get_db_connection()
+            cur = conn.cursor()
+            cur.execute("DELETE FROM work_logs WHERE employee_id=%s", (employee_id,))
+            cur.execute("DELETE FROM employees WHERE id=%s", (employee_id,))
+            conn.commit()
+            cur.close()
+            conn.close()
+
+        elif 'modify_employee' in request.form:
+            employee_id = request.form.get('employee_id')
+            title = request.form.get('title')
+            work_group = request.form.get('work_group')
+            conn = get_db_connection()
+            cur = conn.cursor()
+            cur.execute("UPDATE employees SET title=%s WHERE id=%s", (title, employee_id))
+            conn.commit()
+            cur.close()
+            conn.close()
+
     conn = get_db_connection()
     cur = conn.cursor()
-    cur.execute("SELECT * FROM employees WHERE username = ?", (admin_username,))
-    user = cur.fetchone()
-    if not user:
-        cur.execute(
-            "INSERT INTO employees (id, name, dob, title, start_date, worker_id, username, password, email, phone_number) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)",
-            (1, 'Admin User', '1990-01-01', 'admin', '2024-12-15', str(uuid.uuid4()), admin_username,
-             hashed_password, 'admin@example.com', '1234567890')
-        )
-        conn.commit()
+    cur.execute("SELECT * FROM employees")
+    employees = cur.fetchall()
+    cur.execute("SELECT * FROM work_logs")
+    work_logs = cur.fetchall()
     cur.close()
     conn.close()
+
+    return render_template('admin.html', employees=employees, work_logs=work_logs)
+
+@app.route('/admin_login', methods=['GET', 'POST'])
+def admin_login():
+    if request.method == 'POST':
+        data = request.form
+        admin_username = "admin"  # Replace with your admin username
+        admin_password = "Admin"  # Replace with your admin password
+        if data['username'] == admin_username and data['password'] == admin_password:
+            session['admin_logged_in'] = True
+            return redirect(url_for('admin'))
+        return 'Invalid username or password'
+    return render_template('admin_login.html')
+
+@app.route('/admin_logout', methods=['POST'])
+def admin_logout():
+    session.pop('admin_logged_in', None)
+    return redirect(url_for('admin_login'))
 
 @app.route('/test_db')
 def test_db():
@@ -113,18 +175,17 @@ def authenticate_user(username, password):
         return user
     return None
 
-# Token required decorator
 def token_required(f):
     @wraps(f)
     def decorated(*args, **kwargs):
         token = request.headers.get('Authorization')
         if not token:
-            token = session.get('token')  # Retrieve token from session if not in headers
+            token = session.get('token')
         if not token:
             return jsonify({'message': 'Token is missing!'}), 401
         try:
             if isinstance(token, str) and ' ' in token:
-                token = token.split(" ")[1]  # Extract token part after 'Bearer'
+                token = token.split(" ")[1]
             data = jwt.decode(token, SECRET_KEY, algorithms=['HS256'])
             current_user = data['user_id']
         except jwt.ExpiredSignatureError:
@@ -134,25 +195,6 @@ def token_required(f):
         return f(current_user, *args, **kwargs)
     return decorated
 
-# Admin login route
-@app.route('/admin_login', methods=['GET', 'POST'])
-def admin_login():
-    if request.method == 'POST':
-        username = request.form['username']
-        password = request.form['password']
-        user = authenticate_user(username, password)
-        if user and user[3] == 'admin':  # Assuming 'title' is at index 3 and contains 'admin' for admin users
-            token = jwt.encode({
-                'user_id': user[0],
-                'exp': datetime.now(pytz.UTC) + timedelta(hours=24)
-            }, app.secret_key, algorithm='HS256')
-            session['token'] = token
-            return redirect(url_for('admin_dashboard'))
-        else:
-            return render_template('admin_login.html', error="Invalid username or password or not an admin")
-    return render_template('admin_login.html')
-
-# Admin dashboard route
 @app.route('/admin_dashboard')
 @token_required
 def admin_dashboard(current_user):
@@ -164,7 +206,6 @@ def admin_dashboard(current_user):
     conn.close()
     return render_template('admin_dashboard.html', employees=employees)
 
-# Admin add employee route
 @app.route('/admin_add_employee', methods=['GET', 'POST'])
 @token_required
 def admin_add_employee(current_user):
@@ -185,7 +226,6 @@ def admin_add_employee(current_user):
         return redirect(url_for('admin_dashboard'))
     return render_template('admin_add_employee.html')
 
-# Web page login route
 @app.route('/web_login', methods=['GET', 'POST'])
 def web_login():
     if request.method == 'POST':
@@ -195,15 +235,14 @@ def web_login():
         if user:
             token = jwt.encode({
                 'user_id': user[0],
-                'exp': datetime.now(pytz.UTC) + timedelta(hours=24)  # Use timezone-aware datetime
-            }, app.secret_key, algorithm='HS256')
-            session['token'] = token  # Store the token in the session
+                'exp': datetime.now(pytz.UTC) + timedelta(hours=24)
+            }, SECRET_KEY, algorithm='HS256')
+            session['token'] = token
             return redirect(url_for('profile'))
         else:
             return render_template('web_login.html', error="Invalid username or password")
     return render_template('web_login.html')
 
-# Android login route
 @app.route('/api/login', methods=['POST'])
 def api_login():
     if request.method == 'POST':
@@ -214,7 +253,7 @@ def api_login():
         if user:
             token = jwt.encode({
                 'user_id': user[0],
-                'exp': datetime.now(pytz.UTC) + timedelta(hours=24)  # Use timezone-aware datetime
+                'exp': datetime.now(pytz.UTC) + timedelta(hours=24)
             }, SECRET_KEY, algorithm='HS256')
             return jsonify({"success": True, "token": token})
         else:
@@ -223,7 +262,6 @@ def api_login():
 @app.route('/logout', methods=['POST'])
 def logout():
     if 'user_id' in session:
-        # Log the logout time
         conn = get_db_connection()
         cur = conn.cursor()
         cur.execute(
@@ -248,31 +286,26 @@ def profile(current_user):
     cur.execute("SELECT * FROM work_logs WHERE employee_id = ?", (current_user,))
     work_logs = cur.fetchall()
 
-    # Summarize work hours by day, week, and month
     daily_summary = {}
     weekly_summary = {}
     monthly_summary = {}
 
     for log in work_logs:
         log_in_time = log[2].replace(tzinfo=pytz.UTC).astimezone(FINLAND_TZ)
-        log_out_time = log[3].replace(tzinfo.pytz.UTC).astimezone(FINLAND_TZ) if log[3] else datetime.now(FINLAND_TZ)  # Use current time if still logged in
+        log_out_time = log[3].replace(tzinfo=pytz.UTC).astimezone(FINLAND_TZ) if log[3] else datetime.now(FINLAND_TZ)  # Use current time if still logged in
         date_str = log_in_time.strftime('%Y-%m-%d')
 
-        # Calculate the duration of each work session
         duration = log_out_time - log_in_time
 
-        # Daily summary
         if date_str not in daily_summary:
             daily_summary[date_str] = timedelta()
         daily_summary[date_str] += duration
 
-        # Weekly summary
         week_str = log_in_time.strftime('%Y-%U')
         if week_str not in weekly_summary:
             weekly_summary[week_str] = timedelta()
         weekly_summary[week_str] += duration
 
-        # Monthly summary
         month_str = log_in_time.strftime('%Y-%m')
         if month_str not in monthly_summary:
             monthly_summary[month_str] = timedelta()
@@ -295,8 +328,8 @@ def profile(current_user):
 
     work_logs_data = [
         {
-            'log_in_time': log[2].replace(tzinfo.pytz.UTC).astimezone(FINLAND_TZ),
-            'log_out_time': log[3].replace(tzinfo.pytz.UTC).astimezone(FINLAND_TZ) if log[3] else None,
+            'log_in_time': log[2].replace(tzinfo=pytz.UTC).astimezone(FINLAND_TZ),
+            'log_out_time': log[3].replace(tzinfo=pytz.UTC).astimezone(FINLAND_TZ) if log[3] else None,
             'title': log[4]
         } for log in work_logs
     ]
@@ -309,7 +342,6 @@ def profile(current_user):
                                weekly_summary=weekly_summary,
                                monthly_summary=monthly_summary)
 
-# Function to save work logs to a CSV file with calculated work hours in hours, minutes, and seconds format
 def save_work_logs_to_csv(logs, filename):
     with open(filename, 'w', newline='') as csvfile:
         fieldnames = ['Employee ID', 'Log In Time', 'Log Out Time', 'Title', 'Work Hours']
@@ -317,8 +349,8 @@ def save_work_logs_to_csv(logs, filename):
 
         writer.writeheader()
         for log in logs:
-            log_in_time = log[2].replace(tzinfo.pytz.UTC).astimezone(FINLAND_TZ)
-            log_out_time = log[3].replace(tzinfo.pytz.UTC).astimezone(FINLAND_TZ) if log[3] else datetime.now(FINLAND_TZ)  # Use current time if still logged in
+            log_in_time = log[2].replace(tzinfo=pytz.UTC).astimezone(FINLAND_TZ)
+            log_out_time = log[3].replace(tzinfo=pytz.UTC).astimezone(FINLAND_TZ) if log[3] else datetime.now(FINLAND_TZ)  # Use current time if still logged in
             duration = log_out_time - log_in_time
             hours, remainder = divmod(duration.total_seconds(), 3600)
             minutes, seconds = divmod(remainder, 60)
@@ -331,7 +363,6 @@ def save_work_logs_to_csv(logs, filename):
                 'Work Hours': work_hours
             })
 
-# Function to generate and save work logs for a specific period
 def generate_work_logs(period):
     conn = get_db_connection()
     cur = conn.cursor()
@@ -356,7 +387,6 @@ def generate_work_logs(period):
     save_work_logs_to_csv(logs, filename)
     return filename
 
-# Function to generate and save work logs for a specific employee and period
 def generate_employee_work_logs(employee_id, period):
     conn = get_db_connection()
     cur = conn.cursor()
@@ -383,7 +413,6 @@ def generate_employee_work_logs(employee_id, period):
     save_work_logs_to_csv(logs, filename)
     return filename
 
-# Route to download work logs for a specific employee and period
 @app.route('/download_employee_work_logs/<employee_id>/<period>')
 def download_employee_work_logs(employee_id, period):
     if period not in ['daily', 'weekly', 'monthly']:
@@ -393,10 +422,11 @@ def download_employee_work_logs(employee_id, period):
 
     return send_file(filename, as_attachment=True)
 
-# Ensure the directory for storing CSV files exists
 if not os.path.exists('work_logs'):
     os.makedirs('work_logs')
 
+SECRET_KEY = 'your_jwt_secret_key'
+app.secret_key = SECRET_KEY
+
 if __name__ == "__main__":
-    create_admin_user()  # Ensure the admin user is created
     app.run(host="0.0.0.0", port=5000, debug=True)

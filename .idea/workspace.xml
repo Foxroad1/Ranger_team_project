@@ -4,7 +4,8 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="6e6cc73d-e093-4582-ae6b-b9860e613723" name="Changes" comment="Unresolved reference 'tzinfo' line 254 still not solved">
+    <list default="true" id="6e6cc73d-e093-4582-ae6b-b9860e613723" name="Changes" comment="Unresolved reference 'tzinfo' lines: 258, 298,  299, 320, 321.">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app.py" beforeDir="false" afterPath="$PROJECT_DIR$/app.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -401,7 +402,15 @@
       <option name="project" value="LOCAL" />
       <updated>1734271308023</updated>
     </task>
-    <option name="localTasksCounter" value="41" />
+    <task id="LOCAL-00041" summary="Unresolved reference 'tzinfo' lines: 258, 298,  299, 320, 321.">
+      <option name="closed" value="true" />
+      <created>1734271674940</created>
+      <option name="number" value="00041" />
+      <option name="presentableId" value="LOCAL-00041" />
+      <option name="project" value="LOCAL" />
+      <updated>1734271674940</updated>
+    </task>
+    <option name="localTasksCounter" value="42" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -446,7 +455,8 @@
     <MESSAGE value="Updated Python:  app.py  profilroute and token generate and validations" />
     <MESSAGE value="Unresolved reference 'tzinfo' line 254" />
     <MESSAGE value="Unresolved reference 'tzinfo' line 254 still not solved" />
-    <option name="LAST_COMMIT_MESSAGE" value="Unresolved reference 'tzinfo' line 254 still not solved" />
+    <MESSAGE value="Unresolved reference 'tzinfo' lines: 258, 298,  299, 320, 321." />
+    <option name="LAST_COMMIT_MESSAGE" value="Unresolved reference 'tzinfo' lines: 258, 298,  299, 320, 321." />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
