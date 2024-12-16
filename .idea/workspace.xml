@@ -4,7 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="6e6cc73d-e093-4582-ae6b-b9860e613723" name="Changes" comment="Profile adjustments" />
+    <list default="true" id="6e6cc73d-e093-4582-ae6b-b9860e613723" name="Changes" comment="Profile adjustments new button trial" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -78,14 +78,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1732173378005</updated>
-    </task>
-    <task id="LOCAL-00020" summary="Prototyping phase">
-      <option name="closed" value="true" />
-      <created>1733995872010</created>
-      <option name="number" value="00020" />
-      <option name="presentableId" value="LOCAL-00020" />
-      <option name="project" value="LOCAL" />
-      <updated>1733995872010</updated>
     </task>
     <task id="LOCAL-00021" summary="Prototyping phase">
       <option name="closed" value="true" />
@@ -471,7 +463,15 @@
       <option name="project" value="LOCAL" />
       <updated>1734306172222</updated>
     </task>
-    <option name="localTasksCounter" value="69" />
+    <task id="LOCAL-00069" summary="Profile adjustments new button trial">
+      <option name="closed" value="true" />
+      <created>1734307220786</created>
+      <option name="number" value="00069" />
+      <option name="presentableId" value="LOCAL-00069" />
+      <option name="project" value="LOCAL" />
+      <updated>1734307220786</updated>
+    </task>
+    <option name="localTasksCounter" value="70" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -498,7 +498,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Updated communications with the server" />
     <MESSAGE value="Updated LoginActivity.kt and LoginResponse.kt" />
     <MESSAGE value="Updated ProfileActivity.kt" />
     <MESSAGE value="Updated Python:  app.py  profilroute and token generate and validations" />
@@ -523,7 +522,8 @@
     <MESSAGE value="Loging in, Qrcode timer Start, Logout Logs spent time measured by the app.." />
     <MESSAGE value="new profile try." />
     <MESSAGE value="Profile adjustments" />
-    <option name="LAST_COMMIT_MESSAGE" value="Profile adjustments" />
+    <MESSAGE value="Profile adjustments new button trial" />
+    <option name="LAST_COMMIT_MESSAGE" value="Profile adjustments new button trial" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

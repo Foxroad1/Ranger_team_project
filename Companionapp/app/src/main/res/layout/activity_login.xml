@@ -17,7 +17,7 @@
         android:layout_marginEnd="105dp"
         android:layout_marginBottom="124dp"
         android:autoSizeTextType="none"
-        android:background="#00B345"
+        android:background="@drawable/rounded_buttons"
         android:text="@string/login"
         android:textSize="24sp"
         android:visibility="visible"
@@ -26,14 +26,14 @@
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/editTextTextPassword"
-        app:layout_constraintVertical_bias="0.0"
+        app:layout_constraintVertical_bias="0.586"
         tools:visibility="visible" />
 
     <EditText
         android:id="@+id/editTextTextPassword"
         android:layout_width="355dp"
         android:layout_height="113dp"
-        android:layout_marginTop="49dp"
+        android:layout_marginTop="88dp"
         android:autofillHints="password"
         android:background="#E6E6E6"
         android:ems="10"
@@ -43,18 +43,17 @@
         android:textStyle="italic"
         android:visibility="visible"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.52"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textInputLayout3"
         tools:visibility="visible" />
 
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/textInputLayout3"
-        android:layout_width="347dp"
-        android:layout_height="150dp"
+        android:layout_width="366dp"
+        android:layout_height="99dp"
         android:layout_marginTop="80dp"
         android:layout_marginBottom="49dp"
-        android:background="#FFFFFF"
+        android:background="#E9E9E9"
         app:layout_constraintBottom_toTopOf="@+id/editTextTextPassword"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.528"
@@ -65,7 +64,7 @@
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/username"
             android:layout_width="match_parent"
-            android:layout_height="132dp"
+            android:layout_height="79dp"
             android:autofillHints="username"
             android:background="#E9E9E9"
             android:hint="@string/username_hint" />
