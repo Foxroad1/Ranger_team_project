@@ -5,8 +5,6 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="6e6cc73d-e093-4582-ae6b-b9860e613723" name="Changes" comment="Documentation">
-      <change afterPath="$PROJECT_DIR$/work_logs/work_logs_daily_4_2024-12-16.csv" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/docs/Bethon Workerplans.odt" beforeDir="false" afterPath="$PROJECT_DIR$/docs/Bethon Workerplans.odt" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -82,14 +80,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1732173378005</updated>
-    </task>
-    <task id="LOCAL-00032" summary="unversioned files ? wonder what are they">
-      <option name="closed" value="true" />
-      <created>1734256236600</created>
-      <option name="number" value="00032" />
-      <option name="presentableId" value="LOCAL-00032" />
-      <option name="project" value="LOCAL" />
-      <updated>1734256236600</updated>
     </task>
     <task id="LOCAL-00033" summary="Updated communications with the server">
       <option name="closed" value="true" />
@@ -475,7 +465,15 @@
       <option name="project" value="LOCAL" />
       <updated>1734324944771</updated>
     </task>
-    <option name="localTasksCounter" value="81" />
+    <task id="LOCAL-00081" summary="Documentation">
+      <option name="closed" value="true" />
+      <created>1734324964708</created>
+      <option name="number" value="00081" />
+      <option name="presentableId" value="LOCAL-00081" />
+      <option name="project" value="LOCAL" />
+      <updated>1734324964708</updated>
+    </task>
+    <option name="localTasksCounter" value="82" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
