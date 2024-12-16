@@ -34,14 +34,22 @@ RQ-001-DEV: Team splits up roles (COMPLETED)
 RQ-002-DEV: Setting up a server, for database handling.(COMPLETED)
     RQ-002b-DEV: Creating a website for the server as a User Interface. (Admin side and employee side?) COMPLETED
 
-RQ-003-DEV: Creating the App User Interface (UI)
+RQ-003-DEV: Creating the App User Interface (UI). COMPLETED
 
-RQ-004-DEV: Developing Registration methods (Web side COMPLETED)
+RQ-004-DEV: Developing Registration methods (Web side COMPLETED all)
     RQ-004b-DEV: ensuring Employee ID creation after registration.
     RQ-004c-DEV: stores and updates new Employee, and new information about Employee.
 
-RQ-005-DEV: Developing the communication logic between prototype (app) and server.
+RQ-005-DEV: Developing the communication logic between prototype (app) and server. COMPLETED
 
-RQ-006-DEV: Developing the prototype (app)  to be able to login, register in the company database (server)
+RQ-006-DEV: Developing the prototype (app)  to be able to login fetch data for profile. COMPLETED
+
+RQ-007-DEV: Generating a QRcode that is hardcoded to location. COMPLETED
+
+RQ-008-DEV: Clock starts with QRcode being scanned and the phone location matches the QRcode hard coded location. COMPLETED
+
+RQ-009-DEV: Upon Logout the app updates the server with the measured time and save them into logs. COMPLETED
+
+RQ-010-DEV-Extra-Feature: The web side users, and admins can download ".csv" file formatted summarized logs 
 
 (More to be added as DEV team proceeds) 
