@@ -4,9 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="6e6cc73d-e093-4582-ae6b-b9860e613723" name="Changes" comment="Socsecunumberchanged to phone number">
-      <change beforePath="$PROJECT_DIR$/app.py" beforeDir="false" afterPath="$PROJECT_DIR$/app.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/admin.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/admin.html" afterDir="false" />
+    <list default="true" id="6e6cc73d-e093-4582-ae6b-b9860e613723" name="Changes" comment="app tweaks">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Companionapp/app/src/main/AndroidManifest.xml" beforeDir="false" afterPath="$PROJECT_DIR$/Companionapp/app/src/main/AndroidManifest.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -81,22 +81,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1732173378005</updated>
-    </task>
-    <task id="LOCAL-00026" summary="?">
-      <option name="closed" value="true" />
-      <created>1734006360203</created>
-      <option name="number" value="00026" />
-      <option name="presentableId" value="LOCAL-00026" />
-      <option name="project" value="LOCAL" />
-      <updated>1734006360203</updated>
-    </task>
-    <task id="LOCAL-00027" summary="?">
-      <option name="closed" value="true" />
-      <created>1734013540757</created>
-      <option name="number" value="00027" />
-      <option name="presentableId" value="LOCAL-00027" />
-      <option name="project" value="LOCAL" />
-      <updated>1734013540757</updated>
     </task>
     <task id="LOCAL-00028" summary="?">
       <option name="closed" value="true" />
@@ -474,7 +458,23 @@
       <option name="project" value="LOCAL" />
       <updated>1734310785363</updated>
     </task>
-    <option name="localTasksCounter" value="75" />
+    <task id="LOCAL-00075" summary="some tweaks">
+      <option name="closed" value="true" />
+      <created>1734311137290</created>
+      <option name="number" value="00075" />
+      <option name="presentableId" value="LOCAL-00075" />
+      <option name="project" value="LOCAL" />
+      <updated>1734311137290</updated>
+    </task>
+    <task id="LOCAL-00076" summary="app tweaks">
+      <option name="closed" value="true" />
+      <created>1734311820175</created>
+      <option name="number" value="00076" />
+      <option name="presentableId" value="LOCAL-00076" />
+      <option name="project" value="LOCAL" />
+      <updated>1734311820175</updated>
+    </task>
+    <option name="localTasksCounter" value="77" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -501,8 +501,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Unresolved reference 'tzinfo' line 254 still not solved" />
-    <MESSAGE value="Unresolved reference 'tzinfo' lines: 258, 298,  299, 320, 321." />
     <MESSAGE value="python app.py web fixed check the clock" />
     <MESSAGE value="login .. cant build...." />
     <MESSAGE value="weblogin web side all works base line app.py" />
@@ -526,7 +524,9 @@
     <MESSAGE value="big update" />
     <MESSAGE value="chane socsecu to phone number" />
     <MESSAGE value="Socsecunumberchanged to phone number" />
-    <option name="LAST_COMMIT_MESSAGE" value="Socsecunumberchanged to phone number" />
+    <MESSAGE value="some tweaks" />
+    <MESSAGE value="app tweaks" />
+    <option name="LAST_COMMIT_MESSAGE" value="app tweaks" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

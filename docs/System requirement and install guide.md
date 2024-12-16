@@ -7,6 +7,8 @@ Install in Commandline (windows):
     - pip install mysql
     - pip install mysql-connector-python
     - pip install qrcode[pil]
+    - pip install pyzt
+    - pip install werkzeug
     
 
 In Windows press Windows button (flag) 
@@ -25,7 +27,7 @@ Use CMD to initialize server:
 Use CMD to launch python app by:
     - cd C:\Ranger_team_project (or path where yoy store the main folder)
     - type in : python app.py
-    - Use browser: http://127.0.0.1:5000
+    - Use browser: http://192.168.0.100:5000 (where as the ip should be your server's static ip)
     - Admin login: User: admin | password: Admin
     - Registration is straight forward
     - To rename website reffer to  app.py and index.html
@@ -36,7 +38,16 @@ Use CMD to launch python app by:
       and andmin_password = (note keep the '' - markings )
 
 Serverside Requirements within MariaDB:
-    - for new users to be added:
+    - for new users to be added who remote connects to the server in order to modify the app:
         GRANT ALL PRIVILEGES ON *.* TO 'username'@'%' IDENTIFIED BY 'password';
         FLUSH PRIVILEGES; (change username as you specify in app.py, and password 
         as you specify in app.py)
+
+Android prototype app:
+    - Requires to be downloaded, and installed 
+    -Requires safety override as this app is prototype for now
+    - Android 8.0 and newer versions minimum 
+    -screen size 420dpi minimum
+    -scrolling is not an option, landscape mode not supported correctly 
+    - once the Qr-code started the Clock the app runs in background 
+    - Manual logout must be done to update work logs 
