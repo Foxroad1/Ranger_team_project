@@ -4,8 +4,8 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="6e6cc73d-e093-4582-ae6b-b9860e613723" name="Changes" comment="Documentation">
-      <change beforePath="$PROJECT_DIR$/docs/Bethon Workerplans.odt" beforeDir="false" afterPath="$PROJECT_DIR$/docs/Bethon Workerplans.odt" afterDir="false" />
+    <list default="true" id="6e6cc73d-e093-4582-ae6b-b9860e613723" name="Changes" comment="Documentations">
+      <change beforePath="$PROJECT_DIR$/docs/Test Cases for betthon_worker.ods" beforeDir="false" afterPath="$PROJECT_DIR$/docs/Test Cases for betthon_worker.ods" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -80,14 +80,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1732173378005</updated>
-    </task>
-    <task id="LOCAL-00033" summary="Updated communications with the server">
-      <option name="closed" value="true" />
-      <created>1734264691501</created>
-      <option name="number" value="00033" />
-      <option name="presentableId" value="LOCAL-00033" />
-      <option name="project" value="LOCAL" />
-      <updated>1734264691501</updated>
     </task>
     <task id="LOCAL-00034" summary="Updated LoginActivity.kt and LoginResponse.kt">
       <option name="closed" value="true" />
@@ -473,7 +465,15 @@
       <option name="project" value="LOCAL" />
       <updated>1734324964708</updated>
     </task>
-    <option name="localTasksCounter" value="82" />
+    <task id="LOCAL-00082" summary="Documentations">
+      <option name="closed" value="true" />
+      <created>1734325272286</created>
+      <option name="number" value="00082" />
+      <option name="presentableId" value="LOCAL-00082" />
+      <option name="project" value="LOCAL" />
+      <updated>1734325272286</updated>
+    </task>
+    <option name="localTasksCounter" value="83" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -523,9 +523,9 @@
     <MESSAGE value="Socsecunumberchanged to phone number" />
     <MESSAGE value="some tweaks" />
     <MESSAGE value="app tweaks" />
-    <MESSAGE value="Documentations" />
     <MESSAGE value="Documentation" />
-    <option name="LAST_COMMIT_MESSAGE" value="Documentation" />
+    <MESSAGE value="Documentations" />
+    <option name="LAST_COMMIT_MESSAGE" value="Documentations" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
