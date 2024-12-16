@@ -4,7 +4,11 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="6e6cc73d-e093-4582-ae6b-b9860e613723" name="Changes" comment="Documentations" />
+    <list default="true" id="6e6cc73d-e093-4582-ae6b-b9860e613723" name="Changes" comment="Documentation">
+      <change afterPath="$PROJECT_DIR$/work_logs/work_logs_daily_4_2024-12-16.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/Bethon Workerplans.odt" beforeDir="false" afterPath="$PROJECT_DIR$/docs/Bethon Workerplans.odt" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -78,22 +82,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1732173378005</updated>
-    </task>
-    <task id="LOCAL-00030" summary="?">
-      <option name="closed" value="true" />
-      <created>1734036574485</created>
-      <option name="number" value="00030" />
-      <option name="presentableId" value="LOCAL-00030" />
-      <option name="project" value="LOCAL" />
-      <updated>1734036574485</updated>
-    </task>
-    <task id="LOCAL-00031" summary="Updated login separation and updated home working IP">
-      <option name="closed" value="true" />
-      <created>1734256207212</created>
-      <option name="number" value="00031" />
-      <option name="presentableId" value="LOCAL-00031" />
-      <option name="project" value="LOCAL" />
-      <updated>1734256207212</updated>
     </task>
     <task id="LOCAL-00032" summary="unversioned files ? wonder what are they">
       <option name="closed" value="true" />
@@ -471,7 +459,23 @@
       <option name="project" value="LOCAL" />
       <updated>1734315584862</updated>
     </task>
-    <option name="localTasksCounter" value="79" />
+    <task id="LOCAL-00079" summary="Documentations">
+      <option name="closed" value="true" />
+      <created>1734315612153</created>
+      <option name="number" value="00079" />
+      <option name="presentableId" value="LOCAL-00079" />
+      <option name="project" value="LOCAL" />
+      <updated>1734315612153</updated>
+    </task>
+    <task id="LOCAL-00080" summary="Documentation">
+      <option name="closed" value="true" />
+      <created>1734324944771</created>
+      <option name="number" value="00080" />
+      <option name="presentableId" value="LOCAL-00080" />
+      <option name="project" value="LOCAL" />
+      <updated>1734324944771</updated>
+    </task>
+    <option name="localTasksCounter" value="81" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -498,7 +502,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="login .. cant build...." />
     <MESSAGE value="weblogin web side all works base line app.py" />
     <MESSAGE value="Api routes added ( separately)" />
     <MESSAGE value="Qrcode starts clock data fetch good  logout need fix ( all in android app)" />
@@ -523,7 +526,8 @@
     <MESSAGE value="some tweaks" />
     <MESSAGE value="app tweaks" />
     <MESSAGE value="Documentations" />
-    <option name="LAST_COMMIT_MESSAGE" value="Documentations" />
+    <MESSAGE value="Documentation" />
+    <option name="LAST_COMMIT_MESSAGE" value="Documentation" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
