@@ -36,12 +36,10 @@
         android:id="@+id/labelEmployeeID"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="84dp"
-        android:layout_marginBottom="21dp"
+        android:layout_marginTop="100dp"
         android:text="Employee ID:"
         android:textSize="20sp"
         android:textStyle="bold"
-        app:layout_constraintBottom_toTopOf="@+id/labelJobTitle"
         app:layout_constraintEnd_toStartOf="@+id/workerIdTextView"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/labelEmployee" />
@@ -50,12 +48,12 @@
         android:id="@+id/workerIdTextView"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="84dp"
+        android:layout_marginBottom="20dp"
         android:text="@string/Worker_ID"
         android:textSize="20sp"
+        app:layout_constraintBottom_toTopOf="@+id/jobTitleTextView"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/labelEmployeeID"
-        app:layout_constraintTop_toBottomOf="@+id/nameTextView" />
+        app:layout_constraintStart_toEndOf="@+id/labelEmployeeID" />
 
     <TextView
         android:id="@+id/labelJobTitle"

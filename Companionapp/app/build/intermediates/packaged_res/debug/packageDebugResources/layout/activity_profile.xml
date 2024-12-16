@@ -11,8 +11,8 @@
 
     <TextView
         android:id="@+id/labelEmployee"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
+        android:layout_width="198dp"
+        android:layout_height="54dp"
         android:layout_marginTop="20dp"
         android:text="Employee:"
         android:textSize="20sp"
@@ -23,8 +23,8 @@
 
     <TextView
         android:id="@+id/nameTextView"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
+        android:layout_width="171dp"
+        android:layout_height="54dp"
         android:layout_marginTop="20dp"
         android:text="@string/name"
         android:textSize="20sp"
@@ -36,7 +36,7 @@
         android:id="@+id/labelEmployeeID"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="84dp"
+        android:layout_marginTop="100dp"
         android:text="Employee ID:"
         android:textSize="20sp"
         android:textStyle="bold"
@@ -48,12 +48,12 @@
         android:id="@+id/workerIdTextView"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="84dp"
+        android:layout_marginBottom="20dp"
         android:text="@string/Worker_ID"
         android:textSize="20sp"
+        app:layout_constraintBottom_toTopOf="@+id/jobTitleTextView"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/labelEmployeeID"
-        app:layout_constraintTop_toBottomOf="@+id/nameTextView" />
+        app:layout_constraintStart_toEndOf="@+id/labelEmployeeID" />
 
     <TextView
         android:id="@+id/labelJobTitle"
@@ -83,9 +83,11 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
+        android:layout_marginBottom="124dp"
         android:text="Work Time:"
         android:textSize="20sp"
         android:textStyle="bold"
+        app:layout_constraintBottom_toTopOf="@+id/scanQrButton"
         app:layout_constraintEnd_toStartOf="@+id/clockTextView"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/labelJobTitle" />
