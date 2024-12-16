@@ -1,4 +1,5 @@
 System requirements
+Install Android Studio SDK for modifying the Companion app.
 Install : MariaDB 11.6.2 
 Install Python v3.13.0:60403a5 (minimum)
 Install in Commandline (windows):
@@ -51,3 +52,14 @@ Android prototype app:
     -scrolling is not an option, landscape mode not supported correctly 
     - once the Qr-code started the Clock the app runs in background 
     - Manual logout must be done to update work logs 
+    
+    Within the Android Studio SDK: 
+        - The following directories lead you: Ranger_team_project\Companionapp\app\src\main\java\com\example\bethonworkercompanion 
+        - To find: the 2 specific files: "RetrofitClient.kt" and "RetryInterceptor.kt" 
+        - locate the followinf finction: object RetrofitClient {
+                                                            private const val PRIMARY_BASE_URL = "mod.ify.the.ip" within the caption
+        to ensure the app communicates with the server once is set for static ip. 
+        - The "RetryInterceptor.kt" can be deleted and the "RetrofitClient.kt"  needs only a modification for 
+          the "RetryInterceptor.kt"  parts safely removed if this is troublesome  set the Ip within the file to the same IP as
+          the "RetrofitClient.kt"  if that fails set it to something else, as the PRIMARY_BASE_URL is more than enough,
+          for a normal server to be operating. 
