@@ -4,7 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="6e6cc73d-e093-4582-ae6b-b9860e613723" name="Changes" comment="chane socsecu to phone number" />
+    <list default="true" id="6e6cc73d-e093-4582-ae6b-b9860e613723" name="Changes" comment="Socsecunumberchanged to phone number">
+      <change beforePath="$PROJECT_DIR$/app.py" beforeDir="false" afterPath="$PROJECT_DIR$/app.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/admin.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/admin.html" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -78,14 +81,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1732173378005</updated>
-    </task>
-    <task id="LOCAL-00025" summary="Prototyping phase">
-      <option name="closed" value="true" />
-      <created>1734005431434</created>
-      <option name="number" value="00025" />
-      <option name="presentableId" value="LOCAL-00025" />
-      <option name="project" value="LOCAL" />
-      <updated>1734005431434</updated>
     </task>
     <task id="LOCAL-00026" summary="?">
       <option name="closed" value="true" />
@@ -471,7 +466,15 @@
       <option name="project" value="LOCAL" />
       <updated>1734310469564</updated>
     </task>
-    <option name="localTasksCounter" value="74" />
+    <task id="LOCAL-00074" summary="Socsecunumberchanged to phone number">
+      <option name="closed" value="true" />
+      <created>1734310785363</created>
+      <option name="number" value="00074" />
+      <option name="presentableId" value="LOCAL-00074" />
+      <option name="project" value="LOCAL" />
+      <updated>1734310785363</updated>
+    </task>
+    <option name="localTasksCounter" value="75" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -498,7 +501,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Unresolved reference 'tzinfo' line 254" />
     <MESSAGE value="Unresolved reference 'tzinfo' line 254 still not solved" />
     <MESSAGE value="Unresolved reference 'tzinfo' lines: 258, 298,  299, 320, 321." />
     <MESSAGE value="python app.py web fixed check the clock" />
@@ -523,7 +525,8 @@
     <MESSAGE value="Profile adjustments new buttons" />
     <MESSAGE value="big update" />
     <MESSAGE value="chane socsecu to phone number" />
-    <option name="LAST_COMMIT_MESSAGE" value="chane socsecu to phone number" />
+    <MESSAGE value="Socsecunumberchanged to phone number" />
+    <option name="LAST_COMMIT_MESSAGE" value="Socsecunumberchanged to phone number" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

@@ -192,7 +192,7 @@ def log_work():
         cur = conn.cursor()
         cur.execute(
             "INSERT INTO work_logs (employee_id, log_in_time, log_out_time, Title) VALUES (?, ?, ?, ?)",
-            (session['user_id'], data['log_in_time'], data['log_out_time'], data['category'])
+            (session['user_id'], data['log_in_time'], data['log_out_time'], data['title'])
         )
         conn.commit()
         cur.close()
@@ -324,9 +324,9 @@ def admin():
                 new_id = len(ids) + 1
 
             cur.execute(
-                "INSERT INTO employees (id, name, dob, title, start_date, worker_id, username, password, email, social_security_number) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)",
+                "INSERT INTO employees (id, name, dob, title, start_date, worker_id, username, password, email, phone_number) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)",
                 (new_id, data['name'], data['dob'], data['title'], data['start_date'], worker_id, data['username'],
-                 hashed_password, data['email'], data['social_security_number'])
+                 hashed_password, data['email'], data['phone_number'])
             )
             conn.commit()
             cur.close()
@@ -387,7 +387,7 @@ def admin_logout():
 
 def save_work_logs_to_csv(logs, filename):
     with open(filename, 'w', newline='') as csvfile:
-        fieldnames = ['Employee ID', 'Log In Time', 'Log Out Time', 'Title', 'Work Hours']
+        fieldnames = ['Employee ID', 'Log In Time', 'Log Out Time', 'title', 'Work Hours']
         writer = csv.DictWriter(csvfile, fieldnames=fieldnames)
 
         writer.writeheader()
@@ -402,7 +402,7 @@ def save_work_logs_to_csv(logs, filename):
                 'Employee ID': log[1],
                 'Log In Time': log_in_time,
                 'Log Out Time': log_out_time,
-                'Title': log[4],
+                'title': log[4],
                 'Work Hours': work_hours
             })
 
