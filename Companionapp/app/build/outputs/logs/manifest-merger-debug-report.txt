@@ -159,10 +159,6 @@ activity#com.example.bethonworkercompanion.ProfileActivity
 ADDED from C:\Ranger_team_project\Companionapp\app\src\main\AndroidManifest.xml:24:9-53
 	android:name
 		ADDED from C:\Ranger_team_project\Companionapp\app\src\main\AndroidManifest.xml:24:19-50
-activity#com.example.bethonworkercompanion.LogoutActivity
-ADDED from C:\Ranger_team_project\Companionapp\app\src\main\AndroidManifest.xml:25:9-52
-	android:name
-		ADDED from C:\Ranger_team_project\Companionapp\app\src\main\AndroidManifest.xml:25:19-49
 uses-permission#android.permission.INTERNET
 ADDED from C:\Ranger_team_project\Companionapp\app\src\main\AndroidManifest.xml:30:5-67
 	android:name
